@@ -1,0 +1,244 @@
+\documentclass[9pt,twocolumn,twoside]{pnas-new}
+% Use the lineno option to display guide line numbers if required.
+
+\templatetype{pnasresearcharticle} % Choose template
+% {pnasresearcharticle} = Template for a two-column research article
+% {pnasmathematics} %= Template for a one-column mathematics article
+% {pnasinvited} %= Template for a PNAS invited submission
+
+%% ABOVE THIS LINE IS JASA TEMPLATE
+%% BELOW THIS LINE IS MY STUFF
+
+% \usepackage[utf8]{inputenc}
+% \usepackage{amssymb}
+% \usepackage{floatpag}
+% \usepackage{bm}
+% % \usepackage{algorithm2e}
+% \usepackage{hyperref}
+% \usepackage{cleveref}
+% \usepackage{csquotes}
+% \usepackage[T1]{fontenc}
+% \usepackage{textcomp} % provide symbols
+% \usepackage{xr}
+% \usepackage{afterpage}
+% \usepackage{caption}
+% \usepackage{numprint}
+% \npfourdigitnosep
+% \npdecimalsign{.}
+% % \usepackage{microtype}
+% \usepackage{todonotes}
+
+% Macros for common abbreviations to get the spacing right
+% See: https://stackoverflow.com/questions/3282319/correct-way-to-define-macros-etc-ie-in-latex
+\usepackage{xspace}
+\makeatletter
+\DeclareRobustCommand\onedot{\futurelet\@let@token\@onedot}
+\def\@onedot{\ifx\@let@token.\else.\null\fi\xspace}
+\def\eg{e.g\onedot} \def\Eg{{E.g}\onedot}
+\def\ie{i.e\onedot} \def\Ie{{I.e}\onedot}
+\def\cf{c.f\onedot} \def\Cf{{C.f}\onedot}
+\def\etc{etc\onedot} \def\vs{{vs}\onedot}
+\def\wrt{w.r.t\onedot} \def\dof{d.o.f\onedot}
+\def\etal{et al\onedot}
+\makeatother
+\begin{document}
+
+
+\title{Template for preparing your research report submission to PNAS using Overleaf}
+
+% Use letters for affiliations, numbers to show equal authorship (if applicable) and to indicate the corresponding author
+\author[a]{Joshua Blake}
+\author[]{TBC}
+\author[b,a]{Paul Birrell}
+\author[a,b]{Daniela De Angelis}
+
+\affil[a]{MRC Biostatistics Unit}
+\affil[b]{UKHSA}
+
+% Please give the surname of the lead author for the running footer
+\leadauthor{Blake}
+
+% Please add a significance statement to explain the relevance of your work
+\significancestatement{Authors must submit a 120-word maximum statement about the significance of their research paper written at a level understandable to an undergraduate educated scientist outside their field of speciality. The primary goal of the significance statement is to explain the relevance of the work in broad context to a broad readership. The significance statement appears in the paper itself and is required for all research papers.}
+
+% Please include corresponding author, author contribution and author declaration information
+\authorcontributions{Please provide details of author contributions here.}
+\authordeclaration{Please declare any competing interests here.}
+\equalauthors{\textsuperscript{1}A.O.(Author One) contributed equally to this work with A.T. (Author Two) (remove if not applicable).}
+\correspondingauthor{\textsuperscript{2}To whom correspondence should be addressed. E-mail: author.two\@email.com}
+
+% At least three keywords are required at submission. Please provide three to five keywords, separated by the pipe symbol.
+\keywords{Keyword 1 $|$ Keyword 2 $|$ Keyword 3 $|$ ...}
+
+\begin{abstract}
+During the COVID-19 pandemic, the UK’s Office for National Statistics ran a large prevalence survey, the Coronavirus Infection Survey (CIS).
+Enrolled individuals were tested on a predetermined schedule, removing most reporting biases.
+Here, we develop methods to investigate whether this survey, designed to provide prevalence estimates, can be used to derive estimates of incidence and transmission.
+We estimate incidence and transmission, fitting to only CIS data, taking two approaches: one phenomenological and one mechanistic.
+The approaches are complementary, trading off bias and variance, and unravelling different aspects of the transmission dynamics.
+We call for further work to optimise prevalence surveys as a leading tool for future pandemic surveillance.
+\end{abstract}
+
+\dates{This manuscript was compiled on \today}
+\doi{\url{www.pnas.org/cgi/doi/10.1073/pnas.XXXXXXXXXX}}
+
+
+\maketitle
+\thispagestyle{firststyle}
+\ifthenelse{\boolean{shortarticle}}{\ifthenelse{\boolean{singlecolumn}}{\abscontentformatted}{\abscontent}}{}
+
+\firstpage{6}
+% Use \firstpage to indicate which paragraph and line will start the second page and subsequent formatting. In this example, there are a total of 11 paragraphs on the first page, counting the first level heading as a paragraph. The value {12} represents the number of the paragraph starting the second page. If a paragraph runs over onto the second page, include a bracket with the paragraph line number starting the second page, followed by the paragraph number in curly brackets, e.g. "\firstpage[4]{11}".
+
+
+% If your first paragraph (i.e. with the \dropcap) contains a list environment (quote, quotation, theorem, definition, enumerate, itemize...), the line after the list may have some extra indentation. If this is the case, add \parshape=0 to the end of the list environment.
+\dropcap{T}he pandemic caused by the SARS-CoV-2 has inflicted a horrific toll on humanity, including approximately 30 million people globally~\citep{whoCOVIDExcess,economistCOVIDExcess}, stretched healthcare services to the brink of collapse~\citep{fongNHS}, and disrupted societies worldwide.
+This pandemic highlighted the need for effective surveillance systems to monitor and control the spread of infectious diseases. The UK's Office for National Statistics (ONS) initiated the Coronavirus Infection Survey (CIS) to provide high-quality data on the prevalence of SARS-CoV-2, the virus responsible for COVID-19. Prevalence refers to the proportion of a population that has the infection at a given time. This survey tested individuals on a regular schedule, minimizing biases associated with voluntary testing.
+
+In addition to prevalence, understanding the incidence and transmission of the virus is crucial for managing a pandemic. Incidence is the number of new cases occurring in a specific time period, while transmission refers to how the virus spreads through the population. This study aims to determine whether the CIS, designed primarily to measure prevalence, can also be used to estimate incidence and transmission rates.
+
+We developed two methodological approaches to analyze the CIS data: phenomenological and mechanistic models. The phenomenological model makes minimal assumptions about how the virus spreads and focuses on observed patterns in the data. This approach helps reduce potential biases but may have limitations in capturing the underlying dynamics of transmission. The mechanistic model, on the other hand, incorporates detailed assumptions about the biological and social processes driving the spread of the virus. This model can provide deeper insights into transmission dynamics, such as the rate at which the virus spreads (reproduction number) and the susceptibility of different demographic groups.
+
+During the pandemic, various methods were proposed to estimate incidence and transmission from CIS data. However, these methods often combined CIS data with other data sources, oversimplified the duration of PCR positivity, or did not fully account for the uncertainty in the survey data. Our study advances these efforts by fitting models solely to CIS data, providing a more accurate representation of the duration of PCR positivity and improving the quantification of survey uncertainty.
+
+The CIS's comprehensive and consistently collected data offer a unique opportunity to derive critical epidemiological metrics without relying on additional data sources. By fitting both phenomenological and mechanistic models to CIS data, we demonstrate the feasibility and robustness of these approaches. The phenomenological model provides a flexible framework with minimal assumptions, while the mechanistic model offers detailed insights into transmission dynamics.
+
+In this paper, we present the results of our analysis, highlighting the strengths and limitations of each modeling approach. We show that the CIS data can be used not only to estimate prevalence but also to derive accurate estimates of incidence and transmission. These findings underscore the potential of prevalence surveys like the CIS to serve as a cornerstone for pandemic surveillance and response.
+
+Our study emphasizes the importance of optimizing the design and implementation of future prevalence surveys to enhance their utility in monitoring and controlling pandemics. By leveraging high-quality, large-scale data from surveys like the CIS, public health authorities can make more informed decisions and implement more effective interventions to mitigate the impact of infectious diseases.
+
+\section*{Guide to using this template on Overleaf}
+
+Please note that whilst this template provides a preview of the typeset manuscript for submission, to help in this preparation, it will not necessarily be the final publication layout. For more detailed information please see the \href{https://www.pnas.org/page/authors/format}{PNAS Information for Authors}.
+
+If you have a question while using this template on Overleaf, please use the help menu (``?'') on the top bar to search for \href{https://www.overleaf.com/help}{help and tutorials}. You can also \href{https://www.overleaf.com/contact}{contact the Overleaf support team} at any time with specific questions about your manuscript or feedback on the template.
+
+\subsection*{Author Affiliations}
+
+Include department, institution, and complete address, with the ZIP/postal code, for each author. Use lower case letters to match authors with institutions, as shown in the example. PNAS strongly encourages authors to supply an \href{https://orcid.org/}{ORCID identifier} for each author. Individual authors must link their ORCID account to their PNAS account at \href{http://www.pnascentral.org/}{www.pnascentral.org}. For proper authentication, authors must provide their ORCID at submission and are not permitted to add ORCIDs on proofs.
+
+% \subsection*{Submitting Manuscripts}
+
+% All authors must submit their articles at \href{http://www.pnascentral.org/cgi-bin/main.plex}{PNAScentral}. If you are using Overleaf to write your article, you can use the ``Submit to PNAS'' option in the top bar of the editor window.
+
+% \subsection*{Format}
+
+% Many authors find it useful to organize their manuscripts with the following order of sections: title, author line and affiliations, keywords, abstract, significance statement, introduction, results, discussion, materials and methods, acknowledgments, and references. Other orders and headings are permitted.
+
+% \subsection*{Manuscript Length}
+
+% A standard 6-page article is approximately 4,000 words, 50 references, and 4 medium-size graphical elements (i.e., figures and tables). The preferred length of articles remains at 6 pages, but PNAS will allow articles up to a maximum of 12 pages.
+
+% \subsection*{References}
+
+% References should be cited in numerical order as they appear in text; this will be done automatically via bibtex, e.g.  and . All references cited in the main text should be included in the main manuscript file.
+
+% \subsection*{Data Archival}
+
+% PNAS must be able to archive the data essential to a published article. Where such archiving is not possible, deposition of data in public databases, such as GenBank, ArrayExpress, Protein Data Bank, Unidata, and others outlined in the \href{https://www.pnas.org/author-center/editorial-and-journal-policies#materials-and-data-availability}{Information for Authors}, is acceptable.
+
+% \subsection*{Language-Editing Services}
+% Prior to submission, authors who believe their manuscripts would benefit from professional editing are encouraged to use a language-editing service (see list at https://www.pnas.org/author-center/language-editing). PNAS does not take responsibility for or endorse these services, and their use has no bearing on acceptance of a manuscript for publication.
+
+% \begin{figure}%[tbhp]
+% \centering
+% \includegraphics[width=.8\linewidth]{frog.pdf}
+% \caption{Placeholder image of a frog with a long example legend to show justification setting.}
+% \label{fig:frog}
+% \end{figure}
+
+
+
+% \begin{table}[t!]
+% \centering
+% \caption{Comparison of the fitted potential energy surfaces and ab initio benchmark electronic energy calculations}
+% \begin{tabular}{lrrr}
+% Species & CBS & CV & G3 \\
+% \midrule
+% 1. Acetaldehyde & 0.0 & 0.0 & 0.0 \\
+% 2. Vinyl alcohol & 9.1 & 9.6 & 13.5 \\
+% 3. Hydroxyethylidene & 50.8 & 51.2 & 54.0\\
+% \bottomrule
+% \end{tabular}
+
+% \addtabletext{nomenclature for the TSs refers to the numbered species in the table.}
+% \end{table}
+
+
+% \subsection*{Digital Figures}
+
+% EPS, high-resolution PDF, and PowerPoint are preferred formats for figures that will be used in the main manuscript. Authors may submit PRC or U3D files for 3D images; these must be accompanied by 2D representations in TIFF, EPS, or high-resolution PDF format. Color images must be in RGB (red, green, blue) mode. Include the font files for any text.
+
+% Images must be provided at final size, preferably 1 column width (8.7cm). Figures wider than 1 column should be sized to 11.4cm or 17.8cm wide. Numbers, letters, and symbols should be no smaller than 6 points (2mm) and no larger than 12 points (6mm) after reduction and must be consistent.
+
+% Figures and tables should be labelled and referenced in the standard way using the \verb|\label{}| and \verb|\ref{}| commands.
+
+% Figure \ref{fig:frog} shows an example of how to insert a column-wide figure. To insert a figure wider than one column, please use the \verb|\begin{figure*}...\end{figure*}| environment. Figures wider than one column should be sized to 11.4 cm or 17.8 cm wide. Use \verb|\begin{SCfigure*}...\end{SCfigure*}| for a wide figure with side legends.
+
+% \begin{SCfigure*}[\sidecaptionrelwidth][t!]
+% \centering
+% \includegraphics[width=11.4cm,height=11.4cm]{frog.pdf}
+% \caption{This legend would be placed at the side of the figure, rather than below it.}\label{fig:side}
+% \end{SCfigure*}
+
+
+% \subsection*{Tables}
+% Tables should be included in the main manuscript file and should not be uploaded separately.
+
+
+% \subsection*{Single column equations}
+
+% Authors may use 1- or 2-column equations in their article, according to their preference.
+
+% To allow an equation to span both columns, use the \verb|\begin{figure*}...\end{figure*}| environment mentioned above for figures.
+
+% Note that the use of the \verb|widetext| environment for equations is not recommended, and should not be used.
+
+% \begin{figure*}[bt!]
+% \begin{align*}
+% (x+y)^3&=(x+y)(x+y)^2\\
+%        &=(x+y)(x^2+2xy+y^2) \numberthis \label{eqn:example} \\
+%        &=x^3+3x^2y+3xy^3+x^3.
+% \end{align*}
+% \end{figure*}
+
+
+
+% \subsection*{Supporting Information Appendix (SI)}
+
+% Authors should submit SI as a single separate SI Appendix PDF file, combining all text, figures, tables, movie legends, and SI references. SI will be published as provided by the authors; it will not be edited or composed. Additional details can be found in the \href{https://www.pnas.org/authors/submitting-your-manuscript#manuscript-formatting-guidelines}{PNAS Author Center}. The PNAS Overleaf SI template can be found \href{https://www.overleaf.com/latex/templates/pnas-template-for-supplementary-information/wqfsfqwyjtsd}{here}. Refer to the SI Appendix in the manuscript at an appropriate point in the text. Number supporting figures and tables starting with S1, S2, etc.
+
+% Authors who place detailed materials and methods in an SI Appendix must provide sufficient detail in the main text methods to enable a reader to follow the logic of the procedures and results and also must reference the SI methods. If a paper is fundamentally a study of a new method or technique, then the methods must be described completely in the main text.
+
+% \subsubsection*{SI Datasets}
+
+% Supply .xlsx, .csv, .txt, .rtf, or .pdf files. This file type will be published in raw format and will not be edited or composed.
+
+
+% \subsubsection*{SI Movies}
+
+% Supply Audio Video Interleave (avi), Quicktime (mov), Windows Media (wmv), animated GIF (gif), or MPEG files. Movie legends should be included in the SI Appendix file. All movies should be submitted at the desired reproduction size and length. Movies should be no more than 10MB in size.
+
+
+
+
+\matmethods{Please describe your materials and methods here. This can be more than one paragraph, and may contain subsections and equations as required.
+
+\subsection*{Subsection for Method}
+Example text for subsection.
+}
+
+\showmatmethods{} % Display the Materials and Methods section
+
+\acknow{Please include your acknowledgments here, set in a single paragraph. Please do not include any acknowledgments in the Supporting Information, or anywhere else in the manuscript.}
+
+\showacknow{} % Display the acknowledgments section
+
+
+\bibsplit[2]
+%Use \bibsplit to split the references from the body of the text. Value "[2]" represents the number of reference in the left column (Note: Please avoid single column figures & tables on this page.)
+
+% Bibliography
+\bibliography{references}
+
+\end{document}
