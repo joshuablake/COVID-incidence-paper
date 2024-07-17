@@ -72,7 +72,7 @@
 
 \begin{abstract}
 During the COVID-19 pandemic, the UK’s Office for National Statistics ran a large prevalence survey, the Coronavirus Infection Survey (CIS).
-Enrolled individuals were tested on a predetermined schedule, removing most reporting biases.
+Individuals enrolled in CIS were tested on a predetermined schedule, removing most reporting biases.
 Here, we develop methods to investigate whether this survey, designed to provide prevalence estimates, can be used to derive estimates of incidence and transmission.
 We estimate incidence and transmission, fitting to only CIS data, taking two approaches: one phenomenological and one mechanistic.
 The approaches are complementary, trading off bias and variance, and unravelling different aspects of the transmission dynamics.
@@ -92,20 +92,31 @@ We call for further work to optimise prevalence surveys as a leading tool for fu
 
 
 % If your first paragraph (i.e. with the \dropcap) contains a list environment (quote, quotation, theorem, definition, enumerate, itemize...), the line after the list may have some extra indentation. If this is the case, add \parshape=0 to the end of the list environment.
-\dropcap{T}he pandemic caused by the SARS-CoV-2 has inflicted a horrific toll on humanity, including approximately 30 million people globally~\citep{whoCOVIDExcess,economistCOVIDExcess}, stretched healthcare services to the brink of collapse~\citep{fongNHS}, and disrupted societies worldwide.
-This pandemic highlighted the need for effective surveillance systems to monitor and control the spread of infectious diseases. The UK's Office for National Statistics (ONS) initiated the Coronavirus Infection Survey (CIS) to provide high-quality data on the prevalence of SARS-CoV-2, the virus responsible for COVID-19. Prevalence refers to the proportion of a population that has the infection at a given time. This survey tested individuals on a regular schedule, minimizing biases associated with voluntary testing.
+\dropcap{T}he pandemic caused by the SARS-CoV-2 has inflicted a horrific toll on humanity, inflicting 31 million deaths~\citep{whoCOVIDExcess,economistCOVIDExcess}, stretching healthcare services to the brink of collapse~\citep{fongNHS}, and disrupting societies worldwide.
+This pandemic highlighted the need for effective surveillance systems to monitor and control the spread of infectious diseases.
 
-In addition to prevalence, understanding the incidence and transmission of the virus is crucial for managing a pandemic. Incidence is the number of new cases occurring in a specific time period, while transmission refers to how the virus spreads through the population. This study aims to determine whether the CIS, designed primarily to measure prevalence, can also be used to estimate incidence and transmission rates.
+The UK's Office for National Statistics (ONS) initiated the Coronavirus Infection Survey (CIS) to provide high-quality data on the prevalence of SARS-CoV-2.
+Prevalence refers to the proportion of a population that has the infection at a given time.
+This survey tested individuals on a regular schedule, minimizing biases associated with voluntary testing.
 
-We developed two methodological approaches to analyze the CIS data: phenomenological and mechanistic models. The phenomenological model makes minimal assumptions about how the virus spreads and focuses on observed patterns in the data. This approach helps reduce potential biases but may have limitations in capturing the underlying dynamics of transmission. The mechanistic model, on the other hand, incorporates detailed assumptions about the biological and social processes driving the spread of the virus. This model can provide deeper insights into transmission dynamics, such as the rate at which the virus spreads (reproduction number) and the susceptibility of different demographic groups.
+In addition to prevalence, understanding the incidence and transmission of the virus is crucial for managing a pandemic.
+Incidence is the number of new cases occurring in a specific time period, while transmission refers to how the virus spreads through the population.
+This study aims to determine whether and how CIS, designed primarily to measure prevalence, can also be used to estimate incidence and transmission rates.
+
+A variety of methods can estimate incidence and transmission, with methods often categorized by how explicitly they represent the underlying biological and epidemiological processes.
+At one extreme, phenomenological models make minimal assumptions about the underlying processes, instead describing the trends in the data.
+This approach helps reduce potential biases but may have limitations in capturing the underlying dynamics of transmission.
+At the other extreme, fully mechanistic models represent the state of each individual in the population and the processes that drive the spread of the virus.
+This model can provide deeper insights into transmission dynamics, such as the rate at which the virus spreads and the susceptibility of different demographic groups.
+Here, we develop two models to analyze CIS data: one phenomenological and one mechanistic.
 
 During the pandemic, various methods were proposed to estimate incidence and transmission from CIS data. However, these methods often combined CIS data with other data sources, oversimplified the duration of PCR positivity, or did not fully account for the uncertainty in the survey data. Our study advances these efforts by fitting models solely to CIS data, providing a more accurate representation of the duration of PCR positivity and improving the quantification of survey uncertainty.
 
-The CIS's comprehensive and consistently collected data offer a unique opportunity to derive critical epidemiological metrics without relying on additional data sources. By fitting both phenomenological and mechanistic models to CIS data, we demonstrate the feasibility and robustness of these approaches. The phenomenological model provides a flexible framework with minimal assumptions, while the mechanistic model offers detailed insights into transmission dynamics.
+CIS's comprehensive and consistently collected data offer a unique opportunity to derive critical epidemiological metrics without relying on additional data sources. By fitting both phenomenological and mechanistic models to CIS data, we demonstrate the feasibility and robustness of these approaches. The phenomenological model provides a flexible framework with minimal assumptions, while the mechanistic model offers detailed insights into transmission dynamics.
 
-In this paper, we present the results of our analysis, highlighting the strengths and limitations of each modeling approach. We show that the CIS data can be used not only to estimate prevalence but also to derive accurate estimates of incidence and transmission. These findings underscore the potential of prevalence surveys like the CIS to serve as a cornerstone for pandemic surveillance and response.
+In this paper, we present the results of our analysis, highlighting the strengths and limitations of each modeling approach. We show that CIS data can be used not only to estimate prevalence but also to derive accurate estimates of incidence and transmission. These findings underscore the potential of prevalence surveys like CIS to serve as a cornerstone for pandemic surveillance and response.
 
-Our study emphasizes the importance of optimizing the design and implementation of future prevalence surveys to enhance their utility in monitoring and controlling pandemics. By leveraging high-quality, large-scale data from surveys like the CIS, public health authorities can make more informed decisions and implement more effective interventions to mitigate the impact of infectious diseases.
+Our study emphasizes the importance of optimizing the design and implementation of future prevalence surveys to enhance their utility in monitoring and controlling pandemics. By leveraging high-quality, large-scale data from surveys like CIS, public health authorities can make more informed decisions and implement more effective interventions to mitigate the impact of infectious diseases.
 
 \section*{Guide to using this template on Overleaf}
 
@@ -140,12 +151,12 @@ Include department, institution, and complete address, with the ZIP/postal code,
 % \subsection*{Language-Editing Services}
 % Prior to submission, authors who believe their manuscripts would benefit from professional editing are encouraged to use a language-editing service (see list at https://www.pnas.org/author-center/language-editing). PNAS does not take responsibility for or endorse these services, and their use has no bearing on acceptance of a manuscript for publication.
 
-% \begin{figure}%[tbhp]
-% \centering
-% \includegraphics[width=.8\linewidth]{frog.pdf}
-% \caption{Placeholder image of a frog with a long example legend to show justification setting.}
-% \label{fig:frog}
-% \end{figure}
+\begin{figure}%[tbhp]
+\centering
+\includegraphics{figures/incidence}
+\caption{Incidence estimates (median and 95\% credible interval) from both models.}
+\label{fig:incidence}
+\end{figure}
 
 
 
