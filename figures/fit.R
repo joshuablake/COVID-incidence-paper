@@ -82,7 +82,7 @@ p_prev = bind_rows(
     theme(legend.position = "bottom")
 
 save_plot(
-    filename = here::here("figures", "prevalence.pdf"),
+    filename = "prevalence.pdf",
     plot = p_prev,
     height = 6.5
 )

@@ -89,7 +89,7 @@ p_susceptibility = tbl_draws |>
     geom_pointrange(aes(ymin = .lower, ymax = .upper), size = 0.1) +
     labs(
         x = "Region",
-        y = "Relative susceptibility of children"
+        y = "Relative susceptibility"
     ) +
     standard_plot_theming() +
     theme(axis.text.x = element_text(angle = 45, hjust = 1)) +
@@ -97,7 +97,7 @@ p_susceptibility = tbl_draws |>
 
 # Combine plots with alphabetic labels
 save_plot(
-    filename = "figures/components.pdf",
+    filename = "components.pdf",
     plot = p_walk + p_susceptibility +
         plot_annotation(tag_levels = 'A'),
     width = 11.4,

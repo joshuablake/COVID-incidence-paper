@@ -1,7 +1,7 @@
 standard_plot_theming = function() {
     rlang::list2(
         theme_minimal(),
-        ggplot2::theme(text = ggplot2::element_text(size = 6)),
+        ggplot2::theme(text = ggplot2::element_text(size = 7)),
     )
 }
 
@@ -116,7 +116,7 @@ poststratify_SEIR = function(data, poststrat_table, col, ...) {
 save_plot = function(
     filename, plot, dir = here::here("figures"),
     width = 8.7, height = 5.5, units = "cm", dpi = 300,
-    device = ggplot2::cairo_pdf, ...
+    device = cairo_pdf, ...
 ) {
     ggplot2::ggsave(
         filename = file.path(dir, filename),

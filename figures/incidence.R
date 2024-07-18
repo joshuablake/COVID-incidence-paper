@@ -21,7 +21,7 @@ tbl_mechanistic_NE_age = full_predict |>
     poststratify_SEIR(poststrat_table, new_pcr_pos, age_group)
 
 p_incidence_England = bind_rows(
-    tbl_phenomenological |>
+    tbl_phenomenological_England |>
         mutate(model = "Phenomenological"),
     tbl_mechanistic_England |>
         mutate(model = "Mechanistic") |>
@@ -30,16 +30,13 @@ p_incidence_England = bind_rows(
     ggplot(aes(date, incidence, colour = model, fill = model)) +
     stat_lineribbon(alpha = 0.4, linewidth = 0.2, .width = 0.95) +
     standard_plot_theming() +
-    theme(legend.position = "bottom") +
     scale_y_continuous(labels = scales::label_percent()) +
     labs(
         x = "Date (2020-1)",
         y = "Incidence proportion",
         fill = "",
         colour = ""
-    ) +
-    # make boxes of colour in the legend smaller
-    theme(legend.key.size = unit(0.5, "cm"))
+    )
 
 p_NE_age = bind_rows(
     tbl_phenomenological_NE_age |>
@@ -52,7 +49,6 @@ p_NE_age = bind_rows(
     stat_lineribbon(alpha = 0.4, linewidth = 0.2, .width = 0.95) +
     facet_wrap(~age_group) +
     standard_plot_theming() +
-    theme(legend.position = "bottom") +
     scale_y_continuous(labels = scales::label_percent()) +
     labs(
         x = "Date (2020-1)",
@@ -60,11 +56,22 @@ p_NE_age = bind_rows(
         fill = "",
         colour = ""
     ) +
-    theme(legend.key.size = unit(0.5, "cm"))
+    theme(axis.title.y = element_blank())
+
+p_combined = p_incidence_England +
+    p_NE_age +
+    plot_layout(
+        guides = "collect",
+        widths = c(1, 1.3)
+    ) +
+    plot_annotation(
+        tag_levels = 'A',
+    ) &
+    theme(legend.position = "bottom")
 
 save_plot(
     filename = "incidence.pdf",
-    plot = p_incidence_England + p_NE_age,
+    plot = p_combined,
     width = 17.6,
-    height = 5.5
+    height = 7
 )
