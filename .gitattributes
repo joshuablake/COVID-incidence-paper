@@ -2,3 +2,4 @@ model-outputs/poststrat.csv filter=lfs diff=lfs merge=lfs -text
 model-outputs/mechanistic/predictive.csv filter=lfs diff=lfs merge=lfs -text
 model-outputs/phenomenological/region.rds filter=lfs diff=lfs merge=lfs -text
 model-outputs/mechanistic/params.csv filter=lfs diff=lfs merge=lfs -text
+model-outputs/phenomenological/region_age.rds filter=lfs diff=lfs merge=lfs -text

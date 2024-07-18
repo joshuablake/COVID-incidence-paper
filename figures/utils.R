@@ -15,6 +15,14 @@ load_backcalc_regions = function() {
     )
 }
 
+load_backcalc_region_age = function() {
+    readRDS(file.path(model_output_dir, "phenomenological", "region_age.rds")) |>
+    dplyr::mutate(
+        region = normalise_region_names(region),
+        age_group = normalise_age_groups(age_group),
+    )
+}
+
 load_seir_predictive = function() {
     readr::read_csv(
         here::here("model-outputs", "mechanistic", "predictive.csv"),
@@ -103,4 +111,21 @@ poststratify_SEIR = function(data, poststrat_table, col, ...) {
             val = sum(n) / N,
             .groups = "drop"
         )
+}
+
+save_plot = function(
+    filename, plot, dir = here::here("figures"),
+    width = 8.7, height = 5.5, units = "cm", dpi = 300,
+    device = ggplot2::cairo_pdf, ...
+) {
+    ggplot2::ggsave(
+        filename = file.path(dir, filename),
+        plot = plot,
+        width = width,
+        height = height,
+        units = units,
+        dpi = dpi,
+        device = device,
+        ...
+    )
 }
