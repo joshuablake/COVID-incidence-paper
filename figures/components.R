@@ -96,12 +96,9 @@ p_susceptibility = tbl_draws |>
     geom_hline(yintercept = 1, linetype = "dashed", alpha = 0.5)
 
 # Combine plots with alphabetic labels
-ggsave(
-    filename = here::here("figures/components.pdf"),
+save_plot(
+    filename = "figures/components.pdf",
     plot = p_walk + p_susceptibility +
         plot_annotation(tag_levels = 'A'),
     width = 11.4,
-    height = 5.5,
-    units = "cm",
-    dpi = 300
 )
