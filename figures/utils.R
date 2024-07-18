@@ -115,7 +115,7 @@ poststratify_SEIR = function(data, poststrat_table, col, ...) {
 
 save_plot = function(
     filename, plot, dir = here::here("figures"),
-    width = 8.7, height = 5.5, units = "cm", dpi = 300,
+    width = 8.7, height = 5.5, units = "cm", dpi = 1000,
     device = cairo_pdf, ...
 ) {
     ggplot2::ggsave(
