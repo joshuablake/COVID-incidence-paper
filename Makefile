@@ -7,7 +7,4 @@ figures/incidence.pdf: figures/incidence.R figures/utils.R model-outputs/mechani
 figures/components.pdf: figures/components.R figures/utils.R model-outputs/mechanistic/params.csv
 	Rscript $<
 
-figures/prevalence.pdf: figures/fit.R figures/utils.R model-outputs/mechanistic/data.csv model-outputs/phenomenological/region.rds model-outputs/mechanistic/predictive.csv
-	Rscript $<
-
 .PHONY: FORCE
