@@ -15,7 +15,7 @@
 % \usepackage{bm}
 % % \usepackage{algorithm2e}
 % \usepackage{hyperref}
-% \usepackage{cleveref}
+\usepackage[capitalise]{cleveref}
 % \usepackage{csquotes}
 % \usepackage[T1]{fontenc}
 % \usepackage{textcomp} % provide symbols
@@ -44,7 +44,7 @@
 \begin{document}
 
 
-\title{Template for preparing your research report submission to PNAS using Overleaf}
+\title{Using SARS-CoV-2 prevalence surveys for pandemic surveillance}
 
 % Use letters for affiliations, numbers to show equal authorship (if applicable) and to indicate the corresponding author
 \author[a]{Joshua Blake}
@@ -64,7 +64,6 @@
 % Please include corresponding author, author contribution and author declaration information
 \authorcontributions{Please provide details of author contributions here.}
 \authordeclaration{Please declare any competing interests here.}
-\equalauthors{\textsuperscript{1}A.O.(Author One) contributed equally to this work with A.T. (Author Two) (remove if not applicable).}
 \correspondingauthor{\textsuperscript{2}To whom correspondence should be addressed. E-mail: author.two\@email.com}
 
 % At least three keywords are required at submission. Please provide three to five keywords, separated by the pipe symbol.
@@ -87,7 +86,7 @@ We call for further work to optimise prevalence surveys as a leading tool for fu
 \thispagestyle{firststyle}
 \ifthenelse{\boolean{shortarticle}}{\ifthenelse{\boolean{singlecolumn}}{\abscontentformatted}{\abscontent}}{}
 
-\firstpage{6}
+\firstpage{7}
 % Use \firstpage to indicate which paragraph and line will start the second page and subsequent formatting. In this example, there are a total of 11 paragraphs on the first page, counting the first level heading as a paragraph. The value {12} represents the number of the paragraph starting the second page. If a paragraph runs over onto the second page, include a bracket with the paragraph line number starting the second page, followed by the paragraph number in curly brackets, e.g. "\firstpage[4]{11}".
 
 
@@ -120,6 +119,11 @@ Our study emphasizes the importance of optimizing the design and implementation 
 
 \section*{Results}
 
+\subsection*{Incidence estimates}
+
+Both models successfully produce estimates of SARS-CoV-2 incidence proportion, the proportion of the population that becomes PCR positive on a given day (\cref{fig:incidence}(A)).
+The results largely agree with previous knowledge (REF), showing a slow rise and plateau in autumn, a decrease during November, then a fast increase peaking near the end of 2020.
+The mechanistic model produces tighter credible intervals, reflecting the additional information it uses about the underlying transmission dynamics.
 \begin{figure*}%[tbhp]
 \centering
 \includegraphics{figures/incidence}
@@ -128,10 +132,33 @@ Our study emphasizes the importance of optimizing the design and implementation 
     Incidence proportion is the proportion of the population that becomes PCR positive on a given day.
     (A) Estimates for the whole of England.
     (B) Estimates by age group for the North East region.
+    Remaining regions shown in TODO: add other regions to appendix.
 }
 \label{fig:incidence}
 \end{figure*}
 
+The largest disagreement between the models is that the phenomenological model estimates a second peak in incidence in January, although the credible intervals overlap for the majority of the period.
+
+\subsection*{Impact of model assumptions}
+
+Age-specific results for the North East region clearly show the impact of model assumptions on the estimates (\cref{fig:incidence}(B)).
+The 12--16 age group decreases in incidence significantly during the school half-term break which is directly introduced into the model through modification of the number of contacts which school age children have.
+
+Disagreement between the two models in the 12--16 and 17--25 age groups are also prominent.
+The mechanistic model has a more rigid structure (fewer parameters) limiting its ability to capture all changes in incidence, especially when changes in transmission differ between age groups.
+Therefore, when fitting, it appears to compromise these two age groups in opposite directions: overestimating the prevalence and incidence in the 12--16 age group and underestimating it in the 17--25 age group (TODO: ref a supplementary figure with goodness-of-fit).
+
+The phenomenological model is more flexible and therefore has a better fit to the data in these age groups.
+It is fit to more granular groupings of individuals, improving the adjustment for non-response bias, but this means that for privacy reasons we cannot show the fit.
+
+\subsection*{Decomposition of transmission components}
+
+A major advantage of using a mechanistic model is the ability to decompose the components of transmission.
+The mechanistic model decomposes changing transmission into three components: changes in contact patterns, measured through Google Mobility data; changes in levels of susceptibility in the population; and a remaining unexplained component, which includes behavioural changes such as masking or improved case-finding leading to a higher proportion of infectious individuals being isolated and biological changes (\eg variants).
+The unexplained component is often of interest to policy-makers because reducing transmission with minimal affects on contacts (which often have larger economic or social benefits) is a common policy goal.
+
+We estimate that this component initially decreases over the period studied (from September 2020), is flat for a few weeks, then rises in November and December (\cref{fig:rw} and TODO other regions in supplement).
+The increase in the unexplained component in November and December is correlated with the rise of the Alpha variant.
 \begin{figure}%[tbhp]
 \centering
 \includegraphics{figures/rw}
@@ -142,6 +169,12 @@ Our study emphasizes the importance of optimizing the design and implementation 
 \label{fig:rw}
 \end{figure}
 
+\subsection*{Difference in transmission by age}
+
+An advantage of the CIS dataset is that it captures all age groups over two years old in a well-understood way.
+The mechanistic model can exploit this data to estimate how susceptibility differs by age.
+Here, susceptibility is defined as the probability of a susceptible individual becoming infected upon contact with an infectious individual which includes both biological factors (\eg differences in immune response) and behavioural factors (\eg differences in hygiene).
+We estimate this parameter independently for each region, showing that children are less susceptible by around 20\% than adults in all regions (\cref{fig:children}).
 \begin{figure}%[tbhp]
 \centering
 \includegraphics{figures/children}
