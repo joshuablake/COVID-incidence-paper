@@ -1,19 +1,20 @@
 library(dplyr)
+library(ggdist)
 library(ggplot2)
-library(patchwork)
 library(purrr)
 library(lubridate)
-library(tidybayes)
 library(tidyr)
 source(here::here("figures/utils.R"))
 
 start_date = ymd("2020-08-31")
 
-tbl_draws = readr::read_csv(here::here("model-outputs", "mechanistic", "params.csv"))
-
-tbl_rw = tbl_draws |>
+tbl_rw = readr::read_csv(here::here("model-outputs", "mechanistic", "params.csv")) |>
     # Find beta parameters and parse name index
-    filter(stringr::str_starts(parameter, "beta"), iteration >= 500e3) |>
+    filter(
+        stringr::str_starts(parameter, "beta"),
+        iteration >= 500e3,
+        region == "London"
+    ) |>
     extract(
         parameter,
         into = c("parameter", "i"), 
@@ -55,11 +56,9 @@ tbl_rw = tbl_draws |>
 
 # A violin plot of the posterior distribution of beta for each region and week.
 p_walk = tbl_rw |>
-    filter(region == "London") |>
     mutate(date = start_date + i * 7) |>
     ggplot(aes(factor(date), beta)) +
     stat_slab(side = "both") +
-    facet_wrap(~region, ncol = 2) +
     standard_plot_theming() +
     scale_y_log10(
         breaks = c(0.5, 1, 2, 0.67, 1.5),
@@ -78,27 +77,7 @@ p_walk = tbl_rw |>
         y = expression(beta[t])
     )
 
-# susceptibility of children
-p_susceptibility = tbl_draws |>
-    filter(parameter == "matrix_modifiers") |>
-    mutate(value = exp(value), region = normalise_region_names(region)) |>
-    # dot interval plot with median and 95% CrI by region
-    group_by(region) |>
-    median_qi(value) |>
-    ggplot(aes(region, value)) +
-    geom_pointrange(aes(ymin = .lower, ymax = .upper), size = 0.1) +
-    labs(
-        x = "Region",
-        y = "Relative susceptibility"
-    ) +
-    standard_plot_theming() +
-    theme(axis.text.x = element_text(angle = 45, hjust = 1)) +
-    geom_hline(yintercept = 1, linetype = "dashed", alpha = 0.5)
-
-# Combine plots with alphabetic labels
 save_plot(
-    filename = "components.pdf",
-    plot = p_walk + p_susceptibility +
-        plot_annotation(tag_levels = 'A'),
-    width = 11.4,
+    filename = "rw.pdf",
+    plot = p_walk
 )
