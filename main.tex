@@ -6,7 +6,7 @@
 % {pnasmathematics} %= Template for a one-column mathematics article
 % {pnasinvited} %= Template for a PNAS invited submission
 
-%% ABOVE THIS LINE IS JASA TEMPLATE
+%% ABOVE THIS LINE IS PNAS TEMPLATE
 %% BELOW THIS LINE IS MY STUFF
 
 % \usepackage[utf8]{inputenc}
@@ -22,11 +22,18 @@
 % \usepackage{xr}
 % \usepackage{afterpage}
 % \usepackage{caption}
-% \usepackage{numprint}
-% \npfourdigitnosep
-% \npdecimalsign{.}
+\usepackage{numprint}
+\npfourdigitnosep
+\npdecimalsign{.}
 % % \usepackage{microtype}
 % \usepackage{todonotes}
+
+\newcommand\set{\mathcal}
+\def\dist{\sim}
+\DeclareMathOperator{\BB}{BetaBin}
+\DeclareMathOperator{\GamDist}{Gamma}
+\DeclareMathOperator{\N}{N}
+\DeclareMathOperator{\logit}{logit}
 
 % Macros for common abbreviations to get the spacing right
 % See: https://stackoverflow.com/questions/3282319/correct-way-to-define-macros-etc-ie-in-latex
@@ -59,7 +66,7 @@
 \leadauthor{Blake}
 
 % Please add a significance statement to explain the relevance of your work
-\significancestatement{Authors must submit a 120-word maximum statement about the significance of their research paper written at a level understandable to an undergraduate educated scientist outside their field of speciality. The primary goal of the significance statement is to explain the relevance of the work in broad context to a broad readership. The significance statement appears in the paper itself and is required for all research papers.}
+\significancestatement{Understanding the transmission dynamics of SARS-CoV-2 is essential for guiding public health interventions. This study demonstrates the potential of prevalence survey data, specifically from the Coronavirus Infection Survey, to provide reliable estimates of viral incidence and transmission. This gold-standard survey selected individuals representative of the general population, unlike most sources of data from which transmission dynamics can be inferred. The findings highlight the importance of integrating large-scale, randomly sampled prevalence surveys into pandemic surveillance systems.}
 
 % Please include corresponding author, author contribution and author declaration information
 \authorcontributions{Please provide details of author contributions here.}
@@ -70,7 +77,7 @@
 \keywords{Keyword 1 $|$ Keyword 2 $|$ Keyword 3 $|$ ...}
 
 \begin{abstract}
-During the COVID-19 pandemic, the UK’s Office for National Statistics ran a large prevalence survey, the Coronavirus Infection Survey (CIS).
+During the pandemic caused by the SARS-CoV-2 virus, the UK’s Office for National Statistics ran a large prevalence survey, the Coronavirus Infection Survey (CIS).
 Individuals enrolled in CIS were tested on a predetermined schedule, removing most reporting biases.
 Here, we develop methods to investigate whether this survey, designed to provide prevalence estimates, can be used to derive estimates of incidence and transmission.
 We estimate incidence and transmission, fitting to only CIS data, taking two approaches: one phenomenological and one mechanistic.
@@ -95,7 +102,7 @@ We call for further work to optimise prevalence surveys as a leading tool for fu
 This pandemic highlighted the need for effective surveillance systems to monitor and control the spread of infectious diseases.
 
 The UK's Office for National Statistics (ONS) initiated the Coronavirus Infection Survey (CIS) to provide high-quality data on the prevalence of SARS-CoV-2.
-Prevalence refers to the proportion of a population that has the infection at a given time.
+Prevalence refers to the proportion of a population that has tests positive for SARS-CoV-2 using a PCR test at a given time.
 This survey tested individuals on a regular schedule, minimizing biases associated with voluntary testing.
 
 In addition to prevalence, understanding the incidence and transmission of the virus is crucial for managing a pandemic.
@@ -106,7 +113,7 @@ A variety of methods can estimate incidence and transmission, with methods often
 At one extreme, phenomenological models make minimal assumptions about the underlying processes, instead describing the trends in the data.
 This approach helps reduce potential biases but may have limitations in capturing the underlying dynamics of transmission.
 At the other extreme, fully mechanistic models represent the state of each individual in the population and the processes that drive the spread of the virus.
-This model can provide deeper insights into transmission dynamics, such as the rate at which the virus spreads and the susceptibility of different demographic groups.
+This approach can provide deeper insights into transmission dynamics, such as the rate at which the virus spreads and the susceptibility of different demographic groups.
 Here, we develop two models to analyze CIS data: one phenomenological and one mechanistic.
 
 During the pandemic, various methods were proposed to estimate incidence and transmission from CIS data. However, these methods often combined CIS data with other data sources, oversimplified the duration of PCR positivity, or did not fully account for the uncertainty in the survey data. Our study advances these efforts by fitting models solely to CIS data, providing a more accurate representation of the duration of PCR positivity and improving the quantification of survey uncertainty.
@@ -164,6 +171,7 @@ The increase in the unexplained component in November and December is correlated
 \includegraphics{figures/rw}
 \caption{%
     The component of transmission not explained by changes in contact patterns (as measured by Google Mobility data) and increasing population immunity.
+    Shown is a violin plot of the posterior distribution.
     London shown, for other regions see TODO: add other regions to appendix.
 }
 \label{fig:rw}
@@ -185,117 +193,137 @@ We estimate this parameter independently for each region, showing that children 
 \label{fig:children}
 \end{figure}
 
-\section*{Guide to using this template on Overleaf}
+\section*{Discussion}
 
-Please note that whilst this template provides a preview of the typeset manuscript for submission, to help in this preparation, it will not necessarily be the final publication layout. For more detailed information please see the \href{https://www.pnas.org/page/authors/format}{PNAS Information for Authors}.
+We have demonstrated that a range of important epidemiological estimates can be derived from prevalence survey data, specifically using the Coronavirus Infection Survey (CIS).
+Our study utilized two distinct models---a phenomenological model and a mechanistic transmission model---both of which were successfully fit to CIS data.
 
-If you have a question while using this template on Overleaf, please use the help menu (``?'') on the top bar to search for \href{https://www.overleaf.com/help}{help and tutorials}. You can also \href{https://www.overleaf.com/contact}{contact the Overleaf support team} at any time with specific questions about your manuscript or feedback on the template.
+Using a single, well-designed study like CIS as a data source leads to robust and reliable estimates.
+CIS's biases, primarily due to non-response, are well understood and can be accounted for in the models.
+This is unlike other data sources, such as testing data, where how many tests and who is tested can change over time for measured (\eg testing capacity) and unmeasured reasons (\eg public perception of risk).
 
-\subsection*{Author Affiliations}
+Furthermore, the high retention rates of CIS following recruitment mean that any bias is consistent over time; therefore, the inference of trends from this data is particularly robust.
+Trends, such as how quickly the epidemic is growing, are often more important than absolute levels.
+Otherwise reliable data sources, such as the number of patients hospitalized with SARS-CoV-2 infections, can be affected by factors such as admission policies and bed availability (REF).
+These data sources primarily reflected incidence in elderly and other vulnerable groups (REF), whereas CIS captures all age groups over two years old.
+The implication for transmission in young adults and children must then be based on model assumptions or indirect evidence, such as contact surveys or mobility data (REF).
+Here, we exploit this to estimate how susceptibility differs by age, showing that children are less susceptible than adults.
 
-Include department, institution, and complete address, with the ZIP/postal code, for each author. Use lower case letters to match authors with institutions, as shown in the example. PNAS strongly encourages authors to supply an \href{https://orcid.org/}{ORCID identifier} for each author. Individual authors must link their ORCID account to their PNAS account at \href{http://www.pnascentral.org/}{www.pnascentral.org}. For proper authentication, authors must provide their ORCID at submission and are not permitted to add ORCIDs on proofs.
+To overcome the limitations of any specific data sources, many previous studies of SARS-CoV-2 in England (REF) have utilized evidence synthesis techniques (REF).
+These techniques combine multiple data sources, such as testing data, hospitalizations, and deaths, to estimate the underlying transmission dynamics.
+However, these methods are complex and require assumptions regarding how the data sources are related.
+If different data sources conflict, then this should be resolved manually which is time-consuming and often subjective.
+By using a single data source, we avoid these issues and provide a more direct inference of the underlying transmission dynamics.
+Furthermore, the use of a single data source means that inferences can more directly be linked to the data source aiding debugging and interpretation of model outputs.
 
-% \subsection*{Submitting Manuscripts}
+Our study reinforces the value of using different models with different assumptions to estimate the same quantity.
+The mechanistic model often provides more useful insights, by decomposing the components of transmission, estimating how susceptibility differs by age, and producing narrower credible intervals.
+However, the phenomenological model is more flexible and can better fit the data, particularly in granular subpopulations.
+Furthermore, it includes ethnicity as a covariate, which can help provide an equitable response to the pandemic and better adjusts for the non-response bias in the survey.
+Extending mechanistic models to include ethnicity should be considered as a priority for future work, which would require contact surveys in ethnic minority populations.
 
-% All authors must submit their articles at \href{http://www.pnascentral.org/cgi-bin/main.plex}{PNAScentral}. If you are using Overleaf to write your article, you can use the ``Submit to PNAS'' option in the top bar of the editor window.
+Comparing the results can highlight modelling issues; in our case, the mechanistic model's inability to capture changes in transmission among age groups.
+A more flexible model could be developed to capture these changes; however, current work is limited by the computational burden of fitting mechanistic models to large datasets.
+Further work could extend approximate Bayesian methods, such as the integrated Laplace approximation used in the phenomenological model, to mechanistic models.
+As well as allowing for more flexible models, capturing age-specific changes over time, such work would allow faster model fitting, a high-priority when responding to an emergency such as a pandemic.
 
-% \subsection*{Format}
+Our analysis has important implications for future pandemic preparedness and response.
+We have shown that a prevalence survey with randomly-selected participants are extremely useful for monitoring an ongoing pandemic.
+Yet these gold-standard surveys were conducted by few countries during the SARS-CoV-2 pandemic.
+A major barrier is that they are expensive.
+Further work should explore how to reduce the cost of these surveys, for example by using cheaper testing methods or studying more carefully the impact of alternative study designs allowing the same information to be inferred using fewer participants.
+This could involve varying the testing schedule or the selection criteria.
+Finally, we call for such studies to be embedded into pandemic plans for sufficiently severe pandemics.
 
-% Many authors find it useful to organize their manuscripts with the following order of sections: title, author line and affiliations, keywords, abstract, significance statement, introduction, results, discussion, materials and methods, acknowledgments, and references. Other orders and headings are permitted.
+\matmethods{
 
-% \subsection*{Manuscript Length}
+\subsection*{CIS study design and data}
+The CIS~\citep{CIS} was set up in April 2020 as a large-sclae, longitudinal scale study across the pandemic.
+Individuals were originally recruited in England from those who had previously responded to ONS survey(s); it was expanded in September 2020 using a random sample of addresses across the whole UK.
+Following enrolment and consent, individuals were visited on a pre-determined schedule.
+At each visit, a questionnaire was completed and a combined throat and nose swab was collected for RT-PCR testing, along with various other pieces of data.
+We consider only the result of the RT-PCR testing.
+Enrolment was continuously ongoing until 31st Jan 2022, with data collected until 13th Mar 2023~\citep{weiRisk}. 
 
-% A standard 6-page article is approximately 4,000 words, 50 references, and 4 medium-size graphical elements (i.e., figures and tables). The preferred length of articles remains at 6 pages, but PNAS will allow articles up to a maximum of 12 pages.
+We use all negative and positive tests (\ie discarding void test results) in England between Mon 31 Aug 2020 and Sun 24 Jan 2021 for this proof-of-concept study.
+During this period, the CIS was of sufficient size, and transmission was sufficiently high, to provide enough data for the analyses.
+Second, incidence began to rise over this period, after the fall due to the first lockdown.
+Additionally, this period ends before substantial vaccine roll-out, which affected many important aspects of the analysis; most relevantly, the duration of detectability and the susceptibility of the population.
 
-% \subsection*{References}
-
-% References should be cited in numerical order as they appear in text; this will be done automatically via bibtex, e.g.  and . All references cited in the main text should be included in the main manuscript file.
-
-% \subsection*{Data Archival}
-
-% PNAS must be able to archive the data essential to a published article. Where such archiving is not possible, deposition of data in public databases, such as GenBank, ArrayExpress, Protein Data Bank, Unidata, and others outlined in the \href{https://www.pnas.org/author-center/editorial-and-journal-policies#materials-and-data-availability}{Information for Authors}, is acceptable.
-
-% \subsection*{Language-Editing Services}
-% Prior to submission, authors who believe their manuscripts would benefit from professional editing are encouraged to use a language-editing service (see list at https://www.pnas.org/author-center/language-editing). PNAS does not take responsibility for or endorse these services, and their use has no bearing on acceptance of a manuscript for publication.
-
-
-% \begin{table}[t!]
-% \centering
-% \caption{Comparison of the fitted potential energy surfaces and ab initio benchmark electronic energy calculations}
-% \begin{tabular}{lrrr}
-% Species & CBS & CV & G3 \\
-% \midrule
-% 1. Acetaldehyde & 0.0 & 0.0 & 0.0 \\
-% 2. Vinyl alcohol & 9.1 & 9.6 & 13.5 \\
-% 3. Hydroxyethylidene & 50.8 & 51.2 & 54.0\\
-% \bottomrule
-% \end{tabular}
-
-% \addtabletext{nomenclature for the TSs refers to the numbered species in the table.}
-% \end{table}
-
-
-% \subsection*{Digital Figures}
-
-% EPS, high-resolution PDF, and PowerPoint are preferred formats for figures that will be used in the main manuscript. Authors may submit PRC or U3D files for 3D images; these must be accompanied by 2D representations in TIFF, EPS, or high-resolution PDF format. Color images must be in RGB (red, green, blue) mode. Include the font files for any text.
-
-% Images must be provided at final size, preferably 1 column width (8.7cm). Figures wider than 1 column should be sized to 11.4cm or 17.8cm wide. Numbers, letters, and symbols should be no smaller than 6 points (2mm) and no larger than 12 points (6mm) after reduction and must be consistent.
-
-% Figures and tables should be labelled and referenced in the standard way using the \verb|\label{}| and \verb|\ref{}| commands.
-
-% Figure \ref{fig:frog} shows an example of how to insert a column-wide figure. To insert a figure wider than one column, please use the \verb|\begin{figure*}...\end{figure*}| environment. Figures wider than one column should be sized to 11.4 cm or 17.8 cm wide. Use \verb|\begin{SCfigure*}...\end{SCfigure*}| for a wide figure with side legends.
-
-% \begin{SCfigure*}[\sidecaptionrelwidth][t!]
-% \centering
-% \includegraphics[width=11.4cm,height=11.4cm]{frog.pdf}
-% \caption{This legend would be placed at the side of the figure, rather than below it.}\label{fig:side}
-% \end{SCfigure*}
-
-
-% \subsection*{Tables}
-% Tables should be included in the main manuscript file and should not be uploaded separately.
+We grouped tests by region and age for both analyses.
+In the phenomenological model, we also grouped tests by sex and ethnicity, due to there being evidence of differential non-response in these groups~\citep{pouwelsCommunity}.
+However, the additional stratification is not possible in the mechanistic model due to computational constraints and a lack of contact data for these groups.
+For regions, we used the nine regions of England (International Territorial Level 1); these are: North East, North West, Yorkshire and the Humber (commonly abbreviated to Yorkshire), East Midlands, West Midlands, East, London, South East, and South West~\citep{onsRegions}.
+For age groups, we used under 11 (pre-school and primary school), 12--16 (compulsory secondary school), 17--25 (adolescents and young adults who may remain in formal education), 26--50 (younger working age adults), 51--70 (older working age adults), and 71+ (elderly).
+We used two levels of ethnic grouping.
+Broad groupings (White and non-White), because the White population makes up over 80\% of the UK, and more granular groupings (Asian, Black, Mixed, White, and Other).
 
 
-% \subsection*{Single column equations}
+\subsection*{Phenomenological model}
+The phenomenological model consists of three steps.
+First, a Bayesian multi-level logistic regression model is fit to the data to estimate the probability of a positive test for a variety of population strata (described below) on each day considered.
+Next, deconvolution (described below) is used to calculate the incidence proportion in each stratum on each day implied by the probability of a positive test for each of 500 samples from the approximate posterior of the regression model.
+Finally, the incidence proportions are poststratified to the population and subpopulations of interest to estimate the incidence proportion in each subpopulation on each day.
+The full algorithm for this procedure is given in the SI Methods.
 
-% Authors may use 1- or 2-column equations in their article, according to their preference.
+\subsection*{Regression model}
+We modify a previously-used regression model~\citep{pouwelsMRPvaccination} for the same dataset to be suitable for estimating incidence.
+The model is fit independently to each region in a Bayesian framework using the Integrated Nested Approximation (INLA, implemented in R-INLA)~\citep{RINLA,rueINLA}.
+Each day, the probability of a positive test for a given age group, ethnicity, and sex is modelled as a logistic regression with fixed effects for sex and White or non-White ethnicity; and random effects for age group, including its interaction with time, and time.
+To account for the overdispersion due to the household-based design of the survey and unobserved heterogeneity, we use a beta-binomial likelihood.
+See SI Methods for further details.
 
-% To allow an equation to span both columns, use the \verb|\begin{figure*}...\end{figure*}| environment mentioned above for figures.
+\subsection*{Deconvolution}
 
-% Note that the use of the \verb|widetext| environment for equations is not recommended, and should not be used.
+Deconvolution for estimating incidence from prevalence was popularized in infectious disease epidemiology by the backcalculation method for HIV/AIDS incidence estimation~\citep{brookmeyerBackcalculation}.
+In this context, it means that the incidence proportions for stratum $i$ on day $t$, $Z_{t,i}$ can be calculated sequentially for $t = 1, \dots, T$ from the prevalence on days $1, \dots, t$ in that stratum, $P_{1,i}, \dots, P_{t,i}$ using the forward-substitution method~\citep{cormenMatrix}:
+\begin{equation}
+    Z_{t,i} = P_{t,i} - \sum_{s=1}^{t-1} Z_{s,i} S(t-s+1)
+\end{equation}
+where $S(t-s+1)$ is the probability of a positive test on day $t-s+1$ given that the individual was infected on day $s$.
+Further details are provided in SI Methods.
 
-% \begin{figure*}[bt!]
-% \begin{align*}
-% (x+y)^3&=(x+y)(x+y)^2\\
-%        &=(x+y)(x^2+2xy+y^2) \numberthis \label{eqn:example} \\
-%        &=x^3+3x^2y+3xy^3+x^3.
-% \end{align*}
-% \end{figure*}
+\subsection*{Poststratification}
+Poststratification aggregates the incidence proportions in different stratum to be representative of a (sub)population, here England or one of its regions.
+Specifically, define a (sub)population of interest as a set of strata $\set{S}$.
+Then the incidence proportion in the (sub)population on day $t$ is
+\begin{align}
+Z_t(\set{S})
+&= \frac{\sum_{j \in \set{S}} Z_{j,t} N_j}{\sum_{j \in \set{S}} N_j}
+\label{backcalc:eq:poststratify}
+\end{align}
+where $N_j$ is the population size of stratum $j$, provided by the ONS.
 
+\subsection*{Mechanistic model}
+The mechanistic model is a deterministic, compartmental SEIR model, including age-structure.
+This means that the state of the population is represented by the proportion of individuals of each age in each of four compartments: susceptible (S), exposed (E), infectious (I), and recovered (R).
+The model then evolves according to a set of ordinary differential equations (ODEs).
+The SEIR model is a standard model~\citep{andersonInfectious,keelingModeling}, which we make two adjustments to: allowing the transmission rates between age groups to vary over time and adding an observation model to relate the model to CIS data.
+The starting state and parameters of the ODEs are inferred in a Bayesian framework.
 
+\subsection*{Transmission rates}
+The rate of transmission between infectious and susceptible individuals in the model is based on three components: the number of contacts between individuals, the probability of transmission given a contact, and the proportion of the population that is susceptible.
+The number of contacts between different age groups were based on POLYMOD~\citep{mossongSocial} and adjusted on a weekly basis using Google Mobility data~\citep{googleCOVID19} according to a previously described method~\citep{vanleeuwenAugmenting,birrellRealtime}.
+The probability of transmission given a contact is assumed to be constant across age groups except that children and adults are allowed to have different susceptibilities, as described by previous work~\citep{vinerTransmission}; however, the probability is allowed to vary each week to capture the impact of changes not present elsewhere in the model (see SI Methods for details).
+The proportion of the population that is susceptible is part of the system of ODEs.
 
-% \subsection*{Supporting Information Appendix (SI)}
+\subsection*{Observation model}
+The observation model relates the transmission process in the mechanistic model, just described, to the data.
+A set of states approximates the length of time an individual is positive for SARS-CoV-2 following infection; we use a more accurate approximation of this time than much previous work.
+These states are then used to calculate the probability of a positive test on each day for each stratum.
+Finally, the probability of a positive test is used to calculate the likelihood of the data, the number of positive tests on each day in each stratum.
+A full description of the observation model is provided in SI Methods.
 
-% Authors should submit SI as a single separate SI Appendix PDF file, combining all text, figures, tables, movie legends, and SI references. SI will be published as provided by the authors; it will not be edited or composed. Additional details can be found in the \href{https://www.pnas.org/authors/submitting-your-manuscript#manuscript-formatting-guidelines}{PNAS Author Center}. The PNAS Overleaf SI template can be found \href{https://www.overleaf.com/latex/templates/pnas-template-for-supplementary-information/wqfsfqwyjtsd}{here}. Refer to the SI Appendix in the manuscript at an appropriate point in the text. Number supporting figures and tables starting with S1, S2, etc.
-
-% Authors who place detailed materials and methods in an SI Appendix must provide sufficient detail in the main text methods to enable a reader to follow the logic of the procedures and results and also must reference the SI methods. If a paper is fundamentally a study of a new method or technique, then the methods must be described completely in the main text.
-
-% \subsubsection*{SI Datasets}
-
-% Supply .xlsx, .csv, .txt, .rtf, or .pdf files. This file type will be published in raw format and will not be edited or composed.
-
-
-% \subsubsection*{SI Movies}
-
-% Supply Audio Video Interleave (avi), Quicktime (mov), Windows Media (wmv), animated GIF (gif), or MPEG files. Movie legends should be included in the SI Appendix file. All movies should be submitted at the desired reproduction size and length. Movies should be no more than 10MB in size.
-
-
-
-
-\matmethods{Please describe your materials and methods here. This can be more than one paragraph, and may contain subsections and equations as required.
-
-\subsection*{Subsection for Method}
-Example text for subsection.
+\subsection*{Inference}
+We fit the mechanistic model in a Bayesian framework using Markov chain Monte Carlo (MCMC)~\citep{hastingsMCMC,gelmanBDA}.
+Informative priors were used for the starting state of the model and the rates of progression through the model; this is required for identifiability~\citep{dankwaStructural}.
+We used weakly informative priors for all other parameters (TODO ref table with priors).
+Bespoke Markov chain Monte Carlo code, adapted from a previous study~\citep{ghoshApproximate}, was used to estimate the posterior distribution of the parameters of the mechanistic model.
+Proposals were drawn from a multivariate normal distribution, adapted throughout the inference process~\citep{andrieuTutorial} and accepted or rejected based on the Metropolis--Hastings algorithm~\citep{hastingsMCMC}.
+All results are based on four Markov chains each of length \numprint{1000000} iterations for each region.
+The first \numprint{500000} were discarded as burn-in, with the remaining chains thinned to every \numprint{100}th iteration.
+This gives \numprint{5000} posterior samples per region.
+This was further thinned to \numprint{2000} samples when calculating posterior predictive quantities (incidence and prevalence) due to their computational cost.
 }
 
 \showmatmethods{} % Display the Materials and Methods section
@@ -305,10 +333,56 @@ Example text for subsection.
 \showacknow{} % Display the acknowledgments section
 
 
-\bibsplit[2]
+\bibsplit[15]
 %Use \bibsplit to split the references from the body of the text. Value "[2]" represents the number of reference in the left column (Note: Please avoid single column figures & tables on this page.)
 
 % Bibliography
 \bibliography{references}
+
+\clearpage
+\appendix
+
+\section*{Supplementary methods: phenomenological model}
+
+TODO: insert full algorithm for method, \ie how the different pieces described below and in the main text are composed.
+
+\subsection*{Logistic regression model}
+
+We use a modified version of a previous Bayesian multi-level logistic regression model for the CIS~\citep{pouwelsMRPvaccination}.
+A regression model serves two purposes: first, it allows borrowing of information between days and stratum; second, it corrects for non-response bias.
+
+For a day $t$, age group $a$, ethnicity $e$, and sex $s$ the regression model is:
+\begin{align}
+    \logit(p_{taes}) &= \beta + \beta_s + \beta_{w(e)} + u_a + v_e + w_t + l_{a,t} \\
+    y_{taes} &\dist \BB(n_{taes}, p_{taes}, \rho).
+\end{align}
+The terms are as follows.
+\begin{itemize}
+    \item $n_{taes}$ and $y_{taes}$ are the number of individuals tested and the number of positive test results respectively on day $t$ in individuals of age group $a$, ethnicity $e$, and sex $s$. We use a beta-binomial distribution for the likelihood. A beta-binomial distribution is an overdispersed version of the binomial distribution~\citep{hughesUsing}. Overdispersion allows for household clustering and other overdispersion in the data, which is common in epidemiological data~\citep{griffithsBBD}.
+    \item $\beta$ is a global intercept term with the vague prior $\beta \dist \N(0, 1/0.001^2)$.
+    \item $\beta_s$ is a fixed effect for sex, with $\beta_s = 0$ for males and estimated for females. The prior for $\beta_s$ is vague, $\beta_s \dist \N(0, 1/0.001^2)$.
+    \item $\beta_{w(e)}$ is a fixed effect for White or non-White ethnicity. $\beta_{w(e)} = 0$ if $e$ corresponds to White ethnicity and $\beta_{w(e)} = \beta_{n}$ otherwise (\ie non-White ethnic groups).
+      The prior for $\beta_n$ is vague, $\beta_n \dist \N(0, 1/0.001^2)$.
+      % $\beta_n$ and $\beta_f$ have the default INLA prior for fixed effects\todo{check what this is}.
+    \item $u_a$ and $v_e$ are independent normal random effects for age and ethnic group respectively. Their standard deviation has a penalized complexity prior~\citep{simpsonPenalising} with a 10\% probability of being greater than 1.
+    \item $w_t$ is a second-order random walk, that is $w_t = 2w_{t-1} - w_{t-2} + \epsilon_t$ where $\epsilon_t \dist \N(0, \sigma_w^2)$.
+      $\sigma_w$ has a vague prior, $1/\sigma_w \dist \GamDist(1, 5 \times 10^{-5})$.
+    \item $l_{a,t}$ is an age-group specific second-order random walk.
+      That is $l_{a,t} = 2l_{a,t-1} - l_{a,t-2} + \epsilon_{a,t}$ where $\epsilon_{a,t} \dist \N(0, \sigma_l^2)$.
+      $\sigma_l$ has a vague prior, $1/\sigma_l \dist \GamDist(1, 5 \times 10^{-5})$.
+\end{itemize}
+The second-order random walk priors favours linear growth in $\logit(p_{taes})$ over time.
+For the small values of $p_{taes}$ likely to be encountered, this approximates exponential growth.
+
+\subsection*{Deconvolution}
+
+TODO: incorporate relevant parts of thesis section 7.1.3.
+
+The relationship between incidence and prevalence is stochastic; however, here a deterministic relationship is assumed.
+This is a good approximation as long as the proportion of the population sampled by prevalence survey is small because the stochastic noise in the sampling process is much greater than that in the relationship between incidence and prevalence~\citep{blakeThesis}.
+
+\section*{Supplementary methods: mechanistic model}
+
+TODO: insert ODEs and other details of SEIR model.
 
 \end{document}
