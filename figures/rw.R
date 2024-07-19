@@ -60,11 +60,6 @@ p_walk = tbl_rw |>
     ggplot(aes(factor(date), beta)) +
     stat_slab(side = "both") +
     standard_plot_theming() +
-    scale_y_log10(
-        breaks = c(0.5, 1, 2, 0.67, 1.5),
-        limits = c(0.5, NA),
-        minor_breaks = numeric()
-    ) +
     # tick labels every 3 weeks
     scale_x_discrete(
         breaks = function(x) x[c(TRUE, rep(FALSE, 3))]
@@ -74,7 +69,7 @@ p_walk = tbl_rw |>
     theme(axis.text.x = element_text(angle = 45, hjust = 1)) +
     labs(
         x = "Date",
-        y = expression(beta[t])
+        y = "Relative transmission"
     )
 
 save_plot(
