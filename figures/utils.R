@@ -15,6 +15,13 @@ load_backcalc_regions = function() {
     )
 }
 
+load_backcalc_age = function() {
+    readRDS(file.path(model_output_dir, "phenomenological", "age.rds")) |>
+    dplyr::mutate(
+        age_group = normalise_age_groups(age_group),
+    )
+}
+
 load_backcalc_region_age = function() {
     readRDS(file.path(model_output_dir, "phenomenological", "region_age.rds")) |>
     dplyr::mutate(
