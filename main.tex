@@ -146,13 +146,16 @@ Susceptible individuals can become exposed by their interaction with infectious 
 These rates combine pre-pandemic surveys with real-time data on time-use.
 By representing these proportions and their interactions, we can estimate more detail over the transmission process; however, the stronger assumptions required could introduce bias into the estimation.
 
-We estimated incidence proportion, the proportion of the population (or a subpopulation) newly infected on each day~\citep{lashModern}.
+We estimated incidence proportion, the proportion of the population (or a subpopulation) newly RT-PCR positive on each day~\citep{lashModern} for comparability between the models.
+The mechanistic model can also estimate the underlying incidence of infection, and the phenomenological could with additional assumptions.
+Results below are given as posterior median and 95\% central credible interval (CrI).
 
 \subsection*{Incidence estimates}
 
 Both models successfully produce estimates of SARS-CoV-2 incidence proportion, the proportion of the population that becomes PCR positive on a given day (\cref{fig:incidence-Eng}).
 The results largely agree with each other and previous knowledge (REF), demonstrating the robustness of the data and approaches.
-They show a slow rise and plateau in autumn, a decrease during November, then a fast increase peaking near the end of 2020.
+They show a slow rise and plateau in autumn with a peak incidence proportion of 0.0805\% (0.0729--0.0907\%) using the phenomenological model or 0.0721\% (0.0689--0.0756\%) using the mechanistic model, a decrease during November, then a fast increase in incidence peaking on 24 (21--28) Dec 2020 at 0.16\% (0.14--0.19\%) using the phenomenological model or on 21 (21--21) Dec 2020 at 0.141\% (0.136--0.147\%) using the mechanistic model.
+The lack of uncertainty for the date of the peak in the mechanistic model is because the model structure only allows step changes in growth rates to occur on Mondays, leading to peaks also occurring on Mondays.
 \begin{figure}%[tbhp]
 \centering
 \includegraphics{figures/incidence_England}
@@ -166,17 +169,9 @@ They show a slow rise and plateau in autumn, a decrease during November, then a 
 \end{figure}
 
 There is similar agreement between the models when considering incidence estimates for each region (\cref{fig:incidence-strat}(A)).
-A slow increase in incidence is estimated to occur over the autumn 2020 period, peaking in October in most regions (see \cref{transmission:fig:backcalc-regions}).
-An exception is the North East and East of England regions (see \cref{transmission:fig:backcalc-regions}(B)); these regions show no consistent increase or decrease in incidence during October.
+A slow increase in incidence is estimated to occur over the autumn 2020 period, peaking in October in most regions (\cref{fig:incidence-strat}(A)).
+An exception is the North East and East of England regions; these regions show no consistent increase or decrease in incidence during October.
 All regions then decrease during November, which partially coincides with the national lockdown in force in England between 5 Nov and 2 Dec 2020~\citep{ifgTimeline}.
-
-
-The largest disagreement between the models is that the phenomenological model estimates a second peak in incidence in January for England (\cref{fig:incidence-Eng}), although the credible intervals overlap for the majority of the period.
-The second peak occurs in late December or early January in all regions (\cref{fig:incidence-strat}(A)); this second peak is larger than the first in all regions except the Northern three (North East, North West, and Yorkshire and the Humber).
-
-The mechanistic model produces tighter credible intervals, reflecting the additional assumptions it uses about the underlying transmission dynamics.
-This can be interpreted as the classic bias--variance trade-off: by making stronger assumptions the mechanistic model reduces the variance of the estimates but has the potential to introduce bias if those assumptions are violated.
-
 \begin{figure*}%[tbhp]
 \centering
 \includegraphics{figures/incidence_stratified}
@@ -189,12 +184,20 @@ This can be interpreted as the classic bias--variance trade-off: by making stron
 \label{fig:incidence-strat}
 \end{figure*}
 
+The largest disagreement between the models is that the phenomenological model estimates a period of increasing incidence in January for England (\cref{fig:incidence-Eng}), although the credible intervals overlap for the majority of the period.
+The second peak occurs in late December or early January in all regions (\cref{fig:incidence-strat}(A)); this second peak is larger than the first in all regions except the Northern three (North East, North West, and Yorkshire and the Humber).
+
+The mechanistic model produces tighter credible intervals, reflecting the additional assumptions it uses about the underlying transmission dynamics.
+This can be interpreted as the classic bias--variance trade-off: by making stronger assumptions the mechanistic model reduces the variance of the estimates but has the potential to introduce bias if those assumptions are violated.
+
 
 \subsection*{Impact of model assumptions}
 
 Age-specific results show the impact of model assumptions on the estimates (\cref{fig:incidence-strat}(B)).
 Contact rates for the mechanistic model decrease significantly for 12--16 year-olds during the school half-term break at the end of October, informed by survey data suggesting that they have many contacts at school (Materials and Methods).
-The decrease in contact rates flows through into the incidence estimates from the mechanistic model at this time.
+The decrease in contact rates flows through into the incidence estimates from the mechanistic model at this time, which drop to 0.0742\% (0.0708--0.0776\%) from 0.178\% (0.169--0.187\%) between 18 Oct and 1 Nov 2020.
+On the other hand, the phenomenological model estimates incidence to be flat.
+However, the cumulative incidence over this period is similar between the models, at 1.64\% (1.48--1.82\%) for the phenomenological model and 1.61\% (1.55--1.68\%) for the mechanistic model.
 
 The models disagree regarding incidence in the 12--16 and 17--25 age groups, especially prior to December 2020.
 The mechanistic model has a more rigid structure (fewer parameters and stronger assumptions) limiting its ability to capture all changes in incidence, especially when changes in transmission differ between age groups.
@@ -208,7 +211,7 @@ A major advantage of using a mechanistic model is the ability to decompose the c
 The mechanistic model decomposes changing transmission into three components: changes in contact patterns, measured through Google Mobility data; changes in levels of susceptibility in the population; and a remaining unexplained component, which includes behavioural changes such as masking or improved case-finding leading to a higher proportion of infectious individuals being isolated and biological changes (\eg variants).
 The unexplained component is often of interest to policy-makers because reducing transmission with minimal effects on contacts (which often have larger economic or social benefits) is a common policy goal.
 
-We estimate that this component initially decreases over the period studied (from September 2020), is flat for a few weeks, then rises in November and December (\cref{fig:rw} and TODO).
+We estimate that this component initially decreases, is flat for a few weeks, then rises in November and December (\cref{fig:rw} and TODO).
 The increase in the unexplained component in November and December is correlated with the rise of the Alpha variant.
 \begin{figure}%[tbhp]
 \centering
@@ -227,6 +230,7 @@ An advantage of the CIS dataset is that it captures all age groups over two year
 The mechanistic model can exploit this data to estimate how susceptibility differs by age.
 Here, susceptibility is defined as the probability of a susceptible individual becoming infected upon contact with an infectious individual which includes both biological factors (\eg differences in immune response) and behavioural factors (\eg differences in hygiene).
 We estimate this parameter independently for each region, showing that children are less susceptible by around 20\% than adults in all regions (\cref{fig:children}).
+The estimates range from 0.697 (0.608--0.784) in South West England to 0.894 (0.834--0.957) in London.
 \begin{figure}%[tbhp]
 \centering
 \includegraphics{figures/children}

@@ -7,12 +7,16 @@ library(tidybayes)
 library(tidyr)
 source(here::here("figures/utils.R"))
 
-p_susceptibility = readr::read_csv(here::here("model-outputs", "mechanistic", "params.csv")) |>
+tbl_susc = readr::read_csv(here::here("model-outputs", "mechanistic", "params.csv")) |>
     filter(parameter == "matrix_modifiers") |>
     mutate(value = exp(value), region = normalise_region_names(region)) |>
-    # dot interval plot with median and 95% CrI by region
     group_by(region) |>
-    median_qi(value) |>
+    median_qi(value) 
+
+tbl_susc |>
+    arrange(value)
+
+p_susceptibility = tbl_susc |>
     ggplot(aes(region, value)) +
     geom_pointrange(aes(ymin = .lower, ymax = .upper), size = 0.1) +
     labs(
