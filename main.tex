@@ -163,7 +163,7 @@ The mechanistic model produces tighter credible intervals, reflecting the additi
     Incidence proportion is the proportion of the population that becomes PCR positive on a given day.
     (A) Estimates for the whole of England.
     (B) Estimates by age group for the North East region.
-    Remaining regions shown in TODO: add other regions to appendix.
+    Remaining regions shown in ().
 }
 \label{fig:incidence}
 \end{figure*}
@@ -177,7 +177,7 @@ The 12--16 age group decreases in incidence significantly during the school half
 
 Disagreement between the two models in the 12--16 and 17--25 age groups are also prominent.
 The mechanistic model has a more rigid structure (fewer parameters) limiting its ability to capture all changes in incidence, especially when changes in transmission differ between age groups.
-Therefore, when fitting, it appears to compromise these two age groups in opposite directions: overestimating the prevalence and incidence in the 12--16 age group and underestimating it in the 17--25 age group (TODO: ref a supplementary figure with goodness-of-fit).
+Therefore, when fitting, it appears to compromise these two age groups in opposite directions: overestimating the prevalence and incidence in the 12--16 age group and underestimating it in the 17--25 age group (TODO).
 
 The phenomenological model is more flexible and therefore has a better fit to the data in these age groups.
 It is fit to more granular groupings of individuals, improving the adjustment for non-response bias, but this means that for privacy reasons we cannot show the fit.
@@ -188,7 +188,7 @@ A major advantage of using a mechanistic model is the ability to decompose the c
 The mechanistic model decomposes changing transmission into three components: changes in contact patterns, measured through Google Mobility data; changes in levels of susceptibility in the population; and a remaining unexplained component, which includes behavioural changes such as masking or improved case-finding leading to a higher proportion of infectious individuals being isolated and biological changes (\eg variants).
 The unexplained component is often of interest to policy-makers because reducing transmission with minimal effects on contacts (which often have larger economic or social benefits) is a common policy goal.
 
-We estimate that this component initially decreases over the period studied (from September 2020), is flat for a few weeks, then rises in November and December (\cref{fig:rw} and TODO other regions in supplement).
+We estimate that this component initially decreases over the period studied (from September 2020), is flat for a few weeks, then rises in November and December (\cref{fig:rw} and TODO).
 The increase in the unexplained component in November and December is correlated with the rise of the Alpha variant.
 \begin{figure}%[tbhp]
 \centering
@@ -196,7 +196,7 @@ The increase in the unexplained component in November and December is correlated
 \caption{%
     The component of transmission not explained by changes in contact patterns (as measured by Google Mobility data) and increasing population immunity.
     Shown is a violin plot of the posterior distribution.
-    London shown, for other regions see TODO: add other regions to appendix.
+    London shown, for other regions see TODO.
 }
 \label{fig:rw}
 \end{figure}
@@ -219,7 +219,7 @@ We estimate this parameter independently for each region, showing that children 
 
 \section*{Discussion}
 
-We have demonstrated that a range of important epidemiological estimates can be derived from prevalence survey data, specifically using the Coronavirus Infection Survey.
+We have demonstrated that a range of important epidemiological estimates can be derived from prevalence survey data, specifically using CIS.
 Our study utilized two distinct models---a phenomenological model and a mechanistic transmission model---both of which were successfully fit to CIS data.
 
 Using a single, well-designed study like CIS as a data source leads to robust and reliable estimates.
@@ -341,7 +341,7 @@ A full description of the observation model is provided in SI Methods.
 \subsection*{Inference}
 We fit the mechanistic model in a Bayesian framework using Markov chain Monte Carlo (MCMC)~\citep{hastingsMCMC,gelmanBDA}.
 Informative priors were used for the starting state of the model and the rates of progression through the model; this is required for identifiability~\citep{dankwaStructural}.
-We used weakly informative priors for all other parameters (TODO ref table with priors).
+We used weakly informative priors for all other parameters (TODO).
 Bespoke Markov chain Monte Carlo code, adapted from a previous study~\citep{ghoshApproximate}, was used to estimate the posterior distribution of the parameters of the mechanistic model.
 Proposals were drawn from a multivariate normal distribution, adapted throughout the inference process~\citep{andrieuTutorial} and accepted or rejected based on the Metropolis--Hastings algorithm~\citep{hastingsMCMC}.
 All results are based on four Markov chains each of length \numprint{1000000} iterations for each region.
@@ -367,8 +367,6 @@ This was further thinned to \numprint{2000} samples when calculating posterior p
 \appendix
 
 \section*{Supplementary methods: phenomenological model}
-
-TODO: insert full algorithm for method, \ie how the different pieces described below and in the main text are composed.
 
 \subsection*{Logistic regression model}
 
@@ -400,13 +398,10 @@ For the small values of $p_{taes}$ likely to be encountered, this approximates e
 
 \subsection*{Deconvolution}
 
-TODO: incorporate relevant parts of thesis section 7.1.3.
-
 The relationship between incidence and prevalence is stochastic; however, here a deterministic relationship is assumed.
 This is a good approximation as long as the proportion of the population sampled by prevalence survey is small because the stochastic noise in the sampling process is much greater than that in the relationship between incidence and prevalence~\citep{blakeThesis}.
 
 \section*{Supplementary methods: mechanistic model}
 
-TODO: insert ODEs and other details of SEIR model.
 
 \end{document}
