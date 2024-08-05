@@ -300,3 +300,6 @@ TSWLatexianTemp*
 ## Files for misc purposes
 tmp*.tex
 *.docx
+
+# Ignore data files
+model-outputs/**
