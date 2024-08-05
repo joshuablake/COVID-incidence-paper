@@ -66,7 +66,7 @@
 \leadauthor{Blake}
 
 % Please add a significance statement to explain the relevance of your work
-\significancestatement{Understanding the transmission dynamics of SARS-CoV-2 is essential for guiding public health interventions. This study demonstrates the potential of prevalence survey data, specifically from the Coronavirus Infection Survey, to provide reliable estimates of viral incidence and transmission. This gold-standard survey selected individuals representative of the general population, unlike most sources of data from which transmission dynamics can be inferred. The findings highlight the importance of integrating large-scale, randomly sampled prevalence surveys into pandemic surveillance systems.}
+\significancestatement{Understanding the transmission dynamics of SARS-CoV-2 is essential for guiding public health interventions. This study demonstrates the potential of data from prevalence surveys, specifically from the Coronavirus Infection Survey, to provide reliable estimates of viral incidence and transmission. This gold-standard survey selected individuals representative of the general population, unlike most sources of data from which transmission dynamics can be inferred. The findings highlight the importance of integrating large-scale, randomly sampled prevalence surveys into pandemic surveillance systems.}
 
 % Please include corresponding author, author contribution and author declaration information
 \authorcontributions{Please provide details of author contributions here.}
@@ -78,10 +78,12 @@
 
 \begin{abstract}
 During the pandemic caused by the SARS-CoV-2 virus, the UK’s Office for National Statistics ran a large prevalence survey, the Coronavirus Infection Survey (CIS).
-Individuals enrolled in CIS were tested on a predetermined schedule, removing most reporting biases.
-Here, we develop methods to investigate whether this survey, designed to provide prevalence estimates, can be used to derive estimates of incidence and transmission.
-We estimate incidence and transmission, fitting to only CIS data, taking two approaches: one phenomenological and one mechanistic.
-The approaches are complementary, trading off bias and variance, and unravelling different aspects of the transmission dynamics.
+Individuals enrolled in CIS were tested on a predetermined schedule, meaning the testing process was not biased by individuals' propensity to test and/or infectious status.
+%removing  most reporting biases.
+Here, we develop methods to investigate whether the CIS, designed to provide prevalence estimates, can be used to derive estimates of incidence and transmission.
+To do so, we estimate incidence and transmission, fitting to only CIS data, using phenomenological and mechanistic models.
+%taking two approaches: one phenomenological and one mechanistic.
+These approaches are complementary, trading off bias and variance, and unravelling different aspects of the transmission dynamics.
 We call for further work to optimise prevalence surveys as a leading tool for future pandemic surveillance.
 \end{abstract}
 
@@ -93,43 +95,65 @@ We call for further work to optimise prevalence surveys as a leading tool for fu
 \thispagestyle{firststyle}
 \ifthenelse{\boolean{shortarticle}}{\ifthenelse{\boolean{singlecolumn}}{\abscontentformatted}{\abscontent}}{}
 
-\firstpage{7}
+\firstpage{6}
 % Use \firstpage to indicate which paragraph and line will start the second page and subsequent formatting. In this example, there are a total of 11 paragraphs on the first page, counting the first level heading as a paragraph. The value {12} represents the number of the paragraph starting the second page. If a paragraph runs over onto the second page, include a bracket with the paragraph line number starting the second page, followed by the paragraph number in curly brackets, e.g. "\firstpage[4]{11}".
 
 
 % If your first paragraph (i.e. with the \dropcap) contains a list environment (quote, quotation, theorem, definition, enumerate, itemize...), the line after the list may have some extra indentation. If this is the case, add \parshape=0 to the end of the list environment.
-\dropcap{T}he pandemic caused by the SARS-CoV-2 has inflicted a horrific toll on humanity, inflicting 31 million deaths~\citep{whoCOVIDExcess,economistCOVIDExcess}, stretching healthcare services to the brink of collapse~\citep{fongNHS}, and disrupting societies worldwide.
-This pandemic highlighted the need for effective surveillance systems to monitor and control the spread of infectious diseases.
+\dropcap{T}he pandemic caused by the SARS-CoV-2 has resulted in a horrific toll on humanity, inflicting 31 million deaths~\citep{whoCOVIDExcess,economistCOVIDExcess}, stretching healthcare services to the brink of collapse~\citep{fongNHS}, and disrupting societies worldwide.
+The impact motivated governments to invest in infectious disease surveillance on a scale never previously seen.
 
-The UK's Office for National Statistics (ONS) initiated the Coronavirus Infection Survey (CIS) to provide high-quality data on the prevalence of SARS-CoV-2.
-Prevalence refers to the proportion of a population that has tests positive for SARS-CoV-2 using a PCR test at a given time.
-This survey tested individuals on a regular schedule, minimizing biases associated with voluntary testing.
+An example of such a system in the UK's Office for National Statistics (ONS)'s Coronavirus Infection Survey (CIS)~\citep{cisMethodsONS,CIS}.
+CIS was a gold-standard survey, inviting households selected at random from the population to partake and testing individuals in them on a regular schedule, minimizing biases associated with voluntary testing.
+CIS required a level of resources rarely available to infectious disease surveillance systems but provided SARS-CoV-2 surveillance without relying on individuals' ability or desire to test and independent of the severity of their disease.
+Data without these issues, which makes the data unrepresentative of the population, was rarely available in the pandemic~\citep{shadboltChallenges}.
+CIS was primarily designed to allow weekly estimates of prevalence (which we define as the proportion of the population testing positive for SARS-CoV-2 using a Reverse Transcription Polymerase Chain Reaction (RT-PCR) test at a given time), stratified by age and region, and adjusting for the non-representativeness caused by different response rates among different demographic groups; these estimates were published weekly by ONS~\citep{pouwelsCommunity,pouwelsMRPvaccination,cisMethodsONS,onsCISdec2020}.
 
-In addition to prevalence, understanding the incidence and transmission of the virus is crucial for managing a pandemic.
-Incidence is the number of new cases occurring in a specific time period, while transmission refers to how the virus spreads through the population.
-This study aims to determine whether and how CIS, designed primarily to measure prevalence, can also be used to estimate incidence and transmission rates.
+However, prevalence is a delayed indicator and does not relate directly to the time that the infections occur; the latter is important for understanding how transmission has changed in response to control measures and other interventions.
+Instead, incidence, the number of new infections over a specific period, is a more useful metric but requires statistical measures to estimate as it can almost never be directly observed.
+Furthermore, some statistical methods allow the direct inference of how a virus is being transmitted providing even richer information for informing the response.
+A variety of methods can be used to estimate incidence and transmission, with methods often categorized by how explicitly they represent the underlying biological and epidemiological processes.
 
-A variety of methods can estimate incidence and transmission, with methods often categorized by how explicitly they represent the underlying biological and epidemiological processes.
-At one extreme, phenomenological models make minimal assumptions about the underlying processes, instead describing the trends in the data.
-This approach helps reduce potential biases but may have limitations in capturing the underlying dynamics of transmission.
-At the other extreme, fully mechanistic models represent the state of each individual in the population and the processes that drive the spread of the virus.
-This approach can provide deeper insights into transmission dynamics, such as the rate at which the virus spreads and the susceptibility of different demographic groups.
-Here, we develop two models to analyze CIS data: one phenomenological and one mechanistic.
+At one extreme, phenomenological (sometimes known as ``statistical'') models make minimal assumptions about the underlying processes, instead flexibly describing the trends in the data~\citep{beckerCOVIDmodels}.
+This approach helps reduce potential biases but cannot capture the underlying dynamics of transmission.
+
+At the other extreme, fully mechanistic models explicitly represent the mechanism that generates new infections the state of each individual in the population and the processes that drive the spread of the virus~\citep{andersonInfectious,keelingModeling}.
+This type of models provide deeper insights into transmission dynamics, such as the rate at which the virus spreads and the susceptibility of different demographic groups.
+In this work, we develop both phenomenological and mechanistic models to analyse the CIS data.
 
 During the pandemic, various methods were proposed to estimate incidence and transmission from CIS data. However, these methods often combined CIS data with other data sources, oversimplified the duration of PCR positivity, or did not fully account for the uncertainty in the survey data. Our study advances these efforts by fitting models solely to CIS data, providing a more accurate representation of the duration of PCR positivity and improving the quantification of survey uncertainty.
 
-CIS's comprehensive and consistently collected data offer a unique opportunity to derive critical epidemiological metrics without relying on additional data sources. By fitting both phenomenological and mechanistic models to CIS data, we demonstrate the feasibility and robustness of these approaches. The phenomenological model provides a flexible framework with minimal assumptions, while the mechanistic model offers detailed insights into transmission dynamics.
+CIS's comprehensive and consistently collected data offer a unique opportunity to derive critical epidemiological metrics without relying on additional data sources.
+In this proof-of-concept study, we show that CIS, designed primarily to measure prevalence, can also be the basis of incidence and transmission estimation, and provide guidance on appropriate methodologies for this purpose.
+By fitting both phenomenological and mechanistic models to CIS data, we demonstrate the feasibility and robustness of these approaches. 
 
-In this paper, we present the results of our analysis, highlighting the strengths and limitations of each modeling approach. We show that CIS data can be used not only to estimate prevalence but also to derive accurate estimates of incidence and transmission. These findings underscore the potential of prevalence surveys like CIS to serve as a cornerstone for pandemic surveillance and response.
+The phenomenological model provides a flexible framework with minimal assumptions, while the mechanistic model offers detailed insights into transmission dynamics.
+
+In this paper, we present the results of our analysis, highlighting the strengths and limitations of each modelling approach. We show that CIS data can be used not only to estimate prevalence but also to derive accurate estimates of incidence and transmission. These findings underscore the potential of prevalence surveys like CIS to serve as a cornerstone for pandemic surveillance and response.
 
 Our study emphasizes the importance of optimizing the design and implementation of future prevalence surveys to enhance their utility in monitoring and controlling pandemics. By leveraging high-quality, large-scale data from surveys like CIS, public health authorities can make more informed decisions and implement more effective interventions to mitigate the impact of infectious diseases.
 
 \section*{Results}
 
+We fit two models to the X positive and Y negative tests between DATES in England.
+
+The first model, a phenomenological model, was fit to the test results stratified by region, sex, age group, and ethnicity using a methodology based on dynamic multi-level regression and poststratification (MRP), a Bayesian methodology for accounting for non-response bias in a flexible framework.
+It does not represent any aspect of the disease or population within the model, allowing a computationally-efficient inference methodology, the integrated Laplace approximation (INLA), to be used, required to incorporate the many parameters needed to stratify the data more granularly.
+This leads to a more flexible model which can capture arbitrary trends in prevalence in different groups while penalising over-fitting; furthermore, it more comprehensively captures issues with non-response.
+
+The second model, a mechanistic model, is a SEIR model, meaning it tracks the proportion of population that are Susceptible, Exposed (infected but not yet infectious), Infectious, and Removed (\ie no longer infectious but playing no further part in the pandemic because they are immune or dead).
+The model stratifies these groups by region and age which partially accounts for the non-response and more accurately captures the pandemic's dynamics.
+Susceptible individuals can become exposed by their interaction with infectious individuals, through contact rates stratified by age.
+These rates combine by pre-pandemic surveys with real-time data on time-use.
+By representing these proportions and their interactions, we can estimate more detail over the transmission process; however, the stronger assumptions required could introduce bias into the estimation.
+
+We estimated incidence proportion, the proportion of the population (or a subpopulation) newly infected on each day~\citep{lashModern}.
+
 \subsection*{Incidence estimates}
 
 Both models successfully produce estimates of SARS-CoV-2 incidence proportion, the proportion of the population that becomes PCR positive on a given day (\cref{fig:incidence}(A)).
-The results largely agree with previous knowledge (REF), showing a slow rise and plateau in autumn, a decrease during November, then a fast increase peaking near the end of 2020.
+The results largely agree with each other and previous knowledge (REF), demonstrating the robustness of the data and approaches.
+They show a slow rise and plateau in autumn, a decrease during November, then a fast increase peaking near the end of 2020.
 The mechanistic model produces tighter credible intervals, reflecting the additional information it uses about the underlying transmission dynamics.
 \begin{figure*}%[tbhp]
 \centering
@@ -149,7 +173,7 @@ The largest disagreement between the models is that the phenomenological model e
 \subsection*{Impact of model assumptions}
 
 Age-specific results for the North East region clearly show the impact of model assumptions on the estimates (\cref{fig:incidence}(B)).
-The 12--16 age group decreases in incidence significantly during the school half-term break which is directly introduced into the model through modification of the number of contacts which school age children have.
+The 12--16 age group decreases in incidence significantly during the school half-term break which is directly introduced into the model through modification of the number of contacts which school age children have, informed by school attendance data (see Methods and Materials).
 
 Disagreement between the two models in the 12--16 and 17--25 age groups are also prominent.
 The mechanistic model has a more rigid structure (fewer parameters) limiting its ability to capture all changes in incidence, especially when changes in transmission differ between age groups.
@@ -162,7 +186,7 @@ It is fit to more granular groupings of individuals, improving the adjustment fo
 
 A major advantage of using a mechanistic model is the ability to decompose the components of transmission.
 The mechanistic model decomposes changing transmission into three components: changes in contact patterns, measured through Google Mobility data; changes in levels of susceptibility in the population; and a remaining unexplained component, which includes behavioural changes such as masking or improved case-finding leading to a higher proportion of infectious individuals being isolated and biological changes (\eg variants).
-The unexplained component is often of interest to policy-makers because reducing transmission with minimal affects on contacts (which often have larger economic or social benefits) is a common policy goal.
+The unexplained component is often of interest to policy-makers because reducing transmission with minimal effects on contacts (which often have larger economic or social benefits) is a common policy goal.
 
 We estimate that this component initially decreases over the period studied (from September 2020), is flat for a few weeks, then rises in November and December (\cref{fig:rw} and TODO other regions in supplement).
 The increase in the unexplained component in November and December is correlated with the rise of the Alpha variant.
@@ -195,7 +219,7 @@ We estimate this parameter independently for each region, showing that children 
 
 \section*{Discussion}
 
-We have demonstrated that a range of important epidemiological estimates can be derived from prevalence survey data, specifically using the Coronavirus Infection Survey (CIS).
+We have demonstrated that a range of important epidemiological estimates can be derived from prevalence survey data, specifically using the Coronavirus Infection Survey.
 Our study utilized two distinct models---a phenomenological model and a mechanistic transmission model---both of which were successfully fit to CIS data.
 
 Using a single, well-designed study like CIS as a data source leads to robust and reliable estimates.
