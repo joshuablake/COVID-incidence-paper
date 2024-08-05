@@ -135,16 +135,15 @@ Our study emphasizes the importance of optimizing the design and implementation 
 
 \section*{Results}
 
-We fit two models to the X positive and Y negative tests between DATES in England.
+We fit two models to the X positive and Y negative tests in CIS between DATES in England.
 
-The first model, a phenomenological model, was fit to the test results stratified by region, sex, age group, and ethnicity using a methodology based on dynamic multi-level regression and poststratification (MRP), a Bayesian methodology for accounting for non-response bias in a flexible framework.
-It does not represent any aspect of the disease or population within the model, allowing a computationally-efficient inference methodology, the integrated Laplace approximation (INLA), to be used, required to incorporate the many parameters needed to stratify the data more granularly.
-This leads to a more flexible model which can capture arbitrary trends in prevalence in different groups while penalising over-fitting; furthermore, it more comprehensively captures issues with non-response.
+The first model, a phenomenological model, was fit to the test results stratified by region, sex, age group, and ethnicity using a flexible Bayesian methodology to account for non-response bias and allow different trends in different strata while borrowing information between them.
+Like all phenomenological models, it does not represent any aspect of the disease or population within the model; this allows us to use a computationally-efficient inference methodology, the integrated Laplace approximation (INLA) and incorporate many parameters for the granular stratification while penalizing overfitting.
 
 The second model, a mechanistic model, is a SEIR model, meaning it tracks the proportion of population that are Susceptible, Exposed (infected but not yet infectious), Infectious, and Removed (\ie no longer infectious but playing no further part in the pandemic because they are immune or dead).
 The model stratifies these groups by region and age which partially accounts for the non-response and more accurately captures the pandemic's dynamics.
-Susceptible individuals can become exposed by their interaction with infectious individuals, through contact rates stratified by age.
-These rates combine by pre-pandemic surveys with real-time data on time-use.
+Susceptible individuals can become exposed by their interaction with infectious individuals, determined by contact rates stratified by age.
+These rates combine pre-pandemic surveys with real-time data on time-use.
 By representing these proportions and their interactions, we can estimate more detail over the transmission process; however, the stronger assumptions required could introduce bias into the estimation.
 
 We estimated incidence proportion, the proportion of the population (or a subpopulation) newly infected on each day~\citep{lashModern}.
