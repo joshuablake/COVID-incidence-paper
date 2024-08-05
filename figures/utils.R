@@ -1,9 +1,25 @@
+model_output_dir = here::here("model-outputs")
+
 standard_plot_theming = function() {
     rlang::list2(
         theme_minimal(),
         ggplot2::theme(text = ggplot2::element_text(size = 7)),
     )
 }
+
+incidence_plot_theming = function() {
+    rlang::list2(
+        standard_plot_theming(),
+        labs(
+            x = "Date (2020-1)",
+            y = "Incidence proportion",
+            fill = "",
+            colour = ""
+        ),
+        scale_y_continuous(labels = scales::label_percent())
+    )
+}
+
 
 logit = function(x) log(x) - log(1 - x)
 expit = function(x) 1 / (1 + exp(-x))

@@ -18,12 +18,10 @@ incidence_plot_theming = function() {
     )
 }
 
-model_output_dir = here::here("model-outputs")
-
 tbl_phenomenological_England = load_backcalc_regions() |>
     filter(daynr > 1, region == "England")
-tbl_phenomenological_NE_age = load_backcalc_region_age() |>
-    filter(daynr > 1, region == "North East")
+tbl_phenomenological_regions = load_backcalc_regions() |>
+    filter(daynr > 1, region != "England")
 tbl_phenomenological_age = load_backcalc_age() |>
     filter(daynr > 1)
 
@@ -31,10 +29,9 @@ full_predict = load_seir_predictive()
 poststrat_table = load_poststrat_table()
 tbl_mechanistic_England = full_predict |>
     poststratify_SEIR(poststrat_table, new_pcr_pos)
+tbl_mechanistic_regions = full_predict |>
+    poststratify_SEIR(poststrat_table, new_pcr_pos, region)
 tbl_mechanistic_age = full_predict |>
-    poststratify_SEIR(poststrat_table, new_pcr_pos, age_group)
-tbl_mechanistic_NE_age = full_predict |>
-    filter(region == "North East") |>
     poststratify_SEIR(poststrat_table, new_pcr_pos, age_group)
 
 p_incidence_England = bind_rows(
@@ -46,9 +43,16 @@ p_incidence_England = bind_rows(
 ) |>
     ggplot(aes(date, incidence, colour = model, fill = model)) +
     stat_lineribbon(alpha = 0.4, linewidth = 0.2, .width = 0.95) +
-    incidence_plot_theming()
+    incidence_plot_theming() +
+    theme(legend.position = "bottom")
 
-p_incidence_regions = bind_rows(
+save_plot(
+    filename = "incidence_England.pdf",
+    plot = p_incidence_England,
+    height = 7
+)
+
+p_incidence_age = bind_rows(
     tbl_phenomenological_age |>
         mutate(model = "Phenomenological"),
     tbl_mechanistic_age |>
@@ -57,16 +61,27 @@ p_incidence_regions = bind_rows(
 ) |>
     ggplot(aes(date, incidence, colour = model, fill = model)) +
     stat_lineribbon(alpha = 0.4, linewidth = 0.2, .width = 0.95) +
-    facet_wrap(~age_group) +
+    facet_wrap(~age_group, nrow = 3) +
     incidence_plot_theming() +
     theme(axis.title.y = element_blank())
 
-p_combined = p_incidence_England +
-    p_incidence_England_age +
-    # p_NE_age +
+p_incidence_regions = bind_rows(
+    tbl_phenomenological_regions |>
+        mutate(model = "Phenomenological"),
+    tbl_mechanistic_regions |>
+        mutate(model = "Mechanistic") |>
+        rename(incidence = val),
+) |>
+    ggplot(aes(date, incidence, colour = model, fill = model)) +
+    stat_lineribbon(alpha = 0.4, linewidth = 0.2, .width = 0.95) +
+    facet_wrap(~region, nrow = 3) +
+    incidence_plot_theming()
+
+p_combined = p_incidence_regions +
+    p_incidence_age +
     plot_layout(
         guides = "collect",
-        widths = c(1, 1.3)
+        widths = c(3, 2)
     ) +
     plot_annotation(
         tag_levels = 'A',
@@ -74,26 +89,8 @@ p_combined = p_incidence_England +
     theme(legend.position = "bottom")
 
 save_plot(
-    filename = "incidence.pdf",
+    filename = "incidence_stratified.pdf",
     plot = p_combined,
     width = 17.6,
-    height = 7
-)
-
-p_NE_age = bind_rows(
-    tbl_phenomenological_NE_age |>
-        mutate(model = "Phenomenological"),
-    tbl_mechanistic_NE_age |>
-        mutate(model = "Mechanistic") |>
-        rename(incidence = val),
-) |>
-    ggplot(aes(date, incidence, colour = model, fill = model)) +
-    stat_lineribbon(alpha = 0.4, linewidth = 0.2, .width = 0.95) +
-    facet_wrap(~age_group) +
-    incidence_plot_theming()
-
-save_plot(
-    filename = "NE.pdf",
-    plot = p_NE_age,
-    height = 7
+    height = 10
 )
