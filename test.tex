@@ -1,0 +1,60 @@
+\documentclass[9pt,twocolumn,twoside]{pnas-new}
+% Use the lineno option to display guide line numbers if required.
+
+\templatetype{pnasresearcharticle} % Choose template
+
+\begin{document}
+
+\title{Using SARS-CoV-2 prevalence surveys for pandemic surveillance}
+
+% Use letters for affiliations, numbers to show equal authorship (if applicable) and to indicate the corresponding author
+\author[a]{Joshua Blake}
+\author[]{TBC}
+\author[b,a]{Paul Birrell}
+\author[a,b]{Daniela De Angelis}
+
+\affil[a]{MRC Biostatistics Unit}
+\affil[b]{UKHSA}
+
+% Please give the surname of the lead author for the running footer
+\leadauthor{Blake}
+
+% Please add a significance statement to explain the relevance of your work
+\significancestatement{Understanding the transmission dynamics of SARS-CoV-2 is essential for guiding public health interventions. This study demonstrates the potential of data from prevalence surveys, specifically from the Coronavirus Infection Survey, to provide reliable estimates of viral incidence and transmission. This gold-standard survey selected individuals representative of the general population, unlike most sources of data from which transmission dynamics can be inferred. The findings highlight the importance of integrating large-scale, randomly sampled prevalence surveys into pandemic surveillance systems.}
+
+% Please include corresponding author, author contribution and author declaration information
+\authorcontributions{Please provide details of author contributions here.}
+\authordeclaration{Please declare any competing interests here.}
+\correspondingauthor{\textsuperscript{2}To whom correspondence should be addressed. E-mail: author.two\@email.com}
+
+% At least three keywords are required at submission. Please provide three to five keywords, separated by the pipe symbol.
+\keywords{Keyword 1 $|$ Keyword 2 $|$ Keyword 3 $|$ ...}
+
+\begin{abstract}
+During the pandemic caused by the SARS-CoV-2 virus, the UK’s Office for National Statistics ran a large prevalence survey, the Coronavirus Infection Survey (CIS).
+Individuals enrolled in CIS were tested on a predetermined schedule, meaning the testing process was not biased by individuals' propensity to test and/or infectious status.
+%removing  most reporting biases.
+Here, we develop methods to investigate whether the CIS, designed to provide prevalence estimates, can be used to derive estimates of incidence and transmission.
+To do so, we estimate incidence and transmission, fitting to only CIS data, using phenomenological and mechanistic models.
+%taking two approaches: one phenomenological and one mechanistic.
+These approaches are complementary, trading off bias and variance, and unravelling different aspects of the transmission dynamics.
+We call for further work to optimise prevalence surveys as a leading tool for future pandemic surveillance.
+\end{abstract}
+
+\dates{This manuscript was compiled on \today}
+\doi{\url{www.pnas.org/cgi/doi/10.1073/pnas.XXXXXXXXXX}}
+
+
+\maketitle
+\thispagestyle{firststyle}
+\ifthenelse{\boolean{shortarticle}}{\ifthenelse{\boolean{singlecolumn}}{\abscontentformatted}{\abscontent}}{}
+
+\firstpage{5}
+% Use \firstpage to indicate which paragraph and line will start the second page and subsequent formatting. In this example, there are a total of 11 paragraphs on the first page, counting the first level heading as a paragraph. The value {12} represents the number of the paragraph starting the second page. If a paragraph runs over onto the second page, include a bracket with the paragraph line number starting the second page, followed by the paragraph number in curly brackets, e.g. "\firstpage[4]{11}".
+
+
+% If your first paragraph (i.e. with the \dropcap) contains a list environment (quote, quotation, theorem, definition, enumerate, itemize...), the line after the list may have some extra indentation. If this is the case, add \parshape=0 to the end of the list environment.
+
+\Citet{nicholsonImproving}.
+
+\end{document}
