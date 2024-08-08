@@ -60,7 +60,7 @@ tbl_England |>
     print(width = Inf)
 
 
-print("Max/minober 12--16 year old incidence in mechanistic during Oct/Nov")
+print("Max/min 12--16 year old incidence in mechanistic during Oct/Nov")
 tbl_mechanistic_age |>
     filter(between(date, ymd("2020-10-01"), ymd("2020-11-15")), age_group == "12–16") |>
     summarise(
