@@ -205,7 +205,7 @@ However, the cumulative incidence over this period is similar between the models
 
 The models disagree regarding incidence in the 12--16 and 17--25 age groups, especially prior to December 2020.
 The mechanistic model has a more rigid structure (fewer parameters and stronger assumptions) limiting its ability to capture all changes in incidence, especially when changes in transmission differ between age groups.
-Therefore, when fitting, it appears to compromise these two age groups in opposite directions: overestimating the prevalence and incidence in the 12--16 age group and underestimating it in the 17--25 age group (TODO).
+Therefore, when fitting, it appears to compromise these two age groups in opposite directions: overestimating the prevalence and incidence in the 12--16 age group and underestimating it in the 17--25 age group (\cref{fig:gof}).
 The phenomenological model is more flexible and therefore has a better fit to the data in these age groups.
 It is fit to more granular groupings of individuals, improving the adjustment for non-response bias, but this means that for privacy reasons we cannot show the fit.
 
@@ -429,6 +429,24 @@ The relationship between incidence and prevalence is stochastic; however, here a
 This is a good approximation as long as the proportion of the population sampled by prevalence survey is small because the stochastic noise in the sampling process is much greater than that in the relationship between incidence and prevalence~\citep{blakeThesis}.
 
 \section*{Supplementary methods: mechanistic model}
+
+\clearpage
+\section*{Supplementary figures}
+
+\begin{figure*}
+\centering
+\includegraphics{figures/gof}
+\caption{%
+    Mechanistic model goodness-of-fit to prevalence data by region and age.
+    The central, coloured ribbon and line show the posterior median and 95\% CrI estimate for the proportion of the relevant stratum RT-PCR positive on each day.
+    The lighter outer ribbon is the 95\% posterior predictive interval for the proportion of test results that are positive each week, which includes sampling uncertainty.
+    The dots show the observed prevalence in CIS, aggregated by week.
+    For a perfectly-calibrated model, at least 95\% of the dots would be within the outer ribbon; here, 1035 out of 1134 (91\%) are.
+}
+\label{fig:gof}
+\end{figure*}
+
+\clearpage
 
 
 \end{document}
