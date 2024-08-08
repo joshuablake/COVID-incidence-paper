@@ -12,7 +12,7 @@
 % \usepackage[utf8]{inputenc}
 % \usepackage{amssymb}
 % \usepackage{floatpag}
-% \usepackage{bm}
+\usepackage{bm}
 % % \usepackage{algorithm2e}
 % \usepackage{hyperref}
 \usepackage[capitalise]{cleveref}
@@ -34,6 +34,10 @@
 \DeclareMathOperator{\GamDist}{Gamma}
 \DeclareMathOperator{\N}{N}
 \DeclareMathOperator{\logit}{logit}
+\DeclareMathOperator{\BetaDist}{Beta}
+\DeclareMathOperator{\Exponential}{Exponential}
+\DeclareMathOperator{\LN}{LN}
+\renewcommand{\vec}[1]{\bm{#1}}
 
 % Macros for common abbreviations to get the spacing right
 % See: https://stackoverflow.com/questions/3282319/correct-way-to-define-macros-etc-ie-in-latex
@@ -368,7 +372,7 @@ A full description of the observation model is provided in SI Methods.
 \subsection*{Inference}
 We fit the mechanistic model in a Bayesian framework using Markov chain Monte Carlo (MCMC)~\citep{hastingsMCMC,gelmanBDA}.
 Informative priors were used for the starting state of the model and the rates of progression through the model; this is required for identifiability~\citep{dankwaStructural}.
-We used weakly informative priors for all other parameters (TODO).
+We used weakly informative priors for all other parameters (SI Methods).
 Bespoke Markov chain Monte Carlo code, adapted from a previous study~\citep{ghoshApproximate}, was used to estimate the posterior distribution of the parameters of the mechanistic model.
 Proposals were drawn from a multivariate normal distribution, adapted throughout the inference process~\citep{andrieuTutorial} and accepted or rejected based on the Metropolis--Hastings algorithm~\citep{hastingsMCMC}.
 All results are based on four Markov chains each of length \numprint{1000000} iterations for each region.
@@ -429,6 +433,62 @@ The relationship between incidence and prevalence is stochastic; however, here a
 This is a good approximation as long as the proportion of the population sampled by prevalence survey is small because the stochastic noise in the sampling process is much greater than that in the relationship between incidence and prevalence~\citep{blakeThesis}.
 
 \section*{Supplementary methods: mechanistic model}
+
+\subsection*{Priors} \label{sec:mech-priors}
+
+Priors for the parameters for the mechanistic model given in \cref{table:mech-priors}.
+The parameters governing the duration of detectability were explained previously (see \cref{SEIR:table:ec-params}).
+
+The initial conditions and transition rate parameters are unidentifiable in an SEIR model~\citep{dankwaStructural}, therefore strongly informative priors or fixed values are used for them.
+
+$\sigma_\epsilon$ and $\rho$ are given priors that favour parsimony.
+The prior on $\sigma_\epsilon$ is a penalized complexity prior, favouring a null model of constant values for $\beta(t)$~\citep{simpsonPenalising}.
+The prior on $\rho$ favours a null model of a binomial likelihood.
+
+To form the prior for $\vec{\pi}$, we used a pre-existing analysis framework~\citep{amirthalingamSeroprevalence}, applied to Aug 2020 seroprevalence data from blood donors~\citep{amirthalingamSeroprevalence} and a representative sample of children~\citep{ratcliffeCommunity}.
+This analysis uses a Bayesian framework to correct the seroprevalence data for the sensitivity and specificity of the serological tests, using an informative prior.
+It forms the prior for the tests by evaluating the tests using samples which are known to be negative (taken before the pandemic) or positive (taken from an individual following a positive RT-PCR test).
+A regression model predicts the proportion of the population with prior immunity in each age group and region.
+We approximate the posterior of this proportion with a beta distribution to form the prior for the mechenastic analysis (see \cref{SEIR:table:immunity-prior}).
+
+The remaining parameters have weakly informative priors.
+
+\begin{table*}
+\begin{tabular}{l c l l}
+    Parameter description & Symbol & Distribution & Comment \\
+    \hline \\
+    Mean latent period & $1/\sigma$ & 3.5 days (fixed) & \citep{zhaoEstimating} \\
+    Mean infectious period & $1/\gamma$ & 4 days (fixed) & \citep{zhaoEstimating} \\
+    Initial proportion without immunity & $\vec\pi$ & See \cref{SEIR:table:immunity-prior} & \\
+    Initial proportion infectious & $i^+$ & $\BetaDist(0.5, 1000)$ & Weakly informative \\
+    Susceptibility of children & $q_c$ & $\LN(-0.4325, 0.1174)$ & \citep{vinerTransmission}  \\
+    Initial growth rate & $\psi$ & $\N(0.06, 0.04)$ & Weakly informative \\
+    Standard deviation of random walk steps on log scale & $\sigma_\epsilon$ & $\Exponential(80)$ & penalized complexity prior~\citep{simpsonPenalising} \\
+    Overdispersion of observations & $\rho$ & $\Exponential(2 \times 10^5)$ & penalizing deviations from binomial
+\end{tabular}
+\caption{Priors for mechanistic model's parameters.}
+\label{table:mech-priors}
+\end{table*}
+\begin{table*}
+
+\centering
+\begin{tabular}{l|lllll}
+         & 0--11 & 12--16 & 17--25 & 26--50 & 71+ \\
+        \hline
+        East Midlands & $\BetaDist(301, 8.5)$ & $\BetaDist(256, 18)$ & $\BetaDist(475, 19)$ & $\BetaDist(493, 20)$ & $\BetaDist(337, 5)$ \\
+        East of England & $\BetaDist(236, 7.9)$ & $\BetaDist(248, 21)$ & $\BetaDist(677, 35)$ & $\BetaDist(613, 26)$ & $\BetaDist(332, 5.6)$ \\
+        London & $\BetaDist(131, 9.7)$ & $\BetaDist(328, 50)$ & $\BetaDist(1331, 154)$ & $\BetaDist(990, 106)$ & $\BetaDist(204, 7.6)$ \\
+        North East & $\BetaDist(180, 6.1)$ & $\BetaDist(145, 12)$ & $\BetaDist(274, 14)$ & $\BetaDist(295, 14)$ & $\BetaDist(240, 4.2)$ \\
+        North West & $\BetaDist(252, 12)$ & $\BetaDist(353, 38)$ & $\BetaDist(885, 72)$ & $\BetaDist(695, 44)$ & $\BetaDist(264, 6.3)$ \\
+        South East & $\BetaDist(404, 8.9)$ & $\BetaDist(319, 17)$ & $\BetaDist(577, 20)$ & $\BetaDist(586, 19)$ & $\BetaDist(356, 4.4)$ \\
+        South West & $\BetaDist(415, 6.9)$ & $\BetaDist(277, 11)$ & $\BetaDist(556, 12)$ & $\BetaDist(559, 11)$ & $\BetaDist(492, 4)$ \\
+        West Midlands & $\BetaDist(167, 8)$ & $\BetaDist(151, 19)$ & $\BetaDist(475, 32)$ & $\BetaDist(504, 33)$ & $\BetaDist(241, 5.8)$ \\
+        Yorkshire and The Humber & $\BetaDist(314, 9.2)$ & $\BetaDist(242, 19)$ & $\BetaDist(589, 27)$ & $\BetaDist(474, 18)$ & $\BetaDist(316, 4.9)$ \\
+    \end{tabular}
+\caption{Priors for $\vec{\pi}$, the proportion of the population without prior immunity, in each age group and region combination.}
+\label{SEIR:table:immunity-prior}
+\end{table*}
+
 
 \clearpage
 \section*{Supplementary figures}
