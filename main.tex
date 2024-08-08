@@ -215,17 +215,17 @@ A major advantage of using a mechanistic model is the ability to decompose the c
 The mechanistic model decomposes changing transmission into three components: changes in contact patterns, measured through Google Mobility data; changes in levels of susceptibility in the population; and a remaining unexplained component, which includes behavioural changes such as masking or improved case-finding leading to a higher proportion of infectious individuals being isolated and biological changes (\eg variants).
 The unexplained component is often of interest to policy-makers because reducing transmission with minimal effects on contacts (which often have larger economic or social benefits) is a common policy goal.
 
-We estimate that this component initially decreases, is flat for a few weeks, then rises in November and December (\cref{fig:rw} and TODO).
+We estimate that this component initially decreases, is flat for a few weeks, then rises in November and December (\cref{fig:rw-London,fig:rw-non-London}).
 The increase in the unexplained component in November and December is correlated with the rise of the Alpha variant.
 \begin{figure}%[tbhp]
 \centering
-\includegraphics{figures/rw}
+\includegraphics{figures/rw_London}
 \caption{%
     The component of transmission not explained by changes in contact patterns (as measured by Google Mobility data) and increasing population immunity.
     Shown is a violin plot of the posterior distribution.
-    London shown, for other regions see TODO.
+    London shown, for other regions see \cref{fig:rw-non-London}.
 }
-\label{fig:rw}
+\label{fig:rw-London}
 \end{figure}
 
 \subsection*{Difference in transmission by age}
@@ -444,6 +444,16 @@ This is a good approximation as long as the proportion of the population sampled
     For a perfectly-calibrated model, at least 95\% of the dots would be within the outer ribbon; here, 1035 out of 1134 (91\%) are.
 }
 \label{fig:gof}
+\end{figure*}
+
+\begin{figure*}
+\centering
+\includegraphics{figures/rw_non-London}
+\caption{%
+    The component of transmission not explained by changes in contact patterns (as measured by Google Mobility data) and increasing population immunity.
+    Shown is a violin plot of the posterior distribution for each region.
+}
+\label{fig:rw-non-London}
 \end{figure*}
 
 \clearpage

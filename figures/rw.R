@@ -13,7 +13,6 @@ tbl_rw = readr::read_csv(here::here("model-outputs", "mechanistic", "params.csv"
     filter(
         stringr::str_starts(parameter, "beta"),
         iteration >= 500e3,
-        region == "London"
     ) |>
     extract(
         parameter,
@@ -51,28 +50,43 @@ tbl_rw = readr::read_csv(here::here("model-outputs", "mechanistic", "params.csv"
     mutate(
         beta = value |>
             cumsum() |>
-            exp()
+            exp(),
+        date = start_date + i * 7,
     )
+
+create_rw_plot = function(data) {
+    data |>
+        ggplot(aes(factor(date), beta)) +
+        stat_slab(side = "both") +
+        standard_plot_theming() +
+        # tick labels every 3 weeks
+        scale_x_discrete(
+            breaks = function(x) x[c(TRUE, rep(FALSE, 3))]
+        ) +
+        geom_hline(yintercept = 1, linetype = "dashed", alpha = 0.5) +
+        # Angle text for readability
+        theme(axis.text.x = element_text(angle = 45, hjust = 1)) +
+        labs(
+            x = "Date",
+            y = "Relative transmission"
+        )
+}
 
 # A violin plot of the posterior distribution of beta for each region and week.
-p_walk = tbl_rw |>
-    mutate(date = start_date + i * 7) |>
-    ggplot(aes(factor(date), beta)) +
-    stat_slab(side = "both") +
-    standard_plot_theming() +
-    # tick labels every 3 weeks
-    scale_x_discrete(
-        breaks = function(x) x[c(TRUE, rep(FALSE, 3))]
-    ) +
-    geom_hline(yintercept = 1, linetype = "dashed", alpha = 0.5) +
-    # Angle text for readability
-    theme(axis.text.x = element_text(angle = 45, hjust = 1)) +
-    labs(
-        x = "Date",
-        y = "Relative transmission"
-    )
-
+p_walk_London = tbl_rw |>
+    filter(region == "London") |>
+    create_rw_plot()
 save_plot(
-    filename = "rw.pdf",
-    plot = p_walk
+    filename = "rw_London.pdf",
+    plot = p_walk_London
+)
+
+p_walk_other = tbl_rw |>
+    filter(region != "London") |>
+    create_rw_plot() +
+    facet_wrap(~region, ncol = 2)
+save_plot(
+    filename = "rw_non-London.pdf",
+    plot = p_walk_other,
+    full_page = TRUE
 )
