@@ -108,71 +108,130 @@ We call for further work to optimise prevalence surveys as a leading tool for fu
 \thispagestyle{firststyle}
 \ifthenelse{\boolean{shortarticle}}{\ifthenelse{\boolean{singlecolumn}}{\abscontentformatted}{\abscontent}}{}
 
-\firstpage{5}
+\firstpage{4}
 % Use \firstpage to indicate which paragraph and line will start the second page and subsequent formatting. In this example, there are a total of 11 paragraphs on the first page, counting the first level heading as a paragraph. The value {12} represents the number of the paragraph starting the second page. If a paragraph runs over onto the second page, include a bracket with the paragraph line number starting the second page, followed by the paragraph number in curly brackets, e.g. "\firstpage[4]{11}".
 
 
 % If your first paragraph (i.e. with the \dropcap) contains a list environment (quote, quotation, theorem, definition, enumerate, itemize...), the line after the list may have some extra indentation. If this is the case, add \parshape=0 to the end of the list environment.
 \dropcap{T}he pandemic caused by the SARS-CoV-2 has resulted in a horrific toll on humanity, inflicting 31 million deaths~\citep{whoCOVIDExcess,economistCOVIDExcess}, stretching healthcare services to the brink of collapse~\citep{fongNHS}, and disrupting societies worldwide.
-The impact motivated governments to invest in infectious disease surveillance on a scale never previously seen.
-
-An example was the UK's Coronavirus Infection Survey (CIS)~\citep{cisMethodsONS,CIS}.
+The impact motivated governments to invest in infectious disease surveillance on a scale never previously seen. An example was the UK's Coronavirus Infection Survey (CIS)~\citep{cisMethodsONS,CIS}.
 CIS was a gold-standard survey, inviting households selected at random from the UK population to enrol for regular testing according to a pre-defined schedule.
 % This design minimizes biases associated with wider population testing, such as the UK's pillar 2 system, which focused on symptomatic individuals and other groups likely to be infected but produced data affected by unmeasured behavioural and socioeconomic factors (\eg willingness and ability of individuals to be tested).
-The study design required a level of resource rarely available to infectious disease surveillance systems but provided data unimpacted by individuals' ability or desire to test, and independent of the severity of their disease.
-Data minimising these biases was rarely available in the pandemic~\citep{shadboltChallenges}.
+The study design required a level of resource rarely available to infectious disease surveillance systems, but provided data 
+unaffected by individuals' ability or propensity to test, and independent of the severity of their disease. Such unbiased source of information has never been available during a pandemic.
+~\citep{shadboltChallenges}.
 
-The CIS was primarily designed to allow weekly estimates of prevalence, namely  the proportion of the population that would test positive for SARS-CoV-2 using a Reverse Transcription Polymerase Chain Reaction (RT-PCR) test at a given time. These estimates, published weekly by ONS~\citep{pouwelsCommunity,pouwelsMRPvaccination,cisMethodsONS,onsCISdec2020}, were stratified by age and region and adjusted for any non-representativeness caused by differing response rates among different demographic groups.
+The CIS was primarily designed to provide weekly estimates of prevalence, namely the proportion of the population that would test positive for SARS-CoV-2 using a Reverse Transcription Polymerase Chain Reaction (RT-PCR) test at a given time. These estimates, stratified by age and region and adjusted for any non-representativeness due to differential response rates among different demographic groups, were published weekly by ONS~\citep{pouwelsCommunity,pouwelsMRPvaccination,cisMethodsONS,onsCISdec2020}.
 %; these estimates were published weekly by ONS~\citep{pouwelsCommunity,pouwelsMRPvaccination,cisMethodsONS,onsCISdec2020}.
-However, prevalence is only a delayed indicator and does not relate directly to the time that the infections occur; the latter is important for understanding how transmission changed in response to control measures and other interventions.
-Incidence, the number of new infections over a specific period, is a more useful metric but requires statistical measures to estimate as it is not directly observed.
-Furthermore, some statistical methods allow the direct inference of how a virus is being transmitted providing even richer information for informing the response.
-A variety of methods can be used to estimate incidence and transmission, with methods often categorized by how explicitly they represent the underlying biological and epidemiological processes.
+However, prevalence is a delayed indicator of infection and does not provide information on the time at which infections occur, which is key to understand how transmission changes in response to control measures and other interventions.
+Knowledge of incidence of infection, the number of new infections over a specific period, together with an understanding of the transmission mechanism provides a much richer source of evidence to inform response.
 
-At one extreme, phenomenological (sometimes known as ``statistical'') models make minimal assumptions about the underlying infection processes, instead flexibly describing trends in the data~\citep{beckerCOVIDmodels}.
-These models make weak assumptions over the course that the pandemic takes, reducing the risk of introducing bias through incorrect assumptions, but cannot capture the underlying dynamics of transmission.
+%knowledge of the incidence of infection, the number of new infections over a specific period, and understannding of the infection transmission mechanism a more useful metric, although much more complex to estimate from the typically available data ({\it{e.g.}} information on severe infection sequelae). Furthermore, reconstruction of the transmission mechanism generating new infections provide an even richer source of evidence to inform response.
 
-At the other extreme, fully mechanistic models explicitly represent the mechanism that generates new infections and track the state of individuals in the population~\citep{andersonInfectious,keelingModeling}.
-These models provide deeper insights into transmission dynamics, allowing estimation of the rate at which individuals are infected and the susceptibility of different demographic groups.
-In this work, we develop both phenomenological and mechanistic models to analyse the CIS data.
+A variety of methods exist to estimate infection incidence and transmission, with methods often categorized by how explicitly they represent the underlying biological and epidemiological processes. At one extreme, purely statistical (often referred to as ``phenomenological'') approaches focus on deriving estimates of the rate at which infections occur, make minimal assumptions on the underlying infection and transmission processes ~\citep{beckerCOVIDmodels} reducing the risk of introducing bias through incorrect assumptions, but cannot capture the underlying dynamics of transmission. At the other extreme lie approaches based on mechanistic models, which explicitly include a representation of the process generating new infections and track the disease state of individuals in a population~\citep{andersonInfectious,keelingModeling}.
+These models provide deeper insights into transmission dynamics, allowing estimation of the population immunity of different demographic groups and the rate at which susceptible individuals become infected through interaction with infectious individuals.
 
-During the pandemic, various methods were proposed to estimate incidence and transmission from CIS data, or a additional gold-standard survey in the UK, the REal-time Assessment of Community Transmission (REACT)~\citep{rileyResurgence,rileyREACT}.
-Some of these methods~\citep{daviesAssociation,ironsEstimating,knockKey,pooleyEstimation} incorporated mechanistic models with age structure, but used a coarse approximation of the distribution of the duration of RT-PCR positivity and incorporated external data sources.
-One study used a granular geographic scale and a complex observational model but a simpler transmission model without incorporating age; their primary aim is to ``debias'' the pillar 2 data~\citep{nicholsonImproving}.
-Others took a phenomenological approach~\citep{abbottCISincidence,colmanAscertainment,mccabeCISincidence,ealesAppropriately} without fully propagating the uncertainty in CIS estimates of prevalence, relying on only summary statistics.
+During the SARS-CoV-2 pandemic, various incidence and transmission estimation methods were proposed to estimate incidence and transmission using CIS data, or a additional gold-standard survey in the UK, the REal-time Assessment of Community Transmission (REACT)~\citep{rileyResurgence,rileyREACT}.
+Some of the approaches~\citep{daviesAssociation,ironsEstimating,knockKey,pooleyEstimation} used mechanistic models with age structure, but adopted a coarse approximation of the distribution of the duration of RT-PCR positivity and relied on the information from external sources.
+One study used a granular geographic scale and a complex observational model but a simplistic transmission model without incorporating age, with the primary aim being the``debiasing'' of population testing data ~\citep{nicholsonImproving}.
+Others took a phenomenological approach~\citep{abbottCISincidence,colmanAscertainment,mccabeCISincidence,ealesAppropriately} without fully propagating the uncertainty in CIS estimates of prevalence.
+%, relying on only summary statistics.
 
-In this work, we reconsider estimation of incidence and transmission from CIS data. CIS's comprehensive and consistently collected data offer a unique opportunity to derive critical epidemiological metrics without relying on additional data sources. We advance previous work by fitting models solely to CIS data, provide a more accurate representation of the duration of RT-PCR positivity, using a duration distribution based on a representative sample, and fully propagate the survey uncertainty.
+In this work, we reconsider estimation of incidence and transmission from CIS data. CIS's comprehensive and consistently collected data offer a unique opportunity to derive critical epidemiological metrics minimally relying on additional data sources. We advance previous work by fitting  both phenomenological and mechanistic models solely to CIS data, provide a more accurate representation of the duration of RT-PCR positivity, using a duration distribution estimated from a representative sample, and fully propagate the survey uncertainty.
 
-In this proof-of-concept study, we show that CIS, designed primarily to measure prevalence, can also be the basis of incidence and transmission estimation, and provide guidance on appropriate methodologies for this purpose.
+In this proof-of-concept study, we show that CIS, designed primarily to measure prevalence, can be the basis of incidence and transmission estimation, and provide guidance on appropriate methodologies for this purpose.
 % The phenomenological model provides a flexible framework with minimal assumptions, while the mechanistic model offers detailed insights into transmission dynamics.
 We present the results of our analysis, highlighting the strengths and limitations of each modelling approach.
- These findings underscore the potential of prevalence surveys like CIS to serve as a cornerstone for pandemic surveillance and response.
+ These findings underscore the potential of prevalence surveys like the CIS to serve as a cornerstone for pandemic surveillance and response.
 
 \section*{Results}
 
-We fitted two models to the \numprint{11264965} positive and negative CIS RT-PCR test results (\ie excluding void results) between 31 Aug 2020 and 24 Jan 2021 in England, of which \numprint{205542} (1.86\%) were positive.
-In this period, CIS had recruited enough individuals and prevalence was high enough that enough data was available to show the potential of the study design.
-In order to focus on the base methodology and study design, we have excluded the period after this point when vaccination roll-out became significant.
+We fitted two models to the \numprint{11264965} CIS RT-PCR test results, excluding void results, between 31 Aug 2020 and 24 Jan 2021 in England, of which \numprint{205542} (1.9\%) were positive.
+%% In this period, CIS had recruited enough individuals and prevalence was high enough that enough data was available to show the potential of the study design.
+In order to focus on the base methodology and study design, we have excluded tests beyond this point when the effects of the vaccination roll-out became significant.
 
-The first model, a phenomenological model, was fit to the test results stratified by region, sex, age group, and ethnicity using a flexible Bayesian methodology to account for non-response bias and allow different trends in different strata while borrowing information between them.
-Like all phenomenological models, it does not represent any aspect of the disease or population within the model; this allows us to use a computationally-cheap inference methodology, the integrated Laplace approximation (INLA) and incorporate many parameters for the granular stratification while penalizing overfitting.
+The first model, a phenomenological model, was fit to the test results stratified by region, sex, age group, and ethnicity using Bayesian multi-level regression with poststratification (MRP) (\textit{Materials and Methods: Phenomenological model}). This allows for the estimation of  different trends across strata while borrowing information between them and accounting for non-response bias.
+% Like all phenomenological models, it does not explicitly include any consideration of the disease or the affected population.
+We formulate the model in a form which allows it to be expressed within the restricted class of models which can be implemented using the computationally-cheap integrated nested Laplace approximation (INLA) inference framework~\citep{rueINLA}.
+We include including granular stratification and penalize overfitting through the use of hierchical priors.
 
-The second model, a mechanistic model, is a SEIR model, meaning it tracks the proportion of population that are Susceptible, Exposed (infected but not yet infectious), Infectious, and Removed (\ie no longer infectious but playing no further part in the pandemic because they are immune or dead).
-The model stratifies these groups by region and age which partially accounts for the non-response and more accurately captures the pandemic's dynamics.
-Susceptible individuals become exposed through interaction with infectious individuals, determined by contact rates stratified by age.
-These rates combine pre-pandemic surveys with real-time data on mobility and time-use.
-By representing these proportions and their interactions, we can estimate more detail over the transmission process; however, the stronger assumptions required could introduce bias into the estimation.
+The second model, a mechanistic model consists of two sub-models.
+The model structure is illustrated in the schematic diagram in \cref{fig:SEIR}.
+The first is a SEIR-based transmission model tracking the population fractions that are Susceptible, Exposed (infected but not yet infectious), Infectious, and Removed (\ie no longer infectious but playing no further part in transmission, primarily due to immunity).
+The second is an observation sub-model, which captures the population fraction that are PCR positive.
+In our model, there is no relationship between infectiousness and PCR positivity, due to the relationship's complexity.
+Model states are stratified by age and each region is assumed to be independent.
+These both account for heterogeneity between age groups and regions, and, partially, survey non-response.
+Susceptible individuals in age group $a$ at time $t$ become exposed at a rate $\lambda_a(t)$, which is a function of:relative susceptibility of different age groups; time-varying contact rates that combine pre-pandemic surveys with real-time data on mobility and time-use; the proportion of the population currently infectious; and transmission parameters $\beta(t)$ that evolve over time and account for ongoing fluctuations due, for example, to changes in the mix of circulating viral variants and adherence to pandemic mitigation measures (\eg mask-wearing) (\textit{Materials and Methods}).
+Parameters $\sigma$ and $\gamma$ are related to the average period of latent infection and the average infectious period respectively. 
 
-We estimated incidence proportion, the proportion of the population (or a subpopulation) newly RT-PCR positive on each day~\citep{lashModern} for comparability between the models.
-The mechanistic model can also estimate the underlying incidence of infection, and the phenomenological could with additional assumptions.
+\begin{figure*}
+\makebox[\textwidth][c]{
+\begin{tikzpicture}[
+    node distance = 2.5cm,
+    on grid,
+    auto,
+    ->,>=stealth',
+    every state/.style={draw,rectangle},
+    ]
+
+    \node[state] (S) {$s$};
+    \node[state, right=of S] (E1) {$e_1$};
+    \node[state, right=of E1] (E2) {$e_2$};
+    \node[state, right=of E2] (I1) {$i_1$};
+    \node[state, right=of I1] (I2) {$i_2$};
+    \node[state, right=of I2] (R) {$r$};
+
+    \path (S) edge node {$\vec{\lambda}(t)$} (E1)
+          (E1) edge node {$\sigma$} (E2)
+          (E2) edge node {$\sigma$} (I1)
+          (I1) edge node {$\gamma$} (I2)
+          (I2) edge node {$\gamma$} (R);
+
+    \node[state, below=3cm of E1] (P0) {$p_0$};
+    \node[state, right=of P0] (P1) {$p_1$};
+    \node[state, right=of P1] (P2) {$p_2$};
+    \node[state, right=of P2] (P3) {$p_3$};
+    \node[state, right=of P3, draw=none] (P4) {};
+
+    \path  (S) edge node {$\vec{\lambda}(t)$} (P0)
+          (P0) edge node {$\omega_0$} (P1)
+          (P1) edge node {$\omega_1$} (P2)
+          (P2) edge node {$\chi \omega_{2}$} (P3)
+               edge [out=-45,in=-135] node[below] {$(1 - \chi) \omega_{2}$} (P4)
+          (P3) edge node {$\omega_{3}$} (P4);
+    
+    \node[draw, dashed, inner sep=0.7cm, fit=(S) (E1) (E2) (I1) (I2) (R), label={[anchor=south east]south east:Transmission sub-model}] {};
+    \node[draw, dashed, inner sep=1cm, fit=(P0) (P1) (P2) (P3) (P4), label={[anchor=north east]north east:Observation sub-model}] {};
+    \node[draw, thick, inner sep=0.3cm, fit=(P1) (P3), fill=blue!10,opacity=0.2] {};
+\end{tikzpicture}
+}
+  \caption{
+    Mechanistic model structure for a single region and age stratum.
+    The top row represents the transmission sub-model comprised of a susceptible state ($s$), two exposed states ($e_1$ and $e_2$), two infectious states ($i_1$ and $i_2$) and a recovered state ($r$).
+    The bottom row represents the observation sub-model, including  an pre-PCR-positive state $p_0$ and three PCR-positive states (shaded box) representing the population fraction who would test PCR-positive, $p_1$--$p_3$.
+  }
+  \label{fig:SEIR}
+\end{figure*}
+
+A major advantage of using a mechanistic model is the ability to decompose the components of transmission.
+The mechanistic model decomposes changing transmission into three components: changes in contact patterns, measured through Google Mobility data; changes in population immunity; and a remaining unexplained component, which includes behavioural changes such as masking or improved case-finding leading to a higher proportion of infectious individuals being isolated and biological changes (\eg variants).
+The unexplained component is often of interest to policy-makers because reducing transmission with minimal effects on contacts (which often have larger economic or social benefits) is a common policy goal.
+
+Upon infection, an individual is moved, within the transmission sub-model, from the susceptible into the first exposed state (state $s$ to $e_1$); and a copy of them is introduced into the observation sub-model in the pre-positive state ($p_0$).
+Parameter $\omega_0$ is related to the mean time from exposure to having a detectable infection, and $\omega_1$,$\omega_2$, $\omega_3$ and $\chi$ are parameters introduced to accurately reproduce the duration distribution of PCR positivity. 
+
+Unlike the phenomenological approach, model parameters have a direct physical interpretation and thus the mechanistic approach allows to gain meaningful insight on quantities impacting transmission; however, the stronger assumptions required can introduce significant bias. In addition to the model parameters, we estimate incidence proportions, and the proportion of the population (or a subpopulation) newly RT-PCR positive on each day~\citep{lashModern} for comparability between the approaches.
+%% The mechanistic model can also estimate the underlying incidence of infection, and the phenomenological could with additional assumptions.
+
 Results below are given as posterior median and 95\% central credible interval (CrI).
 
 \subsection*{Incidence estimates}
 
 Both models successfully produce estimates of SARS-CoV-2 incidence proportion, the proportion of the population that becomes RT-PCR positive on a given day (\cref{fig:incidence-Eng}).
 The results largely agree with each other and previous knowledge (REF), demonstrating the robustness of the data and approaches.
-They show a slow rise and plateau in autumn with a peak incidence proportion of 0.0805\% (0.0729--0.0907\%) using the phenomenological model or 0.0721\% (0.0689--0.0756\%) using the mechanistic model, a decrease during November, then a fast increase in incidence peaking on 24 (21--28) Dec 2020 at 0.161\% (0.141--0.186\%) using the phenomenological model or on 21 (21--21) Dec 2020 at 0.141\% (0.136--0.147\%) using the mechanistic model.
-The lack of uncertainty for the date of the peak in the mechanistic model is an artefact of the model structure only allows step changes in growth rates to occur on Mondays, leading to peaks typically occurring on that day.
+They show a slow rise and plateau in autumn with a peak incidence proportion of 0.081\% (0.073--0.091\%) using the phenomenological model or 0.072\% (0.069--0.076\%) using the mechanistic model, a decrease during November, then a fast increase in incidence peaking on 24 (21--28) Dec 2020 at 0.16\% (0.14--0.19\%) using the phenomenological model or on 21 (21--21) Dec 2020 at 0.14\% (0.14--0.15\%) using the mechanistic model.
+The lack of uncertainty for the date of the peak in the mechanistic model is an artefact of the model structure only allowing step changes in growth rates to occur on Mondays, leading to peaks typically occurring on that day.
 \begin{figure}%[tbhp]
 \centering
 \includegraphics{figures/incidence_England}
@@ -201,8 +260,8 @@ All regions then decrease during November, which partially coincides with the na
 \label{fig:incidence-strat}
 \end{figure*}
 
-The largest disagreement between the models is that the phenomenological model estimates a period of increasing incidence in early January for England (\cref{fig:incidence-Eng}), although the credible intervals overlap for the majority of the period.
-The second peak occurs in late December or early January in all regions (\cref{fig:incidence-strat}(A)); this second peak is larger than the first in all regions except the Northern three (North East, North West, and Yorkshire and the Humber).
+The largest disagreement between the models is that the phenomenological model estimates a period of increasing incidence in early January for England (\cref{fig:incidence-Eng}), although the wide credible intervals include the mechanistic model's estimate for the majority of the period.
+The second peak occurs in late December or early January in all regions (\cref{fig:incidence-strat}(A)); this second peak is larger than the first in all regions except the North West, and Yorkshire and the Humber.
 
 The mechanistic model produces tighter credible intervals, reflecting the additional assumptions it uses about the underlying transmission dynamics.
 This can be interpreted as the classic bias--variance trade-off: by making stronger assumptions the mechanistic model reduces the variance of the estimates but has the potential to introduce bias if those assumptions are violated.
@@ -212,9 +271,9 @@ This can be interpreted as the classic bias--variance trade-off: by making stron
 
 Age-specific results show the impact of model assumptions on the estimates (\cref{fig:incidence-strat}(B)).
 Contact rates for the mechanistic model decrease significantly for 12--16 year-olds during the school half-term break at the end of October, informed by survey data suggesting that they have many contacts at school (Materials and Methods).
-The decrease in contact rates flows through into the incidence estimates from the mechanistic model at this time, which drop to 0.0742\% (0.0708--0.0776\%) from 0.178\% (0.169--0.187\%) between 18 Oct and 1 Nov 2020.
+The decrease in contact rates flows through into the incidence estimates from the mechanistic model at this time, which drop to 0.074\% (0.071--0.078\%) from 0.18\% (0.17--0.19\%) between 18 Oct and 1 Nov 2020.
 On the other hand, the phenomenological model estimates incidence to be flat.
-However, the cumulative incidence over this period is similar between the models, at 1.64\% (1.48--1.82\%) for the phenomenological model and 1.61\% (1.55--1.68\%) for the mechanistic model.
+However, the cumulative incidence over this period is similar between the models, at 1.6\% (1.5--1.8\%) for the phenomenological model and 1.6\% (1.5--1.7\%) for the mechanistic model.
 
 The models disagree regarding incidence in the 12--16 and 17--25 age groups, especially prior to December 2020.
 The mechanistic model has a more rigid structure (fewer parameters and stronger assumptions) limiting its ability to capture all changes in incidence, especially when changes in transmission differ between age groups.
@@ -224,12 +283,7 @@ It is fit to more granular groupings of individuals, improving the adjustment fo
 
 \subsection*{Decomposition of transmission components}
 
-A major advantage of using a mechanistic model is the ability to decompose the components of transmission.
-The mechanistic model decomposes changing transmission into three components: changes in contact patterns, measured through Google Mobility data; changes in population susceptibility; and a remaining unexplained component, which includes behavioural changes such as masking or improved case-finding leading to a higher proportion of infectious individuals being isolated and biological changes (\eg variants).
-The unexplained component is often of interest to policy-makers because reducing transmission with minimal effects on contacts (which often have larger economic or social benefits) is a common policy goal.
-
-We estimate that this component initially decreases, is flat for a few weeks, then rises in November and December (\cref{fig:rw-London,fig:rw-non-London}).
-The increase in the unexplained component in November and December is correlated with the rise of the Alpha variant.
+We estimate that the unexplained component of transmission initially decreases, is flat for a few weeks, then rises in November and December (\cref{fig:rw-London,fig:rw-non-London}).
 \begin{figure}%[tbhp]
 \centering
 \includegraphics{figures/rw_London}
@@ -244,10 +298,10 @@ The increase in the unexplained component in November and December is correlated
 \subsection*{Difference in transmission by age}
 
 An advantage of the CIS dataset is that it captures all age groups two years old and over.
-The mechanistic model can exploit this data to estimate how susceptibility differs by age.
-Here, susceptibility is defined as the probability of a susceptible individual becoming infected upon contact with an infectious individual which includes both biological factors (\eg differences in immune response) and behavioural factors (\eg differences in hygiene).
+The mechanistic model can exploit this data to estimate how individual susceptibility differs by age.
+Here, individual susceptibility is defined as the probability of a susceptible individual becoming infected upon contact with an infectious individual which includes both biological factors (\eg differences in immune response) and behavioural factors (\eg differences in hygiene).
 We estimate this parameter independently for each region, showing that children are less susceptible by around 20\% than adults in all regions (\cref{fig:children}).
-The estimates range from 0.697 (0.608--0.784) in South West England to 0.894 (0.834--0.957) in London.
+The estimates range from 0.70 (0.61--0.79) in South West England to 0.90 (0.83--0.96) in London.
 \begin{figure}%[tbhp]
 \centering
 \includegraphics{figures/children}
@@ -260,43 +314,40 @@ The estimates range from 0.697 (0.608--0.784) in South West England to 0.894 (0.
 
 \section*{Discussion}
 
-We have demonstrated that a range of important epidemiological estimates can be derived from prevalence survey data, specifically using CIS.
-Our study utilized two distinct models---a phenomenological model and a mechanistic transmission model---both of which were successfully fit to CIS data.
+We have demonstrated how prevalence study like the CIS can be used to estimate incidence of infection and the properties of the process of infection transmission.
+To do so we applied two different approaches: a phenomenological model and a mechanistic model, both of which were effectively calibrated using CIS data.
 
-Using a single, well-designed study like CIS as a data source leads to robust and reliable estimates.
-CIS's biases, primarily due to non-response, are well understood and can be accounted for in the models.
-This is unlike other data sources, such as testing data, where how many tests and who is tested can change over time for measured (\eg testing capacity) and unmeasured reasons (\eg public perception of risk).
+The analysis of data from a single, well-designed CIS-like  study leads to robust and reliable estimates.
+In CIS Non-response biases are well understood and can be accounted for in the analysis; and high post-recruitment retention rates limit changes in biases over time, so that the trends inferred  are robust.
 
-Furthermore, the high post-recruitment retention rates of CIS mean that any bias is consistent over time; therefore, the inference of trends from these data is particularly robust.
-Trends, such as how quickly the epidemic is growing, are often more important than absolute levels.
-Otherwise reliable data sources, such as the number of patients hospitalized with SARS-CoV-2 infections, can be affected by factors such as admission policies and bed availability (REF).
-These data sources primarily reflect incidence in the elderly and other vulnerable groups (REF), whereas CIS captures all age groups over two years old.
-Estimates for transmission in young adults and children are then extrapolations based on model assumptions or indirect evidence, such as contact surveys or mobility data (REF).
-Here, we exploit this to estimate how susceptibility differs by age, showing that children are less susceptible than adults.
+This is unlike other data sources, such as community testing data or data on severe infections.
+Community testing data provides an inconsistent signal on infection incidence because they are reliant on the number of tests and who is tested which varies over time due to measured (\eg testing capacity) and unmeasured factors (\eg public perception of risk).
+Data on severe infections, such as hospitalisations, tends to be consistent but can be affected by changes in admission policies and bed availability (REF).
+Furthermore, severe infections primarily occur in groups with greater frailty (\eg elderly and other vulnerable groups) (REF) meaning that estimates of transmission in young adults and children must be based on extrapolations using strong model assumptions or indirect evidence, such as contact surveys or mobility data (REF).
+Here, we exploit the CIS's near-representative recruitment of all age groups over two years old to understand how individual susceptibility differs by age, and show that children are less susceptible than adults.
 
-To overcome the limitations of any specific data sources, many previous studies of SARS-CoV-2 in England (REF) have utilized evidence synthesis techniques (REF).
-These techniques combine multiple data sources, such as testing data, hospitalizations, and deaths, to estimate the underlying transmission dynamics.
-However, these methods are complex and require assumptions regarding how the data sources are related.
-If different data sources are conflicting, then this should be resolved manually which is time-consuming and often subjective.
-By using a single data source, we avoid these issues and provide a more direct inference of the underlying transmission dynamics.
-Furthermore, the use of a single data source means that inferences can more directly be linked to the data source aiding debugging and interpretation of model outputs.
+% To overcome the limitations of any specific data sources, many previous studies of SARS-CoV-2 in England (REF) have utilized evidence synthesis techniques (REF).
+% These techniques combine multiple data sources, such as testing data, hospitalizations, and deaths, to estimate the underlying transmission dynamics.
+% However, these methods are complex and require assumptions regarding how the data sources are related.
+% If different data sources are conflicting, then this should be resolved manually which is time-consuming and often subjective.
+% By using a single data source, we avoid these issues and provide a more direct inference of the underlying transmission dynamics.
+% Furthermore, the use of a single data source means that inferences can more directly be linked to the data source aiding debugging and interpretation of model outputs.
 
 Our study reinforces the value of using different models with different assumptions to estimate the same quantity.
-The mechanistic model often provides more useful insights, by decomposing the components of transmission, estimating how susceptibility differs by age, and producing narrower credible intervals.
-However, the phenomenological model is more flexible and can better fit the data, particularly in granular subpopulations.
-Furthermore, it includes ethnicity as a covariate, which can help provide an equitable response to the pandemic and better adjusts for the non-response bias in the survey.
-Extending mechanistic models to include ethnicity should be considered as a priority for future work, which would require contact surveys in ethnic minority populations.
+The mechanistic model provides more useful insights, by decomposing the components of transmission, allows estimation  of age-specific susceptibility,and provide more precise estimates. 
+However, the phenomenological model is more flexible; can better fit the data, particularly in granular subpopulations; and it includes ethnicity as a covariate, allowing an equitable response to the pandemic and a better adjustment for the non-response bias in the survey.
+Extending mechanistic models to include ethnicity should be considered as a priority for future work, but this first requires contact surveys in ethnic minority populations.
 
-Comparing the results can highlight modelling issues; in our case, the mechanistic model's inability to capture changes in transmission among age groups.
-A more flexible model could be developed to capture these changes; however, current work is limited by the computational burden of fitting mechanistic models to large datasets.
-Further work could extend approximate Bayesian methods, such as the integrated Laplace approximation used in the phenomenological model, to mechanistic models.
-As well as allowing for more flexible models, capturing age-specific changes over time, such work would allow faster model fitting, a high-priority when responding to an emergency such as a pandemic.
+Comparing the results highlights modelling issues; in our case, the mechanistic model's inability to capture changes in the distribution of incidence over age groups beyond those caused by immunity.
+A more flexible model could be developed to allow these  changes to be captured.
+However, further flexibility might increase the computational burden of fitting mechanistic models to large datasets.
+Further work could implement more computationally-efficient methods or inference of this model, such as Hamiltonian Monte Carlo (REF) or approximate Bayesian methods (REF).
+As well as allowing for more flexible models, which would capture age-specific changes in transmission over time, such work would allow faster model fitting, a high-priority when responding to an emergency such as a pandemic.
 
-Our analysis has important implications for future pandemic preparedness and response.
-We have shown that a prevalence survey with randomly-selected participants are extremely useful for monitoring an ongoing pandemic.
-Yet these gold-standard surveys were rare during the SARS-CoV-2 pandemic, likely due to their expense.
-Further work should explore how to reduce the cost of these surveys, for example by using cheaper testing methods or studying more carefully the impact of alternative study designs allowing the same information to be inferred using fewer participants.
-This could involve varying the testing schedule or the selection criteria.
+Our analysis has important implications for future pandemic preparedness and response. We have shown that a prevalence survey with randomly-selected participants are extremely useful for monitoring an ongoing pandemic.
+Yet these gold-standard surveys were rare during the SARS-CoV-2 pandemic, likely due to their cost.
+Further work should explore the value of alternative survey designs (\eg smaller size, more frequent sampling), which
+could generate greater insight for comparable effort and perhaps small cost.
 Finally, we call for such studies to be embedded into pandemic plans for sufficiently severe pandemics.
 
 \matmethods{
@@ -305,14 +356,14 @@ Finally, we call for such studies to be embedded into pandemic plans for suffici
 The CIS~\citep{CIS} was set up in April 2020 as a large-scale, longitudinal study.
 Individuals were originally recruited in England from those who had previously responded to ONS survey(s); it was expanded in September 2020 using a random sample of addresses across the whole UK.
 Following enrolment and consent, individuals were visited on a pre-determined schedule.
-At each visit, a questionnaire was completed and a combined throat and nose swab was collected for RT-PCR testing, along with various other pieces of data.
+At each visit, a questionnaire was completed and a combined throat and nose swab was collected for RT-PCR testing.
 We consider only the result of the RT-PCR testing.
 Enrolment was continuously ongoing until 31st Jan 2022, with data collected until 13th Mar 2023~\citep{weiRisk}. 
 
 We use all negative and positive tests (\ie discarding void test results) in England between Mon 31 Aug 2020 and Sun 24 Jan 2021 for this proof-of-concept study.
-During this period, the CIS was of sufficient size, and transmission was sufficiently prevalent, to provide enough data for the analyses.
-Second, incidence began to rise over this period, after the fall due to the first lockdown.
-Additionally, this period ends before substantial vaccine roll-out, which affected many important aspects of the analysis; most relevantly, the duration of detectability and the susceptibility of the population.
+%% During this period, the CIS was of sufficient size, and transmission was sufficiently prevalent, to provide enough data for the analyses.
+%% Second, incidence began to rise over this period, after the fall due to the first lockdown.
+This period is chosen to end before substantial vaccine roll-out, which affected many important aspects of the analysis; most relevantly, the duration of detectability and the increase in immunity in the population.
 
 We grouped tests by region and age for both analyses.
 In the phenomenological model, we also grouped tests by sex and ethnicity, due to there being evidence of differential non-response in these groups~\citep{pouwelsCommunity}.
@@ -323,7 +374,7 @@ We used two levels of ethnic grouping.
 Broad groupings (White and non-White), because the White population makes up over 80\% of the UK, and more granular groupings (Asian, Black, Mixed, White, and Other).
 
 
-\subsection*{Phenomenological model}
+\subsection*{Phenomenological model}\label{sec:MMphenom}
 The phenomenological model consists of three steps.
 First, a Bayesian multi-level logistic regression model is fit to the data to estimate the probability of a positive test for a variety of population strata (described below) on each day considered.
 Next, deconvolution (described below) is used to calculate the incidence proportion in each stratum on each day implied by the probability of a positive test for each of 500 samples from the approximate posterior of the regression model.
@@ -332,8 +383,8 @@ The full algorithm for this procedure is given in the SI Methods.
 
 \subsection*{Regression model}
 We modify a previously-used regression model~\citep{pouwelsMRPvaccination} for the same dataset to be suitable for estimating incidence.
-The model is fit independently to each region in a Bayesian framework using the Integrated Nested Approximation (INLA, implemented in R-INLA)~\citep{RINLA,rueINLA}.
-Each day, the probability of a positive test for a given age group, ethnicity, and sex is modelled using logistic regression with fixed effects for sex and White or non-White ethnicity; and random effects for age group, including its interaction with time, and time.
+The model is fit independently to each region in a Bayesian framework using the Integrated Nested Laplace Approximation (INLA, implemented in R-INLA)~\citep{RINLA,rueINLA}.
+Each day, the probability of a positive test for a given age group, ethnicity, and sex is modelled using logistic regression with fixed effects for sex and White or non-White ethnicity; random effects for time and ethnicity and a two-way random effect for age group and time.
 To account for the overdispersion due to the household-based design of the survey and unobserved heterogeneity, we use a beta-binomial likelihood.
 See SI Methods for further details.
 
@@ -343,8 +394,10 @@ Deconvolution for estimating incidence from prevalence was popularized in infect
 In this context, it means that the incidence proportions for stratum $i$ on day $t$, $Z_{t,i}$ can be calculated sequentially for $t = 1, \dots, T$ from the prevalence on days $1, \dots, t$ in that stratum, $P_{1,i}, \dots, P_{t,i}$ using the forward-substitution method~\citep{cormenMatrix}:
 \begin{equation}
     Z_{t,i} = P_{t,i} - \sum_{s=1}^{t-1} Z_{s,i} S(t-s+1)
+    \label{eq:deconv}
 \end{equation}
-where $S(t-s+1)$ is the probability of a positive test on day $t-s+1$ given that the individual was infected on day $s$.
+where $S(t-s+1)$ is the probability of testing PCR-positive on day $t$ given that the individual was infected on day $s$.
+We assume a maximum duration $\dmax$, hence $S(d) = 0$ for $d > \dmax$.
 Further details are provided in SI Methods.
 
 \subsection*{Poststratification}
@@ -360,19 +413,22 @@ where $N_j$ is the population size of stratum $j$, provided by the ONS.
 
 \subsection*{Mechanistic model}
 The mechanistic model is a deterministic, compartmental SEIR model, including age-structure.
-This means that the state of the population is represented by the proportion of individuals of each age in each of four compartments: susceptible (S), exposed (E), infectious (I), and recovered (R).
+This means that the state of the population is represented by the proportion of individuals of each age in each of four compartments: susceptible (S), exposed (E), infectious (I), and recovered (R) (\cref{fig:SEIR}).
 The model then evolves according to a set of ordinary differential equations (ODEs).
-The SEIR model is a standard model~\citep{andersonInfectious,keelingModeling}, which we make two adjustments to: allowing the transmission rates between age groups to vary over time and adding an observation model to relate the model to CIS data.
+Solving the ODEs gives the proportion of the popualtion in each compartment at each time.
+The SEIR model is a standard model~\citep{andersonInfectious,keelingModeling}, to which we make two major extensions: allowing the transmission rates between age groups to vary over time and adding an observation model to relate the model to CIS data.
 The starting state and parameters of the ODEs are inferred in a Bayesian framework.
 
 \subsubsection*{Transmission rates}
 The rate of transmission between infectious and susceptible individuals in the model is based on three components: the number of contacts between individuals, the probability of transmission given a contact, and the proportion of the population that is susceptible.
-The number of contacts between different age groups were based on POLYMOD~\citep{mossongSocial} and adjusted on a weekly basis using Google Mobility data~\citep{googleCOVID19} according to a previously described method~\citep{vanleeuwenAugmenting,birrellRealtime}.
-The probability of transmission given a contact is assumed to be constant across age groups except that children and adults are allowed to have different susceptibilities, as described by previous work~\citep{vinerTransmission}; however, the probability is allowed to vary each week to capture the impact of changes not present elsewhere in the model (see SI Methods for details).
-The proportion of the population that is susceptible is part of the system of ODEs.
+The number of contacts between different age groups were based on POLYMOD~\citep{mossongSocial} and adjusted on a weekly basis using baseline time-use~\citep{UKTUS}, and real-time Google Mobility~\citep{googleCOVID19} and school attendance (unpublished) data according to a previously described method~\citep{vanleeuwenAugmenting,birrellRealtime}.
+The probability of transmission between an infectious adult and susceptible adult is the reference class, with the probability is allowed to vary each week to capture the impact of changes not present elsewhere in the model (see SI Methods for details).
+The relative probability of a susceptible child acquiring an infection is allowed to vary from this reference value.
+Otherwise, these probabilities do not vary between different age groups.
+The proportion of each stratum that is susceptible, $\vec{s}(t)$ in \cref{fig:SEIR}, is part of the system of ODEs.
 
 \subsubsection*{Observation model}
-The observation model relates the transmission process in the mechanistic model, just described, to the data.
+The observation model relates the transmission process to the survey data.
 A set of states approximates the length of time an individual is positive for SARS-CoV-2 following infection; we use a more accurate approximation of this time than much previous work.
 These states are then used to calculate the probability of a positive test on each day for each stratum.
 Finally, the probability of a positive test is used to calculate the likelihood of the data, the number of positive tests on each day in each stratum.
@@ -380,7 +436,7 @@ A full description of the observation model is provided in SI Methods.
 
 \subsubsection*{Inference}
 We fit the mechanistic model in a Bayesian framework using Markov chain Monte Carlo (MCMC)~\citep{hastingsMCMC,gelmanBDA}.
-Informative priors were used for the starting state of the model and the rates of progression through the model; this is required for identifiability~\citep{dankwaStructural}.
+Informative priors were used for the starting state of the model and the rates of progression through the model (\cref{table:mech-priors}); this is required for identifiability~\citep{dankwaStructural}.
 We used weakly informative priors for all other parameters (SI Methods).
 Bespoke Markov chain Monte Carlo code, adapted from a previous study~\citep{ghoshApproximate}, was used to estimate the posterior distribution of the parameters of the mechanistic model.
 Proposals were drawn from a multivariate normal distribution, adapted throughout the inference process~\citep{andrieuTutorial} and accepted or rejected based on the Metropolis--Hastings algorithm~\citep{hastingsMCMC}.
@@ -408,10 +464,10 @@ This was further thinned to \numprint{2000} samples when calculating posterior p
 
 \section*{Supplementary methods: phenomenological model}
 
-The phenomenological model consists of three steps.
+Obtaining estimates of incidence through phenomenological modelling consists of three steps.
 \begin{enumerate}
-    \item A Bayesian multi-level logistic regression model is fit to the data to estimate the probability of a positive test for a variety of population strata on each day considered.
-    \item Deconvolution is used to calculate the incidence proportion in each stratum on each day implied by the probability of a positive test for each of 500 samples from the approximate posterior of the regression model.
+    \item A Bayesian multi-level logistic regression model is fit to the survey data to estimate the probability of a positive test for a variety of population strata on each day considered.
+    \item Deconvolution, based on \cref{eq:deconv}, is used to calculate the incidence proportion in each stratum on each day implied by the probability of a positive test for each of 500 samples from the approximate posterior of the regression model.
     \item The incidence proportions are poststratified to the population and subpopulations of interest to estimate the incidence proportion in each subpopulation on each day.
 \end{enumerate}
 An overview of steps 1 and 2 are shown in \cref{algo:phenom}.
@@ -445,7 +501,7 @@ Step 3 is performed using \cref{backcalc:eq:poststratify}.
 \subsection*{Logistic regression model}
 
 We use a modified version of a previous Bayesian multi-level logistic regression model for the CIS~\citep{pouwelsMRPvaccination}.
-A regression model serves two purposes: first, it allows borrowing of information between days and stratum; second, it corrects for non-response bias.
+The regression model serves two purposes: first, it allows borrowing of information between days and stratum; second, it corrects for non-response bias.
 
 For a day $t$, age group $a$, ethnicity $e$, and sex $s$ the regression model is:
 \begin{align}
@@ -454,13 +510,18 @@ For a day $t$, age group $a$, ethnicity $e$, and sex $s$ the regression model is
 \end{align}
 The terms are as follows.
 \begin{itemize}
-    \item $n_{taes}$ and $y_{taes}$ are the number of individuals tested and the number of positive test results respectively on day $t$ in individuals of age group $a$, ethnicity $e$, and sex $s$. We use a beta-binomial distribution for the likelihood. A beta-binomial distribution is an overdispersed version of the binomial distribution~\citep{hughesUsing}. Overdispersion allows for household clustering and other overdispersion in the data, which is common in epidemiological data~\citep{griffithsBBD}.
+    \item $n_{taes}$ and $y_{taes}$ are the number of individuals tested and the number of positive test results respectively on day $t$ in individuals of age group $a$, ethnicity $e$, and sex $s$. We use a beta-binomial distribution for the likelihood.
+    A beta-binomial distribution is an overdispersed version of the binomial distribution~\citep{hughesUsing}; it has mean $n_{taes} p_{taes}$ and variance $n_{taes} p_{taes} (1 + n_{taes} \rho) (1 + \rho)^{-1}$. 
+    Overdispersion allows for household clustering and other unmodelled variation in the data, which is common in epidemiological data~\citep{griffithsBBD}.
     \item $\beta$ is a global intercept term with the vague prior $\beta \dist \N(0, 1/0.001^2)$.
     \item $\beta_s$ is a fixed effect for sex, with $\beta_s = 0$ for males and estimated for females. The prior for $\beta_s$ is vague, $\beta_s \dist \N(0, 1/0.001^2)$.
     \item $\beta_{w(e)}$ is a fixed effect for White or non-White ethnicity. $\beta_{w(e)} = 0$ if $e$ corresponds to White ethnicity and $\beta_{w(e)} = \beta_{n}$ otherwise (\ie non-White ethnic groups).
       The prior for $\beta_n$ is vague, $\beta_n \dist \N(0, 1/0.001^2)$.
       % $\beta_n$ and $\beta_f$ have the default INLA prior for fixed effects\todo{check what this is}.
-    \item $u_a$ and $v_e$ are independent normal random effects for age and ethnic group respectively. Their standard deviation has a penalized complexity prior~\citep{simpsonPenalising} with a 10\% probability of being greater than 1.
+    \item $u_a$ and $v_e$ are independent normal random effects for age and ethnic group respectively.
+    That is, $u_a \dist \N(0, \sigma_1^2)$ with the prior for $\sigma_1$ chosen to be the penalized complexity prior~\citep{simpsonPenalising}, \ie an exponential distribution.
+    We chose this distribution's parameter such that $\prob(\sigma_a > 1) = 0.1$.
+    Similarly $v_e \dist \N(0, \sigma_2^2)$ with $\sigma_2$ having the same prior as $\sigma_1$.
     \item $w_t$ is a second-order random walk, that is $w_t = 2w_{t-1} - w_{t-2} + \epsilon_t$ where $\epsilon_t \dist \N(0, \sigma_w^2)$.
       $\sigma_w$ has a vague prior, $1/\sigma_w \dist \GamDist(1, 5 \times 10^{-5})$.
     \item $l_{a,t}$ is an age-group specific second-order random walk.
@@ -473,8 +534,8 @@ For the small values of $p_{taes}$ likely to be encountered, this approximates e
 \subsection*{Deconvolution}
 
 The relationship between incidence and prevalence is stochastic; however, here a deterministic relationship is assumed.
-This is a good approximation as long as the proportion of the population sampled by prevalence survey is small because the stochastic noise in the sampling process is much greater than that in the relationship between incidence and prevalence~\citep{blakeThesis}.
-Therefore, $\vec{Z} = \matr{S} \vec{P}$ where $\vec{Z}$ is the vector of incidence proportions at times $1, 2, \dots, T$ for a given stratum; $\vec{P}$ is the vector of prevalence proportions at times $1, 2, \dots, T$ for the same stratum; and $\matr{S}$ is a lower triangular matrix, defined in terms of the survival function $S(d) = \prob(D \geq d)$ where $D$ is the duration of RT-PCR positivity and $S(1) = 1$, as follows:
+This is a good approximation as long as the proportion of the population sampled by prevalence survey is small because the stochastic noise in the sampling process is much greater than that in the relationship between incidence and prevalence~\citep{blakeThesis}; therefore, the latter is negligible.
+Re-writing \cref{eq:deconv} in matrix vector notation, $\vec{Z} = \matr{S} \vec{P}$ where $\vec{Z}$ is the vector of incidence proportions at times $1, 2, \dots, T$ for a given stratum; $\vec{P}$ is the vector of prevalence proportions at times $1, 2, \dots, T$ for the same stratum; and $\matr{S}$ is a lower triangular matrix, defined in terms of the survival function $S(d) = \prob(D \geq d)$ where $D$ is the duration of RT-PCR positivity and $S(1) = 1$, as follows:
 \begin{align}
     (\matr{S})_{i,j} &= \begin{cases}
         S(i - j + 1) & \text{if } i - \dmax + 1 \leq j \leq i \\
@@ -487,6 +548,11 @@ We assume that the incidence for $t \leq 1$ is constant.
 Therefore, $P_1 = Z_0 \sum_{i=1}^{\dmax} S(i)$ and $Z_t = P_1 / \sum_{i=1}^{\dmax} S(i)$ for $t \leq 1$.
 The solution for $\vec{Z}$ can then be found by forward substitution~\citep{cormenMatrix}, as implemented in the innermost loop in \cref{algo:phenom}.
 
+\subsection*{Poststratification}
+
+Poststratification combines posterior estimates of the prevelance in each stratum at each time point to produce an overall estimate of the prevalence in a (sub-)population.
+It uses a weighted average to ensure the overall estimate is representative, detailed in the main text.
+
 \section*{Supplementary methods: mechanistic model}
 
 We fit a SEIR model using MCMC to the CIS dataset, as described in the main text.
@@ -495,56 +561,10 @@ As well as the motivation given for the phenomenological model, the assumption o
 By modelling each region independently, we assume that the epidemics in each region do not interact.
 Clearly, this is not realistic as travel between regions of England is common and unrestricted.
 However, except in an epidemic's early stages, the interaction between large regions has a negligible impact on the epidemic's progression~\citep{birrellRealtimea,gogSpatial,eggoSpatial}.
-The model consists of two parts: the transmission model, which describes how the disease spreads through the population; and the observation model, which links the transmission model to the prevalence and data (\cref{fig:SEIR}).
-The transmission model for each region is a SEIR model, which means that the population is divided into four compartments: susceptible ($s$), exposed ($e$), infectious ($i$), and recovered ($r$), each of which is further stratiﬁed by age~\citep{andersonInfectious,keelingModeling}.
+The model consists of two parts: the transmission model, which describes how the disease spreads through the population; and the observation model, which links the transmission model to the prevalence and hence the data (\cref{fig:SEIR}).
+The transmission model for each region is a SEIR model, which means that the population is divided into four types of compartments: susceptible ($s$), exposed ($e$), infectious ($i$), and recovered ($r$), each of which is further stratiﬁed by age~\citep{andersonInfectious,keelingModeling}.
 The observation model is a set of states that approximate the length of time an individual is positive for SARS-CoV-2 following infection with an initial pre-positive state $p_0$ followed by a series of positive states $p_1, p_2, \dots, p_l$.
-\begin{figure*}
-\makebox[\textwidth][c]{
-\begin{tikzpicture}[
-    node distance = 2.5cm,
-    on grid,
-    auto,
-    ->,>=stealth',
-    every state/.style={draw,rectangle},
-    ]
 
-    \node[state] (S) {$s$};
-    \node[state, right=of S] (E1) {$e_1$};
-    \node[state, right=of E1] (E2) {$e_2$};
-    \node[state, right=of E2] (I1) {$i_1$};
-    \node[state, right=of I1] (I2) {$i_2$};
-    \node[state, right=of I2] (R) {$r$};
-
-    \path (S) edge node {$\lambda$} (E1)
-          (E1) edge node {$\sigma$} (E2)
-          (E2) edge node {$\sigma$} (I1)
-          (I1) edge node {$\gamma$} (I2)
-          (I2) edge node {$\gamma$} (R);
-
-    \node[state, below=3cm of E1] (P0) {$p_0$};
-    \node[state, right=of P0] (P1) {$p_1$};
-    \node[state, right=of P1] (P2) {$p_2$};
-    \node[state, right=of P2] (P3) {$p_3$};
-    \node[state, right=of P3, draw=none] (P4) {};
-
-    \path  (S) edge node {$\lambda$} (P0)
-          (P0) edge node {$\omega_0$} (P1)
-          (P1) edge node {$\omega_1$} (P2)
-          (P2) edge node {$\chi \omega_{2}$} (P3)
-               edge [out=-45,in=-135] node[below] {$(1 - \chi) \omega_{2}$} (P4)
-          (P3) edge node {$\omega_{3}$} (P4);
-    
-    \node[draw, thick, inner sep=0.3cm, fit=(P1) (P3), fill=blue!10,opacity=0.2] {};
-\end{tikzpicture}
-}
-  \caption{
-    Mechanistic model structure.
-    The top row is the transmission model and the bottom row is the observation model.
-    The shaded box represents RT-PCR-positive individuals.
-    Shown for a single region and stratum.
-  }
-  \label{fig:SEIR}
-\end{figure*}
 
 
 \subsection*{Transmission model}
@@ -563,7 +583,7 @@ The transmission model is a system of ordinary differential equations (ODEs), as
 \end{aligned}
 \label{SEIR:eq:fullODEs}
 \end{equation}
-where $\circ$ indicates element-wise multiplication; $\matr{\beta}$ is the Who Acquires Infection From Whom (WAIFW) matrix, explained below; $\vec{s}(t)$ is a vector such that $s_{i}(t)$ is the proportion of stratum $i$ that is susceptible; $\vec{e}_1(t)$, $\vec{e}_2(t)$, $\vec{i}_1(t)$, $\vec{i}_2(t)$, and $\vec{r}(t)$ are the same except for the two exposed, two infectious, and removed compartments respectively; $1/\sigma$ is the mean latent period; $1/\gamma$ is the mean infectious period; and $\matr{N}$ is a matrix with $(\matr{N})_{aa'} = N_{a'} / N_{a}$.
+where $\circ$ indicates element-wise multiplication; $\matr{\beta}$ is the Who Acquires Infection From Whom (WAIFW) matrix, explained below; $\vec{s}(t)$ is a vector such that $s_{i}(t)$ is the proportion of stratum $i$ that is susceptible with $\vec{e}_1(t)$, $\vec{e}_2(t)$, $\vec{i}_1(t)$, $\vec{i}_2(t)$, and $\vec{r}(t)$ similarly defined for the two exposed, two infectious, and removed compartments respectively; $1/\sigma$ is the mean latent period; and $1/\gamma$ is the mean infectious period.
 
 
 \subsection*{WAIFW matrix} \label{SEIR:sec:WAIFW-application}
@@ -571,15 +591,23 @@ where $\circ$ indicates element-wise multiplication; $\matr{\beta}$ is the Who A
 We use an age-structured SEIR model, which requires a WAIFW matrix, $\matr{\beta}$, to determine the rate of transmission between different age groups, parameterized in a parsimonious way~\citep{andersonInfectious,keelingModeling}.
 We decompose the elements of the matrix as $\beta_{aa'} = \kappa_{aa'} q_{aa'} N_{a'} / N_{a}$ where: $\kappa_{aa'}$ is the mean rate at which an individual in stratum $a'$ makes contact with individuals in stratum $a$; $q_{aa'}$ is the probability of transmission upon contact between an infectious individual in stratum $a'$ and a susceptible individual in stratum $a$; and $N_{a}$ is the total number of individuals in stratum $a$.
 For many epidemics, where the population behaviour is fairly constant over time, a constant $\matr{\beta}$ is a good approximation.
-However, in SARS-CoV-2, population behaviour changed dramatically, both spontaneously (\eg due to fear) and in response to government-imposed restrictions.
-Therefore we use a pre-existing model for a time-dependent WAIFW~\citep{birrellRealtime}: $\beta_{aa'}(t) = \kappa_{aa'}(t) q_{aa'}(t) N_{a'} / N_a$; $N_a$ and $N_{a'}$ are constant because the change in the total population is negligible over the length of time considered here.
+However, in SARS-CoV-2, population behaviour changed dramatically, both spontaneously (\eg due to fear of infection) and in response to government-imposed restrictions.
+Therefore we use a pre-existing model for a time-dependent WAIFW~\citep{birrellRealtime}:
+\begin{equation}
+    \beta_{aa'}(t) = \kappa_{aa'}(t) q_{aa'}(t) N_{a'} / N_a.
+\end{equation}
+$N_a$ and $N_{a'}$ are constant because the change in the total population is negligible over the length of time considered here.
 
 We base the contact rates, $\kappa_{aa'}(t)$, from several data sources, using pre-existing methodology~\citep{vanleeuwenAugmenting,birrellRealtime}.
 In brief, we start with pre-pandemic baseline estimates of $\kappa_{aa'}$ from the POLYMOD study~\citep{mossongSocial}, and time use from the UKTUS (UK Time Use Survey)~\citep{UKTUS} then modify them each week based on changes in where people spend their time, as measured by Google mobility data~\citep{googleCOVID19} and school attendance data~(unpublished).
 $\kappa_{aa'}(t)$ is assumed to be piecewise constant, changing only at the start of each Monday.
 
 The probability of transmission, $q_{aa'}(t)$, needs further decomposition to be identifiable~\citep{andersonInfectious}.
-We assume that $q_{aa'}(t) = \beta(t) q^\text{susc}_{a} q^\text{inf}_{a'}$ where $\beta(t)$ is a time-varying reference probability of transmission; $q^\text{susc}_a$ is the relative \emph{susceptibility} of stratum $a$, \ie how vulnerable to infection individuals in stratum $a$ are; and $q^\text{inf}_{a'}$ is the relative \emph{transmissibility} of stratum $a'$, \ie how likely individuals in stratum $a$ are to pass on an infection.
+We assume that:
+\begin{equation}
+    q_{aa'}(t) = \beta(t) q^\text{susc}_{a} q^\text{inf}_{a'}
+\end{equation}
+where $\beta(t)$ is a time-varying reference probability of transmission; $q^\text{susc}_a$ is the relative \emph{susceptibility} of stratum $a$, \ie how vulnerable to infection individuals in stratum $a$ are; and $q^\text{inf}_{a'}$ is the relative \emph{transmissibility} of stratum $a'$, \ie how likely individuals in stratum $a$ are to pass on an infection.
 These measures include both biological differences, \eg due to differences in immune systems, or behavioural, \eg if infants are less hygienic than adults.
 
 Studies of pre-Alpha SARS-CoV-2 suggest that all individuals have similar infectiousness but that pre-adolescent children are less susceptible than adults~\citep{chenRole,vinerTransmission}.
@@ -640,14 +668,13 @@ If on each day $t$, each stratum $a$ is observed to have $y_{at}$ positives out 
 where: $\bar{p}_{at}$ is the mean proportion of individuals in strata $a$ that are RT-PCR positive on day $t$; and $\rho$ is a nuisance parameter controlling the overdispersion of the beta-binomial distribution.
 Denoting the proportion of stratum $a$ in state $p_k$ as $p_{ka}(\tau)$, then $\bar{p}_{at} = \int_{t}^{t+1} \sum_{k=1}^l p_{ka}(\tau) d\tau$.
 
-\subsection*{Implementation and inference}
+\subsection*{Implementation and parameterisation}
 
 We solve the system of ODEs using Euler's method, discretised at timesteps of $\delta t = 1/2$ days.
 That is, if $\vec{x}_t$ is the system state at time $t$ for $t \in \{ 0, 0.5, 1, \dots \}$ then $x_{t+\frac{1}{2}} = x_t + (d\vec{x}(t)/dt) \delta t$.
 The mean prevalence on day $t$, used for the likelihood (\cref{SEIR:eq:likelihood}), can be calculated as $\bar{p}_{at} = \frac{1}{2} \sum_{k=1}^l ( p_{kat} + p_{ka,t+1/2} )$.
 
 As in previous work~\citep{birrellBayesian}, we parameterize $\beta_1$ in terms of the initial growth of the epidemic and a parsimonious parameterization of the initial conditions, using the initial proportion of the population that are infectious and the initial proportion that are susceptible only.
-These improve the model's identifiability.
 
 Both reparameterizations rely on an assumption that the epidemic is in a steady-state exponential growth phase at time 0. During such an exponential growth phase, all components of the $\vec{e}$, $\vec{i}$ and $\vec{p}$ compartments grow at the same growth rate, $\psi$.
 That is:
@@ -705,6 +732,7 @@ Equating the expressions in \cref{SEIR:eq:fullODEs} and \cref{SEIR:eq:exponentia
 Define a parameter $\vec{\pi}$ as the proportion of each stratum without initial immunity, then $\vec{r}(0) = 1 - \vec{\pi}$.
 Finally, to ensure the population proportions sum to one, $\vec{s}(0) = \vec{\pi} - \vec{i}_0 - \vec{e}_1 - \vec{e}_2$.
 
+\subsection*{Inference}
 We use an adaptive random-walk Metropolis--Hastings algorithm to compute the posterior distribution (\cref{SEIR:MCMC-algorithm})~\citep{ghoshApproximate,andrieuTutorial}.
 All parameters with bounded supports are sampled using transformations with support over the whole the real line.
 Parameters which are constrained to the positive reals ($\sigma_\epsilon$, $\rho$, and $q_c$) were sampled on the log scale.
