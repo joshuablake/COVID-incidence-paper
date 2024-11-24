@@ -229,7 +229,7 @@ Results below are given as posterior median and 95\% central credible interval (
 \subsection*{Incidence estimates}
 
 Both models successfully produce estimates of SARS-CoV-2 incidence proportion, the proportion of the population that becomes RT-PCR positive on a given day (\cref{fig:incidence-Eng}).
-The results largely agree with each other and previous knowledge (REF), demonstrating the robustness of the data and approaches.
+The results largely agree with each other and previous knowledge \citep[e.g.][]{knockKey}, demonstrating the robustness of the data and approaches.
 They show a slow rise and plateau in autumn with a peak incidence proportion of 0.081\% (0.073--0.091\%) using the phenomenological model or 0.072\% (0.069--0.076\%) using the mechanistic model, a decrease during November, then a fast increase in incidence peaking on 24 (21--28) Dec 2020 at 0.16\% (0.14--0.19\%) using the phenomenological model or on 21 (21--21) Dec 2020 at 0.14\% (0.14--0.15\%) using the mechanistic model.
 The lack of uncertainty for the date of the peak in the mechanistic model is an artefact of the model structure only allowing step changes in growth rates to occur on Mondays, leading to peaks typically occurring on that day.
 \begin{figure}%[tbhp]
@@ -322,8 +322,8 @@ In CIS Non-response biases are well understood and can be accounted for in the a
 
 This is unlike other data sources, such as community testing data or data on severe infections.
 Community testing data provides an inconsistent signal on infection incidence because they are reliant on the number of tests and who is tested which varies over time due to measured (\eg testing capacity) and unmeasured factors (\eg public perception of risk).
-Data on severe infections, such as hospitalisations, tends to be consistent but can be affected by changes in admission policies and bed availability (REF).
-Furthermore, severe infections primarily occur in groups with greater frailty (\eg elderly and other vulnerable groups) (REF) meaning that estimates of transmission in young adults and children must be based on extrapolations using strong model assumptions or indirect evidence, such as contact surveys or mobility data (REF).
+Data on severe infections, such as hospitalisations, tends to be consistent but can be affected by changes in admission policies and bed availability~\citep{fongNHS}.
+Furthermore, severe infections primarily occur in groups with greater frailty (\eg elderly and other vulnerable groups)~\citep{wardSero,bhopalChildren} meaning that estimates of transmission in young adults and children must be based on extrapolations using strong model assumptions or indirect evidence, such as contact surveys or mobility data (REF).
 Here, we exploit the CIS's near-representative recruitment of all age groups over two years old to understand how individual susceptibility differs by age, and show that children are less susceptible than adults.
 
 % To overcome the limitations of any specific data sources, many previous studies of SARS-CoV-2 in England (REF) have utilized evidence synthesis techniques (REF).
@@ -341,7 +341,7 @@ Extending mechanistic models to include ethnicity should be considered as a prio
 Comparing the results highlights modelling issues; in our case, the mechanistic model's inability to capture changes in the distribution of incidence over age groups beyond those caused by immunity.
 A more flexible model could be developed to allow these  changes to be captured.
 However, further flexibility might increase the computational burden of fitting mechanistic models to large datasets.
-Further work could implement more computationally-efficient methods or inference of this model, such as Hamiltonian Monte Carlo (REF) or approximate Bayesian methods (REF).
+Further work could implement more computationally-efficient methods or inference of this model, such as Hamiltonian Monte Carlo or approximate Bayesian methods~\citep{strumbeljPresent}.
 As well as allowing for more flexible models, which would capture age-specific changes in transmission over time, such work would allow faster model fitting, a high-priority when responding to an emergency such as a pandemic.
 
 Our analysis has important implications for future pandemic preparedness and response. We have shown that a prevalence survey with randomly-selected participants are extremely useful for monitoring an ongoing pandemic.
