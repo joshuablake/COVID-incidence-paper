@@ -833,7 +833,7 @@ The remaining parameters have weakly informative priors.
     Initial proportion infectious & $i^+$ & $\BetaDist(0.5, 1000)$ & Weakly informative \\
     Susceptibility of children & $q_c$ & $\LN(-0.4325, 0.1174)$ & \citep{vinerTransmission}  \\
     Initial growth rate & $\psi$ & $\N(0.06, 0.04)$ & Weakly informative \\
-    Standard deviation of random walk steps on log scale & $\sigma_\epsilon$ & $\Exponential(80)$ & penalized complexity prior~\citep{simpsonPenalising} \\
+    Standard deviation of random walk steps on log scale & $\sigma_\epsilon$ & $\Exponential(10)$ & penalized complexity prior~\citep{simpsonPenalising} \\
     Overdispersion of observations & $\rho$ & $\Exponential(2 \times 10^5)$ & penalizing deviations from binomial
 \end{tabular}
 \caption{Priors for mechanistic model's parameters.}
