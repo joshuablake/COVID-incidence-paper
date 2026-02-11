@@ -95,8 +95,7 @@
 \significancestatement{
 Understanding the transmission dynamics of a pandemic is essential for guiding public health interventions.
 This study demonstrates the potential of data from prevalence surveys, specifically from the Coronavirus Infection Survey, to provide reliable estimates of viral incidence and transmission.
-This gold-standard survey selected individuals representative of the general population.
-This large survey recruited a sample broadly representative of the general population and tested them irrespective of symptoms or contacts, unlike most sources of data from which transmission dynamics can be inferred.
+Unlike most sources of data from which transmission dynamics can be inferred, this large survey recruited a sample broadly representative of the general population and tested them irrespective of symptoms or contacts
 The findings highlight the importance of integrating large-scale, randomly sampled prevalence surveys into pandemic surveillance systems.
 }
 
@@ -106,11 +105,12 @@ The findings highlight the importance of integrating large-scale, randomly sampl
 \correspondingauthor{\textsuperscript{2}To whom correspondence should be addressed. E-mail: author.two\@email.com}
 
 % At least three keywords are required at submission. Please provide three to five keywords, separated by the pipe symbol.
-\keywords{Keyword 1 $|$ Keyword 2 $|$ Keyword 3 $|$ ...}
+\keywords{Incidence $|$ SARS-CoV-2 2 $|$ Surveillance $|$ ...}
 
 \begin{abstract}
 During the pandemic caused by the SARS-CoV-2 virus, the UK’s Office for National Statistics ran a large prevalence survey, the Coronavirus Infection Survey (CIS).
-Individuals enrolled in CIS were tested on a predetermined schedule, meaning the testing process was not biased by individuals' propensity to test and/or infectious status.
+Individuals were selected at random from UK address lists; those successfully were then tested on a predetermined schedule.
+Therefore, the testing process was not biased by individuals' propensity to test and/or infection status.
 %removing  most reporting biases.
 Here, we develop methods to investigate whether the CIS, designed to provide prevalence estimates, can be used to derive estimates of incidence and transmission through  phenomenological and mechanistic models fit only to CIS data.
 %taking two approaches: one phenomenological and one mechanistic.
@@ -158,8 +158,7 @@ In this work, we reconsider estimation of incidence and transmission from CIS da
 
 In this proof-of-concept study, we show that CIS, designed primarily to measure prevalence, can be the basis of incidence and transmission estimation, and provide guidance on appropriate methodologies for this purpose.
 % The phenomenological model provides a flexible framework with minimal assumptions, while the mechanistic model offers detailed insights into transmission dynamics.
-We present the results of our analysis, highlighting the strengths and limitations of each modelling approach.
- These findings underscore the potential of prevalence surveys like the CIS to serve as a cornerstone for pandemic surveillance and response.
+We highlight the strengths and limitations of two modelling approaches, then conclude by discussing the remaining barriers to prevalence surveys like CIS serving as a cornerstone for pandemic surveillance and response.
 
 \section*{Results}
 
@@ -248,7 +247,7 @@ We fit both models in a Bayesian framework (\textit{Methods and Materials}), hen
 \subsection*{Incidence estimates}
 
 Both models successfully produce estimates of SARS-CoV-2 incidence proportion, the proportion of the population that becomes RT-PCR positive on a given day (\cref{fig:incidence-Eng}).
-They show a slow rise and plateau from Sep 2020 to early Nov with a peak incidence proportion of 0.081\% (0.073--0.091\%) using the phenomenological model or 0.072\% (0.069--0.076\%) using the mechanistic model, a decrease during Nov, then a fast increase in incidence peaking on 24 (21--28) Dec at 0.16\% (0.14--0.19\%) using the phenomenological model or on 21 (21--21) Dec 2020 at 0.14\% (0.14--0.15\%) using the mechanistic model.
+They show a slow rise and plateau from Sep 2020 to early Nov 2020 with a peak incidence proportion of 0.081\% (0.073--0.091\%) using the phenomenological model or 0.072\% (0.069--0.076\%) using the mechanistic model, a decrease during Nov, then a fast increase in incidence peaking on 24 (21--28) Dec at 0.16\% (0.14--0.19\%) using the phenomenological model or on 21 (21--21) Dec at 0.14\% (0.14--0.15\%) using the mechanistic model.
 The lack of uncertainty for the date of the peak in the mechanistic model is because, to limit the number of parameters, the model structure only allowing step changes in growth rates to occur on Mondays, leading to peaks typically occurring on that day.
 \begin{figure}%[tbhp]
 \centering
@@ -335,7 +334,7 @@ Our estimates for the susceptibility of children under 11, relative to adults, r
 We have demonstrated how prevalence studies like the CIS can be used to estimate incidence of infection and the properties of the process of infection transmission.
 To do so we applied two different approaches: a phenomenological model and a mechanistic model, both of which were effectively calibrated using CIS data.
 
-The analysis of data from a single, well-designed CIS-like  study leads to robust and reliable estimates.
+The analysis of data from a single, well-designed CIS-like study leads to robust and reliable estimates.
 In CIS, non-response biases are accounted for in the analysis; and high post-recruitment retention rates limit changes in biases over time, so that the trends inferred  are robust.
 These characteristics are not shared by other data sources, such as community testing data or data on severe infections.
 Community testing data provides an inconsistent signal on infection incidence because they are reliant on the number of tests and who is tested which varies over time due to measured (\eg testing capacity) and unmeasured factors (\eg public perception of risk).
@@ -354,11 +353,14 @@ However, further flexibility might increase the computational burden of fitting 
 Further work could implement more computationally-efficient methods or inference of this model, such as Hamiltonian Monte Carlo or approximate Bayesian methods~\citep{strumbeljPresent}.
 As well as allowing for more flexible models, which would capture age-specific changes in transmission over time, such work would allow faster model fitting, a high-priority when responding to an emergency such as a pandemic.
 
-Our analysis has important implications for future pandemic preparedness and response. We have shown that a prevalence survey with randomly-selected participants are extremely useful for monitoring an ongoing pandemic.
+Our analysis has important implications for future pandemic preparedness and response. We have shown that a prevalence survey with randomly-selected participants are extremely useful for monitoring an ongoing pandemic with clear advantages over other data collection methods.
 Yet these surveys, testing individuals following a pre-determined schedule independent of symptoms, were globally rare during the SARS-CoV-2 pandemic, likely due to their cost.
-Further work should explore the value of alternative survey designs (\eg smaller size, more frequent sampling), which
-could generate greater insight for comparable effort and perhaps small cost.
-Finally, we call for such studies to be embedded into pandemic plans for sufficiently severe pandemics.
+We showed that our methods can reliably estimate incidence with around a 2-week lag, comparable to methods used in real-time during the pandemic~\citep{spimConsensus,richardsModellingUKReport}, and often with a 1-week lag.
+Estimates which remain inaccurate at a 1-week lag are often inaccurate in the same direction across all regions; therefore, extending our method to borrow information between regions should improve how rapidly reliable estimates can be produced.
+Inaccurate estimates occurred most often when behavior changes are large (\eg following the announcement of a national lockdown); behavior at these times may change dramatically.
+Dramatic behavior changes may be better modelled by replacing the Gaussian random walk with a distribution with fatter tails (\eg t-distribution).
+To implement these changes, a more efficient inference algorithm is likely required, but implementing this would allow more information to be extracted from CIS-like studies.
+If this potential can be realised, CIS-like studies will be able to form a major component of surveillance in future pandemics, and be more robust than current methodologies.
 
 \matmethods{
 
@@ -469,7 +471,8 @@ This was further thinned to \numprint{2000} samples when calculating posterior p
 
 \showmatmethods{} % Display the Materials and Methods section
 
-\acknow{Please include your acknowledgments here, set in a single paragraph. Please do not include any acknowledgments in the Supporting Information, or anywhere else in the manuscript.
+\acknow{%
+%Please include your acknowledgments here, set in a single paragraph. Please do not include any acknowledgments in the Supporting Information, or anywhere else in the manuscript.
 KBP is supported by the National Institute for Health Research (NIHR) Health Protection Research Unit in Healthcare Associated Infections and Antimicrobial Resistance at Oxford University in partnership with the UK Health Security Agency (UKHSA) (NIHR200915), the Huo Family Foundation, and by the Medical Research Foundation (MRF-160-0017-ELP-POUW-C0909). The views expressed in this publication are those of the authors and not necessarily those of the NHS, the National Institute for Health Research, the Department of Health or the UKHSA.
 ASW is supported by the National Institute for Health Research (NIHR) Health Protection Research Unit in Healthcare Associated Infections and Antimicrobial Resistance at Oxford University in partnership with the UK Health Security Agency (UKHSA) (NIHR200915) and the NIHR Biomedical Research Centre, Oxford. The views expressed in this publication are those of the authors and not necessarily those of the NHS, the National Institute for Health Research, the Department of Health or the UKHSA.
 }
@@ -477,7 +480,7 @@ ASW is supported by the National Institute for Health Research (NIHR) Health Pro
 \showacknow{} % Display the acknowledgments section
 
 
-\bibsplit[8]
+\bibsplit[32]
 %Use \bibsplit to split the references from the body of the text. Value "[2]" represents the number of reference in the left column (Note: Please avoid single column figures & tables on this page.)
 
 % Bibliography
@@ -558,8 +561,8 @@ For the small values of $p_{taes}$ likely to be encountered, this approximates e
 
 \subsection*{Deconvolution}
 
-The relationship between incidence and prevalence is stochastic; however, here a deterministic relationship is assumed.
-The deterministic relationship is a good approximation of the stochastic one as long as the proportion of the population sampled by prevalence survey is small because the stochastic noise in the sampling process is much greater than that in the relationship between incidence and prevalence~\citep{blakeThesis}; therefore, the latter is negligible.
+The relationship between incidence and prevalence is partially stochastic because the time until an infected individual stops being prevalent is random.
+However, here a deterministic relationship is assumed, a good approximation of the stochastic one as long as the proportion of the population sampled by prevalence survey is small because the stochastic noise in the sampling process is much greater than that in the relationship between incidence and prevalence; therefore, the latter is negligible~\citep{blakeThesis}.
 Re-writing \cref{eq:deconv} in matrix vector notation, $\vec{Z} = \matr{S} \vec{P}$ where $\vec{Z}$ is the vector of incidence proportions at times $1, 2, \dots, T$ for a given stratum; $\vec{P}$ is the vector of prevalence proportions at times $1, 2, \dots, T$ for the same stratum; and $\matr{S}$ is a lower triangular matrix, defined in terms of the survival function $S(d) = \prob(D \geq d)$ where $D$ is the duration of RT-PCR positivity and $S(1) = 1$, as follows:
 \begin{align}
     (\matr{S})_{i,j} &= \begin{cases}
