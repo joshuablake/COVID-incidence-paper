@@ -282,8 +282,19 @@ The second peak occurs in late December or early January in all regions (\cref{f
 
 The mechanistic model produces tighter credible intervals, reflecting the additional assumptions it uses about the underlying transmission dynamics.
 This can be interpreted as similar to the classic bias--variance trade-off: by making stronger assumptions the mechanistic model reduces the variance of the estimates but has the potential to introduce bias if those assumptions are violated.
-These assumptions also allow production of stable incidence estimates with a 1--2 week lag from the data becoming available (REF FIG OF ROLLING ENGLAND INCIDENCE ESTIMATES).
+These assumptions also allow production of stable incidence estimates with a 1--2 week lag from the data becoming available (\cref{fig:incidence-cutoffs}).
 The lag is at the upper end of this limit when there are major changes such as a national lockdown and when there is limited data, such as early in the period considered in smaller regions (REF SUPPLEMENTARY FIG OF ROLLING REGIONAL INCIDENCE ESTIMATES).
+
+\begin{figure*}%[tbhp]
+\centering
+\includegraphics[width=17.6cm]{figures/incidence_cutoffs}
+\caption{%
+    Stability of mechanistic model incidence estimates under different data cut-offs for England. 
+    Each panel shows the estimates produced using data up to the indicated cut-off date (blue line and ribbon). 
+    The "gold standard" (grey dashed line and ribbon) represents the final estimate using all available data up to 24 Jan 2021.
+}
+\label{fig:incidence-cutoffs}
+\end{figure*}
 
 
 \subsection*{Impact of model assumptions}
