@@ -5,19 +5,6 @@ library(tidybayes)
 library(tidyr)
 source(here::here("figures/utils.R"))
 
-incidence_plot_theming = function() {
-    rlang::list2(
-        standard_plot_theming(),
-        labs(
-            x = "Date (2020-1)",
-            y = "Incidence proportion",
-            fill = "",
-            colour = ""
-        ),
-        scale_y_continuous(labels = scales::label_percent())
-    )
-}
-
 tbl_phenomenological_England = load_backcalc_regions() |>
     filter(daynr > 1, region == "England")
 tbl_phenomenological_regions = load_backcalc_regions() |>

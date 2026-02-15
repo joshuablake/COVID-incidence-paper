@@ -158,3 +158,16 @@ save_plot = function(
         ...
     )
 }
+
+incidence_plot_theming = function() {
+    rlang::list2(
+        standard_plot_theming(),
+        labs(
+            x = "Date (2020-1)",
+            y = "Incidence proportion",
+            fill = "",
+            colour = ""
+        ),
+        scale_y_continuous(labels = scales::label_percent())
+    )
+}
