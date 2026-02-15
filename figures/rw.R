@@ -8,11 +8,11 @@ source(here::here("figures/utils.R"))
 
 start_date = ymd("2020-08-31")
 
-tbl_rw = readr::read_csv(here::here("model-outputs", "mechanistic", "params.csv")) |>
+tbl_rw = readr::read_csv(here::here("model-outputs", "mechanistic", "params.csv.gz")) |>
     # Find beta parameters and parse name index
     filter(
         stringr::str_starts(parameter, "beta"),
-        iteration >= 500e3,
+        iteration >= 1e6,
     ) |>
     extract(
         parameter,
@@ -56,8 +56,10 @@ tbl_rw = readr::read_csv(here::here("model-outputs", "mechanistic", "params.csv"
 
 create_rw_plot = function(data) {
     data |>
+        group_by(date, region) |>
+        median_qi(beta) |>
         ggplot(aes(factor(date), beta)) +
-        stat_slab(side = "both") +
+        geom_pointrange(aes(ymin = .lower, ymax = .upper), size = 0.1) +
         standard_plot_theming() +
         # tick labels every 3 weeks
         scale_x_discrete(

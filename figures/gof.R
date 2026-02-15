@@ -9,7 +9,8 @@ library(tidyr)
 source(here::here("figures/utils.R"))
 
 # Read posterior predictives
-predictions = load_seir_predictive()
+predictions = load_seir_predictive() |>
+    select(!cutoff_date)
 
 # Read data
 data = readr::read_csv(here::here("model-outputs/mechanistic/data.csv")) |>
@@ -31,8 +32,8 @@ prediction_intervals = predictions |>
     median_qi()
 
 # Get theta posterior
-thetas = readr::read_csv(here::here("model-outputs/mechanistic/params.csv")) |>
-    filter(parameter == "theta") |>
+thetas = readr::read_csv(here::here("model-outputs/mechanistic/params.csv.gz")) |>
+    filter(parameter == "theta", iteration >= 1e6) |>
     transmute(
         region = normalise_region_names(region),
         .chain = factor(chain + 1),

@@ -48,7 +48,7 @@ load_backcalc_region_age = function() {
 
 load_seir_predictive = function() {
     readr::read_csv(
-        here::here("model-outputs", "mechanistic", "predictive.csv"),
+        here::here("model-outputs", "mechanistic", "predictive.csv.gz"),
         col_types = readr::cols(
             region = readr::col_character(),
             chain = readr::col_integer(),
@@ -58,6 +58,7 @@ load_seir_predictive = function() {
             prevalence = readr::col_double()
         )
     ) |>
+        filter(iteration %% 20e3 == 0) |> # thin chains for time
         dplyr::mutate(
             .chain = factor(chain + 1),
             .iteration = iteration + 1,

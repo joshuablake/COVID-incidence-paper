@@ -7,8 +7,11 @@ library(tidybayes)
 library(tidyr)
 source(here::here("figures/utils.R"))
 
-tbl_susc = readr::read_csv(here::here("model-outputs", "mechanistic", "params.csv")) |>
-    filter(parameter == "matrix_modifiers") |>
+tbl_susc = readr::read_csv(here::here("model-outputs", "mechanistic", "params.csv.gz")) |>
+    filter(
+        parameter == "matrix_modifiers",
+        iteration >= 1e6,
+    ) |>
     mutate(value = exp(value), region = normalise_region_names(region)) |>
     group_by(region) |>
     median_qi(value) 

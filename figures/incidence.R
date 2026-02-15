@@ -27,17 +27,12 @@ tbl_phenomenological_age = load_backcalc_age() |>
 
 full_predict = load_seir_predictive()
 poststrat_table = load_poststrat_table()
-tbl_mechanistic_England = full_predict |>
-    poststratify_SEIR(poststrat_table, new_pcr_pos)
-tbl_mechanistic_regions = full_predict |>
-    poststratify_SEIR(poststrat_table, new_pcr_pos, region)
-tbl_mechanistic_age = full_predict |>
-    poststratify_SEIR(poststrat_table, new_pcr_pos, age_group)
 
 p_incidence_England = bind_rows(
     tbl_phenomenological_England |>
         mutate(model = "Phenomenological"),
-    tbl_mechanistic_England |>
+    full_predict |>
+        poststratify_SEIR(poststrat_table, new_pcr_pos) |>
         mutate(model = "Mechanistic") |>
         rename(incidence = val),
 ) |>
@@ -55,7 +50,8 @@ save_plot(
 p_incidence_age = bind_rows(
     tbl_phenomenological_age |>
         mutate(model = "Phenomenological"),
-    tbl_mechanistic_age |>
+    full_predict |>
+        poststratify_SEIR(poststrat_table, new_pcr_pos, age_group) |>
         mutate(model = "Mechanistic") |>
         rename(incidence = val),
 ) |>
@@ -68,7 +64,8 @@ p_incidence_age = bind_rows(
 p_incidence_regions = bind_rows(
     tbl_phenomenological_regions |>
         mutate(model = "Phenomenological"),
-    tbl_mechanistic_regions |>
+    full_predict |>
+        poststratify_SEIR(poststrat_table, new_pcr_pos, region) |>
         mutate(model = "Mechanistic") |>
         rename(incidence = val),
 ) |>
