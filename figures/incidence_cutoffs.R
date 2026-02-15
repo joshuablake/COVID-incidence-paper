@@ -42,6 +42,7 @@ p_cutoffs_eng <- ggplot(panel_data, aes(x = day)) +
         data = gold_standard,
         aes(y = median),
         colour = "grey50",
+        linewidth = 0.5,
         linetype = "dashed"
     ) +
     # Panel-specific estimates
@@ -52,6 +53,7 @@ p_cutoffs_eng <- ggplot(panel_data, aes(x = day)) +
     ) +
     geom_line(
         aes(y = median),
+        linewidth = 0.5,
         colour = "#56B4E9"
     ) +
     facet_wrap(~cutoff_date) +
@@ -91,6 +93,7 @@ p_cutoffs_regions <- ggplot(panel_data_regions, aes(x = day)) +
     geom_line(
         data = gold_standard_regions,
         aes(y = median),
+        linewidth = 0.5,
         colour = "grey50",
         linetype = "dashed"
     ) +
@@ -102,6 +105,7 @@ p_cutoffs_regions <- ggplot(panel_data_regions, aes(x = day)) +
     ) +
     geom_line(
         aes(y = median),
+        linewidth = 0.5,
         colour = "#56B4E9"
     ) +
     facet_grid(region ~ cutoff_date, scales = "free_y") +

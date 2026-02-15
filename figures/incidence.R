@@ -24,7 +24,7 @@ p_incidence_England = bind_rows(
         rename(incidence = val),
 ) |>
     ggplot(aes(date, incidence, colour = model, fill = model)) +
-    stat_lineribbon(alpha = 0.4, linewidth = 0.2, .width = 0.95) +
+    stat_lineribbon(alpha = 0.4, linewidth = 0.5, .width = 0.95) +
     incidence_plot_theming() +
     theme(legend.position = "bottom")
 
@@ -43,7 +43,7 @@ p_incidence_age = bind_rows(
         rename(incidence = val),
 ) |>
     ggplot(aes(date, incidence, colour = model, fill = model)) +
-    stat_lineribbon(alpha = 0.4, linewidth = 0.2, .width = 0.95) +
+    stat_lineribbon(alpha = 0.4, linewidth = 0.5, .width = 0.95) +
     facet_wrap(~age_group, nrow = 3) +
     incidence_plot_theming() +
     theme(axis.title.y = element_blank())
@@ -57,7 +57,7 @@ p_incidence_regions = bind_rows(
         rename(incidence = val),
 ) |>
     ggplot(aes(date, incidence, colour = model, fill = model)) +
-    stat_lineribbon(alpha = 0.4, linewidth = 0.2, .width = 0.95) +
+    stat_lineribbon(alpha = 0.4, linewidth = 0.5, .width = 0.95) +
     facet_wrap(~region, nrow = 3) +
     incidence_plot_theming()
 
