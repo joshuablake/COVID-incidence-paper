@@ -30,7 +30,7 @@ panel_data <- england_stats |>
     filter(cutoff_date < final_date)
 
 # Plot
-p_cutoffs <- ggplot(panel_data, aes(x = day)) +
+p_cutoffs_eng <- ggplot(panel_data, aes(x = day)) +
     # Gold Standard (Background)
     geom_ribbon(
         data = gold_standard,
@@ -59,7 +59,64 @@ p_cutoffs <- ggplot(panel_data, aes(x = day)) +
 
 save_plot(
     filename = "incidence_cutoffs.pdf",
-    plot = p_cutoffs,
+    plot = p_cutoffs_eng,
     width = 17.6, # Same width as other large plots
     height = 12   # Adjust height as needed for panels
+)
+
+# --- Plot 2: Regions ---
+
+# Filter for regions (not England)
+region_stats <- incidence_stats |>
+    filter(region != "England")
+
+# Create Gold Standard dataset for regions (remove cutoff_date to show on all facets)
+gold_standard_regions <- region_stats |>
+    filter(cutoff_date == final_date) |>
+    select(-cutoff_date)
+
+# Create dataset for panels (exclude final cutoff)
+panel_data_regions <- region_stats |>
+    filter(cutoff_date < final_date)
+
+# Plot
+p_cutoffs_regions <- ggplot(panel_data_regions, aes(x = day)) +
+    # Gold Standard (Background)
+    geom_ribbon(
+        data = gold_standard_regions,
+        aes(ymin = q025, ymax = q975),
+        fill = "grey50",
+        alpha = 0.2
+    ) +
+    geom_line(
+        data = gold_standard_regions,
+        aes(y = median),
+        colour = "grey50",
+        linetype = "dashed"
+    ) +
+    # Panel-specific estimates
+    geom_ribbon(
+        aes(ymin = q025, ymax = q975),
+        fill = "#56B4E9", # Nice blue
+        alpha = 0.4
+    ) +
+    geom_line(
+        aes(y = median),
+        colour = "#56B4E9"
+    ) +
+    facet_grid(region ~ cutoff_date, scales = "free_y") +
+    incidence_plot_theming() +
+    theme(
+        axis.text.x = element_text(angle = 45, hjust = 1, size = 5),
+        axis.text.y = element_text(size = 5),
+        strip.text = element_text(size = 6),
+        panel.spacing = unit(0.2, "lines")
+    )
+
+save_plot(
+    filename = "incidence_cutoffs_region.pdf",
+    plot = p_cutoffs_regions,
+    width = 18,
+    height = 24,
+    units = "cm"
 )
