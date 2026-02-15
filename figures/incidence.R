@@ -76,5 +76,5 @@ save_plot(
     filename = "incidence_stratified.pdf",
     plot = p_combined,
     width = 17.6,
-    height = 10
+    height = 13
 )
