@@ -9,6 +9,7 @@
 %% ABOVE THIS LINE IS PNAS TEMPLATE
 %% BELOW THIS LINE IS MY STUFF
 
+
 % \usepackage[utf8]{inputenc}
 % \usepackage{amssymb}
 % \usepackage{floatpag}
@@ -94,7 +95,7 @@
 % Please add a significance statement to explain the relevance of your work
 \significancestatement{
 Understanding the transmission dynamics of a pandemic is essential for guiding public health interventions.
-This study demonstrates the potential of data from prevalence surveys, specifically from the Coronavirus Infection Survey, to provide reliable estimates of viral incidence and transmission.
+This study demonstrates the potential of data from prevalence surveys, specifically from the Coronavirus Infection Survey, to provide reliable and timely estimates of viral incidence and transmission.
 Unlike most sources of data from which transmission dynamics can be inferred, this large survey recruited a sample broadly representative of the general population and tested them irrespective of symptoms or contacts.
 The findings highlight the importance of integrating large-scale, randomly sampled prevalence surveys into pandemic surveillance systems.
 }
@@ -114,12 +115,12 @@ JB wrote the initial draft including visualisations.
 
 \begin{abstract}
 During the pandemic caused by the SARS-CoV-2 virus, the UK’s Office for National Statistics ran a large prevalence survey, the Coronavirus Infection Survey (CIS).
-Individuals were selected at random with those successfully recruited were then tested on a predetermined schedule removing bias by individuals' changing propensity to test and/or infection status.
+Individuals were selected at random with those successfully recruited then tested on a predetermined schedule removing bias by individuals' changing propensity to test and/or infection status.
 CIS, mainly designed to provide SARS-CoV-2 prevalence estimates, was a unique resource never previously available during a pandemic.
 %removing  most reporting biases.
 Here we investigate how this survey can be used to provide deeper insights into the pandemic, including estimates of incidence and transmission.
 To do this, we employ complementary modelling approaches, trading off bias and variance, and unravelling different aspects of the transmission dynamics.
-We call for further work to optimise prevalence surveys as a potentially leading tool for future pandemic surveillance.
+We call for further work to optimise prevalence surveys as a leading tool for future pandemic surveillance, with the potential to be more robust and timely than existing methods.
 \end{abstract}
 
 \dates{This manuscript was compiled on \today}
@@ -130,12 +131,11 @@ We call for further work to optimise prevalence surveys as a potentially leading
 \thispagestyle{firststyle}
 \ifthenelse{\boolean{shortarticle}}{\ifthenelse{\boolean{singlecolumn}}{\abscontentformatted}{\abscontent}}{}
 
-\firstpage[3]{4}
+\firstpage{4}
 % Use \firstpage to indicate which paragraph and line will start the second page and subsequent formatting. In this example, there are a total of 11 paragraphs on the first page, counting the first level heading as a paragraph. The value {12} represents the number of the paragraph starting the second page. If a paragraph runs over onto the second page, include a bracket with the paragraph line number starting the second page, followed by the paragraph number in curly brackets, e.g. "\firstpage[4]{11}".
 
 
 % If your first paragraph (i.e. with the \dropcap) contains a list environment (quote, quotation, theorem, definition, enumerate, itemize...), the line after the list may have some extra indentation. If this is the case, add \parshape=0 to the end of the list environment.
-{\color{red} I have started commenting and editing, not yet finished, will continue later today. However, one of the important comments I have relate to the use of the results in real time. We should make much better use of them. I suggest you split the results section into two subsections, eg "Retrospective estimation" and "prospective estimation"; the first subsection reports results using all data, the second includes results on the real time analyses. These titles are only indicative, if you find better ones, used them. I am going to work a bit more later today, and I am available to discuss the above idea over the weekend}
 \dropcap{T}he pandemic caused by SARS-CoV-2 infections resulted in a horrific toll on humanity, inflicting 31 million deaths~\citep{whoCOVIDExcess,economistCOVIDExcess}, stretching healthcare services to the brink of collapse~\citep{fongNHS}, and disrupting societies worldwide.
 The impact motivated governments to invest in infectious disease surveillance on a scale never previously seen. The UK's Coronavirus Infection Survey (CIS)~\citep{cisMethodsONS,CIS}, was a significant example.
 Households were selected at random from UK address lists and invited to enrol for regular testing according to pre-defined schedules.
@@ -150,7 +150,7 @@ More useful is knowledge of incidence of infection, the number of new infections
 
 %knowledge of the incidence of infection, the number of new infections over a specific period, and understannding of the infection transmission mechanism a more useful metric, although much more complex to estimate from the typically available data ({\it{e.g.}} information on severe infection sequelae). Furthermore, reconstruction of the transmission mechanism generating new infections provide an even richer source of evidence to inform response.
 
-A variety of methods exist to estimate infection incidence and transmission, with methods often categorised by how explicitly they represent the underlying biological and epidemiological processes. At one extreme, purely statistical (often referred to as ``phenomenological'') approaches focus on deriving estimates of the rate at which infections occur, make minimal assumptions on the underlying infection and transmission processes~\citep{beckerCOVIDmodels,garnettMathematical}.
+A variety of methods exist to estimate infection incidence and transmission, with methods often categorised by how explicitly they represent the underlying biological and epidemiological processes. At one extreme, purely statistical (often referred to as ``phenomenological'') approaches focus on deriving estimates of the rate at which infections occur, making minimal assumptions on the underlying infection and transmission processes~\citep{beckerCOVIDmodels,garnettMathematical}.
 This reduces the risk of introducing bias through incorrect assumptions but cannot capture the underlying dynamics of transmission. At the other extreme lie approaches based on mechanistic models, which explicitly include a representation of the process that generates new infections and the disease state of individuals in a population~\citep{andersonInfectious,keelingModeling}.
 These models provide deeper insights into transmission dynamics, allowing estimation of the population immunity of different demographic groups and the rate at which susceptible individuals become infected through interaction with infectious individuals.
 
@@ -180,7 +180,7 @@ The second model, a semi-stochastic ordinary differential equation (ODE)-based m
 The first sub-model is an SEIR-based transmission sub-model tracking the population fractions that are Susceptible, Exposed (infected but not yet infectious), Infectious, and Removed (no longer infectious but playing no further part in transmission, primarily due to immunity).
 The assumption of perfect immunity is suitable over the time period we consider~\citep{weiRisk,murchuReinfectionRisk}.
 The second is an observation sub-model, linking the transmission sub-model to the observed RT-PCR test results in CIS.
-The model is stratified by age and specified by geographical area (region), making the assumption that infection processes in the different regions are independent, reasonable when infection is widespread (REF?).
+The model is stratified by age and specified by geographical area (region), making the assumption that infection processes in the different regions are independent reasonable when infection is widespread (REF?).
 Stratification incorporates some heterogeneity and survey non-response.
 Susceptible individuals in age group $a$ at time $t$ become exposed at a rate $\lambda_a(t)$, which is a function of: relative susceptibility of different age groups; time-varying contact rates that combine pre-pandemic surveys with real-time data on mobility and time-use; the proportion of the population currently infectious; and a transmission component $\beta(t)$ that evolves stochastically over time to account for unmodelled phenomena, such as changes in the mix of circulating viral variants and adherence to pandemic mitigation measures (\eg mask-wearing) (\textit{Materials and Methods}).
 
@@ -278,14 +278,16 @@ In all regions, incidence then decreases during Nov 2020, which partially coinci
 \label{fig:incidence-strat}
 \end{figure*}
 
-A noticeable discrepancy between the models is the reconstruction of incidence in late December 20220/early January 2021 for England.
+A noticeable discrepancy between the models is the reconstruction of incidence in late December 2020/early January 2021 for England.
 The phenomenological model estimates a period of increasing incidence in early January after a second peak in late December(\cref{fig:incidence-Eng}).
 The mechanistic model, instead, only identifies the second December peak, although the wide credible intervals include the mechanistic model's estimate for the majority of the period.
 The second peak occurs in late December or early January in all regions (\cref{fig:incidence-strat}(A)); this second peak is larger than the first in all regions except the North West, and Yorkshire and the Humber.
 
+\subsection*{Timeliness}
 Estimates from the mechanistic model are more precise, reflecting the addition of the SEIR structure for the underlying transmission dynamics (\textit{Materials and Methods: Mechanistic model}).
-This also allows production of stable incidence estimates with a 1--2 week lag from the data becoming available (\cref{fig:incidence-cutoffs}).
 The lag is at the upper end of this limit when there are major changes such as a national lockdown and when there is limited data, such as early in the period considered in smaller regions (\cref{fig:incidence-cutoffs-region}).
+Errors in initial estimates are often in the same direction in different regions (\cref{fig:incidence-cutoffs-region}).
+Overall, we produce stable incidence estimates with a 1--2 week lag from the data becoming available (\cref{fig:incidence-cutoffs}).
 \begin{figure*}%[tbhp]
 \centering
 \includegraphics[width=17.6cm]{figures/incidence_cutoffs}
@@ -354,19 +356,22 @@ Our study reinforces the value of using different models with different assumpti
 The mechanistic model provides more useful insights, by decomposing the components of transmission, allows estimation  of age-specific susceptibility,and provide more precise estimates. 
 However, the phenomenological model is more flexible; can better fit the data, particularly in granular sub-populations; and it includes ethnicity as a covariate, allowing an equitable response to the pandemic and a better adjustment for the non-response bias in the survey.
 An example of this is that the mechanistic model does not always capture all changes in incidence, especially when changes in transmission differ between age groups.
-Therefore it appears to compromise between the 12--16 and 17--25 age groups two age groups in opposite directions: overestimating the prevalence and incidence in the 12--16 age group and underestimating it in the 17--25 age group (\cref{fig:gof}).
+Therefore it appears to compromise between the 12--16 and 17--25 age groups in opposite directions: overestimating the prevalence and incidence in the 12--16 age group and underestimating it in the 17--25 age group (\cref{fig:gof}).
 The phenomenological model is more flexible and therefore has a better fit to the prevalence data in these age groups.
 This can be interpreted as similar to the classic bias--variance trade-off: by making stronger assumptions the mechanistic model reduces the variance of the estimates but has the potential to introduce bias if those assumptions are violated.
-Alternatively a more flexible mechaistic model could be developed to allow these changes to be captured.
+Alternatively a more flexible mechanistic model could be developed to allow these changes to be captured.
 A more flexible model would require more computationally-efficient inference, such as Hamiltonian Monte Carlo or approximate Bayesian methods~\citep{strumbeljPresent}.
 As well as allowing for more flexible models, which would capture age-specific changes in transmission over time, such work would allow faster model fitting, a high-priority when responding to an emergency such as a pandemic.
 
-Our analysis has important implications for future pandemic preparedness and response. We have shown that a prevalence survey with randomly-selected participants are extremely useful for monitoring an ongoing pandemic with clear advantages over other data collection methods.
+Our analysis has important implications for future pandemic preparedness and response. We have shown that a prevalence survey with randomly-selected participants is extremely useful for monitoring an ongoing pandemic with clear advantages over other data collection methods.
 Yet these surveys, testing individuals following a pre-determined schedule independent of symptoms, were globally rare during the SARS-CoV-2 pandemic, likely due to their cost.
-We showed that our methods can reliably estimate incidence with around a 2-week lag, comparable to methods used in real-time during the pandemic~\citep{spimConsensus,richardsModellingUKReport}, and often with a 1-week lag.
-Estimates which remain inaccurate at a 1-week lag are often inaccurate in the same direction across all regions; therefore, extending our method to borrow information between regions should improve how rapidly reliable estimates can be produced.
-Inaccurate estimates occurred most often when behavior changes are large (\eg following the announcement of a national lockdown); behavior at these times may change dramatically.
-Dramatic behavior changes may be better modelled by replacing the Gaussian random walk with a distribution with fatter tails (\eg t-distribution).
+
+We showed that our methods can reliably estimate incidence with around a 2-week lag,  and often with a 1-week lag.
+This is comparable or better than  methods used in real-time during the pandemic~\citep{spimConsensus,richardsModellingUKReport}, which had around a 2-week lag.
+Furthermore, there is potential for an extended model to produce more timely estimates.
+When our estimates were inaccurate at a 1-week lag, they were often inaccurate in the same direction across all regions; therefore, borrowing information between regions would likely further reduce the lag.
+Another possible improvement is to address that inaccurate estimates occurred most often when behavior changes are large (\eg following the announcement of a national lockdown).
+These changes may be better modelled by replacing the Gaussian random walk with a distribution with fatter tails (\eg t-distribution).
 To implement these changes, a more efficient inference algorithm is likely required, but implementing this would allow more information to be extracted from CIS-like studies.
 If this potential can be realised, CIS-like studies will be able to form a major component of surveillance in future pandemics, and be more robust than current methodologies.
 
@@ -386,12 +391,11 @@ We assume void results are uninformative, as in previous work (CITE).
 %% During this period, the CIS was of sufficient size, and transmission was sufficiently prevalent, to provide enough data for the analyses.
 %% Second, incidence began to rise over this period, after the fall due to the first lockdown.
 This period is chosen to end before substantial vaccine roll-out, which affected many important aspects of the analysis; most relevantly, the duration of detectability and the increase in immunity in the population.
-
 We grouped tests by region and age for both analyses.
 In the phenomenological model, we also grouped tests by sex and ethnicity, due to there being evidence of differential non-response in these groups~\citep{pouwelsCommunity}.
 However, the additional stratification is not possible in the mechanistic model due to computational constraints and a lack of contact data for these groups.
 For regions, we used the nine regions of England (International Territorial Level 1); these are: North East, North West, Yorkshire and the Humber (commonly abbreviated to Yorkshire), East Midlands, West Midlands, East, London, South East, and South West~\citep{onsRegions}.
-For age groups, we used under 11 (pre-school and primary school), 12--16 (compulsory secondary school), 17--25 (adolescents and young adults who may remain in formal education), 26--50 (younger working age adults), 51--70 (older working age adults), and 71+ (elderly).
+For age groups, we used under 12 (pre-school and primary school), 12--16 (compulsory secondary school), 17--25 (adolescents and young adults who may remain in formal education), 26--50 (younger working age adults), 51--70 (older working age adults), and 71+ (elderly).
 We used two levels of ethnic grouping.
 Broad groupings (White and non-White), because the White population makes up over 80\% of the UK, and more granular groupings (Asian, Black, Mixed, White, and Other).
 
@@ -431,7 +435,7 @@ Z_t(\set{S})
 &= \frac{\sum_{j \in \set{S}} Z_{j,t} N_j}{\sum_{j \in \set{S}} N_j}
 \label{backcalc:eq:poststratify}
 \end{align}
-where $N_j$ is the population size of stratum $j$, provided by the ONS.
+where $N_j$ is the population size of stratum $j$.
 
 \subsection*{Mechanistic model}
 The mechanistic model is an age-structured compartmental SEIR model.
