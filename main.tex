@@ -262,26 +262,11 @@ Results show a slow rise and plateau from Sep 2020 to early Nov 2020 with a peak
 \label{fig:incidence-Eng}
 \end{figure}
 
-Similarly, there is good agreement between the models when considering incidence estimates for each region (\cref{fig:incidence-strat}(A)).
-A slow increase in incidence is estimated to occur over the Sep to Oct 2020 period, peaking in Oct 2020 in most regions.
-An exception is the North East and East of England regions; these regions are smoother without a consistent direction change.
-In all regions, incidence then decreases during Nov 2020, which partially coincides with the national lockdown in force in England between 5 Nov 2020 and 2 Dec 2020~\citep{ifgTimeline}.
-\begin{figure*}%[tbhp]
-\centering
-\includegraphics{figures/incidence_stratified}
-\caption{%
-    Incidence estimates (median and 95\% credible interval) from both models.
-    Incidence proportion is the proportion of the population that becomes RT-PCR positive on a given day.
-    (A) Estimates by region.
-    (B) Estimates by age group.
-}
-\label{fig:incidence-strat}
-\end{figure*}
-
 A noticeable discrepancy between the models is the reconstruction of incidence in late December 2020/early January 2021 for England.
 The phenomenological model estimates a period of increasing incidence in early January after a second peak in late December(\cref{fig:incidence-Eng}).
 The mechanistic model, instead, only identifies the second December peak, although the wide credible intervals include the mechanistic model's estimate for the majority of the period.
 The second peak occurs in late December or early January in all regions (\cref{fig:incidence-strat}(A)); this second peak is larger than the first in all regions except the North West, and Yorkshire and the Humber.
+
 
 \subsection*{Timeliness}
 Estimates from the mechanistic model are more precise, reflecting the addition of the SEIR structure for the underlying transmission dynamics (\textit{Materials and Methods: Mechanistic model}).
@@ -299,29 +284,36 @@ Overall, we produce stable incidence estimates with a 1--2 week lag from the dat
 \label{fig:incidence-cutoffs}
 \end{figure*}
 
+\subsection*{Incidence by region}
 
-\subsection*{Impact of model assumptions}
+There is good agreement between the models when considering incidence estimates for each region (\cref{fig:incidence-strat}(A)).
+A slow increase in incidence is estimated to occur over the Sep to Oct 2020 period, peaking in Oct 2020 in most regions.
+An exception is the North East and East of England regions; these regions are smoother without a consistent direction change.
+In all regions, incidence then decreases during Nov 2020, which partially coincides with the national lockdown in force in England between 5 Nov 2020 and 2 Dec 2020~\citep{ifgTimeline}.
+\begin{figure*}%[tbhp]
+\centering
+\includegraphics{figures/incidence_stratified}
+\caption{%
+    Incidence estimates (median and 95\% credible interval) from both models.
+    Incidence proportion is the proportion of the population that becomes RT-PCR positive on a given day.
+    (A) Estimates by region.
+    (B) Estimates by age group.
+}
+\label{fig:incidence-strat}
+\end{figure*}
 
-Age-specific results show the impact of model assumptions (see SI: Methods) on the estimates (\cref{fig:incidence-strat}(B)).
+\subsection*{Incidence by age}
+
+By age, the two models agree on the general trends and credible intervals for incidence proportion almost always overlap in ages 26 and up (\cref{fig:incidence-strat}(B)).
+The timings of peaks coincide across age groups, and the highest peak is in the 12--16 age group.
+There is some disagreement on the incidence proportions for the under 26 age groups, in differing directions at different points.
+The likely driver of this is data on contact rates, used only in the mechanistic model.
 Contact rates decrease significantly for 12--16 year-olds during the school half-term break at the end of October, as they have many contacts at school.
 The decrease in contact rates flows through into the incidence estimates from the mechanistic model, with a drop to 0.076\% (0.071--0.082\%) from 0.18\% (0.16--0.19\%) between 18 Oct and 1 Nov 2020.
 On the other hand, the phenomenological model estimates incidence to be flat in these age groups over this period.
 However, the cumulative incidence over this period is almost identical between the models, at 1.6\% (1.5--1.8\%) for the phenomenological model and 1.6\% (1.5--1.7\%) for the mechanistic model.
 
-\subsection*{Decomposition of transmission components}
-
-We estimate that the unexplained component of transmission initially decreases, is flat for a few weeks, then rises in November and December (\cref{fig:rw-London,fig:rw-non-London}).
-\begin{figure}%[tbhp]
-\centering
-\includegraphics{figures/rw_London}
-\caption{%
-    The component of transmission (posterior median and 95\% CrI) not explained by changes in contact patterns (as measured by Google Mobility data) and increasing population immunity.
-    London shown, for other regions see \cref{fig:rw-non-London}.
-}
-\label{fig:rw-London}
-\end{figure}
-
-\subsection*{Difference in transmission by age}
+\subsection*{Susceptibility by age}
 
 An advantage of the CIS dataset is that it both captures all age groups two years old and over and has minimal bias.
 The mechanistic model can exploit this data to estimate how individual susceptibility differs by age.
@@ -336,6 +328,19 @@ Our estimates for the susceptibility of children under 11, relative to adults, r
     Estimate is per region (posterior median and 95\% credible interval shown). 
 }
 \label{fig:children}
+\end{figure}
+
+\subsection*{Decomposition of transmission components}
+
+We estimate that the unexplained component of transmission initially decreases, is flat for a few weeks, then rises in November and December (\cref{fig:rw-London,fig:rw-non-London}).
+\begin{figure}%[tbhp]
+\centering
+\includegraphics{figures/rw_London}
+\caption{%
+    The component of transmission (posterior median and 95\% CrI) not explained by changes in contact patterns (as measured by Google Mobility data) and increasing population immunity.
+    London shown, for other regions see \cref{fig:rw-non-London}.
+}
+\label{fig:rw-London}
 \end{figure}
 
 \section*{Discussion}
