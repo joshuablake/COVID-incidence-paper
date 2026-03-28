@@ -62,8 +62,7 @@ p_cutoffs_eng <- ggplot(panel_data, aes(x = day)) +
 save_plot(
     filename = "incidence_cutoffs.pdf",
     plot = p_cutoffs_eng,
-    width = 17.6, # Same width as other large plots
-    height = 12   # Adjust height as needed for panels
+    full_page = TRUE
 )
 
 # --- Plot 2: Regions ---
@@ -120,7 +119,5 @@ p_cutoffs_regions <- ggplot(panel_data_regions, aes(x = day)) +
 save_plot(
     filename = "incidence_cutoffs_region.pdf",
     plot = p_cutoffs_regions,
-    width = 18,
-    height = 24,
-    units = "cm"
+    full_page = TRUE
 )
