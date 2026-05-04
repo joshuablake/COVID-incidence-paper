@@ -58,7 +58,7 @@ load_seir_predictive = function() {
             prevalence = readr::col_double()
         )
     ) |>
-        filter(iteration %% 20e3 == 0) |> # thin chains for time
+        filter(iteration %% 20e3 == 0, iteration >= 1e6) |> # thin chains, remove burn-in
         dplyr::mutate(
             .chain = factor(chain + 1),
             .iteration = iteration + 1,
