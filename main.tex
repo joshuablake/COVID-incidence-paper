@@ -263,6 +263,7 @@ Unlike the phenomenological approach, model parameters now have a direct physica
 The phenomenological model produces estimates of positivity  incidence, whereas the mechanistic model can produce estimates of both infection (entries into state $p_0$) and positivity (entries into state $p_1$) incidence. %% Both models produce estimates of SARS-CoV-2 incidence proportion, the proportion of the population that becomes RT-PCR positive on a given day (\cref{fig:incidence-Eng}).
 \cref{fig:incidence-Eng} presents estimates of positivity incidence from both models. The
 results show a slow rise and plateau from Sep 2020 to early Nov 2020 with a peak incidence proportion of 0.081\% (0.073--0.091\%) using the phenomenological model or 0.072\% (0.067--0.076\%) using the mechanistic model, a decrease during Nov 2020, then a fast increase in positivity incidence peaking on 24 (21--28) Dec 2020 at 0.16\% (0.14--0.19\%) using the phenomenological model or on 21 (21--21) Dec 2020 at 0.15\% (0.14--0.16\%) using the mechanistic model.
+Estimates of incidence at the peak are higher than they appear in \cref{fig:incidence-Eng} because that figure shows the median posterior estimate per day, as opposed to the median posterior estimate of the peak, which will be higher when the peak is uncertain (\cref{fig:spaghetti}); this phenomenon and the communication challenges it poses have been previously described in more detail~\citep{mccabeCommunicating} .
 \begin{figure}%[tbhp]
 \centering
 \includegraphics{figures/incidence_England}
@@ -929,6 +930,15 @@ The remaining parameters have weakly informative priors.
 
 \clearpage
 \section*{Supplementary figures}
+
+\begin{figure*}
+\centering
+\includegraphics{figures/spaghetti}
+\caption{%
+    Plot showing 50 randomly-chosen posterior samples of the trajectory of incidence estimates (sometimes referred to as a spaghetti plot) for (A) the mechanistic model and (B) the phenomenological model.
+}
+\label{fig:spaghetti}
+\end{figure*}
 
 \begin{figure*}
 \centering
