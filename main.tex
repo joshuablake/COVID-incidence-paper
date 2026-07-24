@@ -166,7 +166,7 @@ One study used a granular geographical scale and a complex observational model b
 Others took a phenomenological approach~\citep{abbottCISincidence,colmanAscertainment,mccabeCISincidence,ealesAppropriately} without fully propagating the uncertainty in CIS estimates of prevalence to the resulting estimates of infection incidence.
 %, relying on only summary statistics.
 
-In this work, we reconsider estimation of infection incidence and transmission from CIS data. CIS's comprehensive and consistently collected data offer a unique opportunity to derive critical epidemiological quantities (e.g the relative susceptibility to infection of children to adults) with minimal reliance on additional data sources. We advance previous work by fitting  both phenomenological and mechanistic models {\it solely} to CIS data; provide a more accurate representation of the duration of RT-PCR positivity, using a duration distribution estimated from a representative sample;  fully propagate the survey uncertainty; and demonstrate the ability to obtain prospective infection incidence estimates as timely as through other approaches using alternative surveillance data {\color{red}(REF)}.
+In this work, we reconsider estimation of infection incidence and transmission from CIS data. CIS's comprehensive and consistently collected data offer a unique opportunity to derive critical epidemiological quantities (e.g the relative susceptibility to infection of children to adults) with minimal reliance on additional data sources. We advance previous work by fitting  both phenomenological and mechanistic models {\it solely} to CIS data; provide a more accurate representation of the duration of RT-PCR positivity, using a duration distribution estimated from a representative sample;  fully propagate the survey uncertainty; and demonstrate the ability to obtain prospective infection incidence estimates as timely as through other approaches using alternative surveillance data.
 
 %In this 
 %proof-of-concept study, we show that CIS, 
@@ -211,12 +211,12 @@ Parameter $\omega_0$ is related to the average time from exposure to having a de
     every state/.style={draw,rectangle},
     ]
 
-    \node[state] (S) {$s$};
-    \node[state, right=of S] (E1) {$e_1$};
-    \node[state, right=of E1] (E2) {$e_2$};
-    \node[state, right=of E2] (I1) {$i_1$};
-    \node[state, right=of I1] (I2) {$i_2$};
-    \node[state, right=of I2] (R) {$r$};
+    \node[state] (S) {$s(t)$};
+    \node[state, right=of S] (E1) {$e_1(t)$};
+    \node[state, right=of E1] (E2) {$e_2(t)$};
+    \node[state, right=of E2] (I1) {$i_1(t)$};
+    \node[state, right=of I1] (I2) {$i_2(t)$};
+    \node[state, right=of I2] (R) {$r(t)$};
 
     \path (S) edge node {$\vec{\lambda}(t)$} (E1)
           (E1) edge node {$\sigma$} (E2)
@@ -224,10 +224,10 @@ Parameter $\omega_0$ is related to the average time from exposure to having a de
           (I1) edge node {$\gamma$} (I2)
           (I2) edge node {$\gamma$} (R);
 
-    \node[state, below=3cm of E1] (P0) {$p_0$};
-    \node[state, right=of P0] (P1) {$p_1$};
-    \node[state, right=of P1] (P2) {$p_2$};
-    \node[state, right=of P2] (P3) {$p_3$};
+    \node[state, below=3cm of E1] (P0) {$p_0(t)$};
+    \node[state, right=of P0] (P1) {$p_1(t)$};
+    \node[state, right=of P1] (P2) {$p_2(t)$};
+    \node[state, right=of P2] (P3) {$p_3(t)$};
     \node[state, right=of P3, draw=none] (P4) {};
 
     \path  (S) edge node {$\vec{\lambda}(t)$} (P0)
@@ -405,16 +405,14 @@ Alternatively a more flexible mechanistic model could be developed to allow thes
 Such a more flexible model would, however, be more challenging to calibrate, likely  requiring  more computationally-efficient inferential approaches~\citep{strumbeljPresent} particularly if the epidemic response needs to be informed in real time.
 %As well as allowing for more flexible models, which would capture age-specific changes in transmission over time, such work would allow faster model fitting, a high-priority when responding to an emergency such as a pandemic.
 
-{\color{red}
 While CIS data is much robust and representative than other sources of epidemiological data available in the UK during the pandemic, it is not fully representative as not all individuals invited to take part do so.
 Stratifying data by age and region corrects for much of this.
 The phenomenological model also uses ethnicity as a covariate, further reducing the impact of any non-representativeness.
 However, we could not incorporate ethnicity in the mechanistic model owing to a lack of information on contact rates by ethnicity.
-This data has now been collected for the post-pandemic period~\citep{goodfellowReconnect}, enabling such an extension in future epidemics.
-The extension would ideally include additional parameters, which faces the inference issues discussed in the previous paragraph.
+These data have now been collected for the post-pandemic period~\citep{goodfellowReconnect}, enabling such an extension in future epidemics.
+The extension would ideally include additional parameters to infer contacts between ethnic groups; adding parameters faces the inference issues discussed in the previous paragraph.
 Vaccination rates in CIS participants were also higher than the national average~\citep{pouwelsMRPvaccination}; this does not directly affect the time period considered in this study, as it is prior to vaccination, but vaccination is likely correlated with other behaviours and/or characteristics which are relevant.
 There could be additional, unmeasured non-representativeness.
-}
 
 Our work has important implications for future pandemic preparedness and response. 
 %We have shown that a prevalence survey with randomly-selected participants is extremely useful for monitoring an ongoing pandemic with clear advantages over other data collection methods.
@@ -744,11 +742,14 @@ The use of the EC distribution add the following equations to the system of ODEs
     \frac{d\vec{p}_2(t)}{dt} &= \omega_1 \vec{p}_1(t) - \omega_{2} \vec{p}_2(t) \\
     \frac{d\vec{p}_3(t)}{dt} &= \chi \omega_{2} \vec{p}_2(t) - \omega_{3} \vec{p}_3(t)
 \end{align}
-where $l=3$ and $\omega_0$, $\omega_1$, $\omega_2$, and $\chi$ are parameters of the EC distribution (\cref{SEIR:table:ec-params}).
+%%where $l=3$ and $\omega_0$, $\omega_1$, $\omega_2$, and $\chi$ are 
+where $\omega_0$ is the inverse of the expected time from infection to the infection becoming detectable, and $l = 3$, $\omega_1$, $\omega_2$, $\omega_3$, and $\chi$ are
+parameters of the EC distribution (\cref{SEIR:table:ec-params}).
 \begin{table}
     \centering
     \begin{tabular}{c c c c c c}
-        $l$ & $\omega_0$ & $\omega_{2}$ & $\omega_{3}$ & $\chi$ \\
+%%        $l$ & $\omega_0$ & $\omega_{2}$ & $\omega_{3}$ & $\chi$ \\
+        $l$ & $\omega_0$ & $\omega_{1}$ &\omega_{2}$ & $\omega_{3}$ & $\chi$ \\
         3 & 0.3333 & 0.0820 & 0.126 & 0.0223 & 0.00973  \\
     \end{tabular}
     \caption{Parameters for the observation model.}
