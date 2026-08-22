@@ -166,7 +166,7 @@ One study used a granular geographical scale and a complex observational model b
 Others took a phenomenological approach~\citep{abbottCISincidence,colmanAscertainment,mccabeCISincidence,ealesAppropriately} without fully propagating the uncertainty in CIS estimates of prevalence to the resulting estimates of infection incidence.
 %, relying on only summary statistics.
 
-In this work, we reconsider estimation of infection incidence and transmission from CIS data. CIS's comprehensive and consistently collected data offer a unique opportunity to derive critical epidemiological quantities (e.g the relative susceptibility to infection of children to adults) with minimal reliance on additional data sources. We advance previous work by fitting  both phenomenological and mechanistic models {\it solely} to CIS data; provide a more accurate representation of the duration of RT-PCR positivity, using a duration distribution estimated from a representative sample;  fully propagate the survey uncertainty; and demonstrate the ability to obtain prospective infection incidence estimates as timely as through other approaches using alternative surveillance data.
+In this work, we reconsider estimation of infection incidence and transmission from CIS data. CIS's comprehensive and consistently collected data offer a unique opportunity to derive critical epidemiological quantities (e.g the relative susceptibility to infection of children to adults) with minimal reliance on additional data sources. We advance previous work by fitting  both phenomenological and mechanistic models {\it solely} to CIS data; provide a more accurate representation of the duration of RT-PCR positivity, using a duration distribution estimated from a representative sample;  fully propagate the survey uncertainty; and demonstrate the ability to obtain infection incidence estimates as timely as through other approaches using alternative surveillance data.
 
 %In this 
 %proof-of-concept study, we show that CIS, 
@@ -262,8 +262,10 @@ Unlike the phenomenological approach, model parameters now have a direct physica
 
 The phenomenological model produces estimates of positivity  incidence, whereas the mechanistic model can produce estimates of both infection (entries into state $p_0$) and positivity (entries into state $p_1$) incidence. %% Both models produce estimates of SARS-CoV-2 incidence proportion, the proportion of the population that becomes RT-PCR positive on a given day (\cref{fig:incidence-Eng}).
 \cref{fig:incidence-Eng} presents estimates of positivity incidence from both models. The
-results show a slow rise and plateau from Sep 2020 to early Nov 2020 with a peak incidence proportion of 0.081\% (0.073--0.091\%) using the phenomenological model or 0.072\% (0.067--0.076\%) using the mechanistic model, a decrease during Nov 2020, then a fast increase in positivity incidence peaking on 24 (21--28) Dec 2020 at 0.16\% (0.14--0.19\%) using the phenomenological model or on 21 (21--21) Dec 2020 at 0.15\% (0.14--0.16\%) using the mechanistic model.
-Estimates of incidence at the peak are higher than they appear in \cref{fig:incidence-Eng} because that figure shows the median posterior estimate per day, as opposed to the median posterior estimate of the peak, which will be higher when the peak is uncertain (\cref{fig:spaghetti}); this phenomenon and the communication challenges it poses have been previously described in more detail~\citep{mccabeCommunicating} .
+results show a slow rise and plateau from Sep 2020 to early Nov 2020 with a peak incidence proportion of 0.081\% (0.073--0.091\%) using the phenomenological model or 0.072\% (0.067--0.076\%) using the mechanistic model, a decrease during Nov 2020, then a fast increase in positivity incidence peaking on 24 (21--28) Dec 2020 at 0.16\% (0.14--0.19\%) using the phenomenological model or on 21 (21--21) Dec 2020, the first day of the school Christmas holidays in England, at 0.15\% (0.14--0.16\%) using the mechanistic model.
+Estimates of incidence at the peak are higher than they appear in \cref{fig:incidence-Eng}, which shows the median posterior estimate per day, rather than the median posterior estimate of the peak that will be higher when the peak timing is uncertain (\cref{fig:spaghetti}).
+%because that figure shows the median posterior estimate per day, as opposed to the median posterior estimate of the peak, which will be higher when the peak is uncertain (\cref{fig:spaghetti}); 
+This phenomenon and the communication challenges it poses have been previously described in more detail~\citep{mccabeCommunicating}.
 \begin{figure}%[tbhp]
 \centering
 \includegraphics{figures/incidence_England}
@@ -300,7 +302,7 @@ It is this variant that is associated with a second peak, which occurs in late D
 \centering
 \includegraphics{figures/incidence_stratified}
 \caption{%
-    {\color{red} Positivity} incidence estimates (median and 95\% credible interval) from both models.
+    Positivity incidence estimates (median and 95\% credible interval) from both models.
     Incidence proportion ($y$-axis) refers to the proportion of the population that becomes RT-PCR positive on a given day.
     (A) Estimates by region.
     (B) Estimates by age group.
@@ -321,9 +323,9 @@ However, the estimated cumulative incidence over this period is almost identical
 
 \subsection*{Susceptibility by age}
 
-An advantage of the CIS data is that it both samples all ages from two years old (including children, who rarely appear in data on severe disease) and above and a well-defined sampling frame (unlike community testing, which is heavily affected by propensity to test, test availability, and changing criteria).
+An advantage of the CIS data is that it samples all ages from two years old (including children, who rarely appear in data on severe disease) and above and has a well-defined sampling frame (unlike community testing, which is heavily affected by propensity to test, test availability, and changing criteria).
 The mechanistic model can exploit these data to estimate how individual susceptibility differs by age.
-Here, individual susceptibility is defined as the probability of a susceptible individual becoming infected upon contact with an infectious individual,  including both biological factors (\eg differences in immune response) and behavioural factors (\eg differences in hygiene).
+Here, individual susceptibility is defined as the probability of a susceptible individual becoming infected upon contact with an infectious individual,  including both biological factors (\eg differences in immune response) and behavioural factors (\eg mask-wearing).
 We estimate this parameter independently for each region, showing that children aged 11 or younger are consistently less susceptible than the rest of the population across all regions (\cref{fig:children}).
 Our estimates for the susceptibility of children under 11, relative to adults range from 0.69 (0.60--0.81) in South West England to 0.90 (0.83--0.96) in South East England.
 \begin{figure}%[tbhp]
@@ -353,13 +355,13 @@ In \cref{fig:rw-London} we show posterior estimates for $\beta(t)$ in London, wh
 
 Up to now we have considered retrospective estimation of incidence, using the complete data available  over the period considered. An important question is whether the CIS data on prevalence can be used prospectively, to reliably estimate infection incidence up to the analysis time as data accumulate, i.e. to \textit{nowcast} infection incidence.
 
-This is a challenging task as prevalence data are a lagged indicator of infection incidence, and prevalence estimated today is informative of infections that occurred some time in the past. As a result, nowcasting will become increasingly uncertain the longer the lag between infection and first testing positive. \cref{fig:incidence-cutoffs} shows the nowcasting of infection incidence as data accumulate over time from the transmission model and compares resulting estimates against the gold-standard retrospective infection incidence reconstruction obtained using the complete data. 
+This is a challenging task as prevalence data are a lagged indicator of infection incidence, and prevalence estimated today is informative of infections that occurred some time in the past. As a result, nowcasting will become increasingly uncertain the longer the lag between infection and first testing positive. \cref{fig:incidence-cutoffs} shows the nowcasting of infection incidence as data accumulate over time from the transmission model and compares resulting estimates against the gold-standard retrospectively estimated infection incidence using the complete data. 
 
 For the first three nowcasts at the beginning of the study period, the model's assumption of early exponential growth dominates any signal from the limited data and the nowcast poorly matches the retrospective estimates.
 
 Beyond this initial period the nowcasts are, at the very least, qualitatively accurate, reproducing the retrospectively-estimated trends. Credible intervals for the nowcast and retrospective estimates overlap at a lag of two weeks in all examples with overlaps at shorter lags for the nowcasts dated 2020-11-08, 2020-12-06, 2020-12-20 and 2021-01-17, with the latter being particularly notable given the imposition of a national lockdown only twelve days earlier.
 
-Regionally, consistently with the national picture, longer lags are needed for the nowcasts to match the retrospective infection incidence estimates when there are major changes in dynamics. This is apparent from figure (\cref{fig:incidence-cutoffs-region} for the nowcasts at the beginning of the upturns due to the alpha wave and in the last period at the time of the lockdown measures.
+Regionally, consistent with the national picture, longer lags are needed for the nowcasts to match the retrospective infection incidence estimates when there are major changes in dynamics. This is apparent in \cref{fig:incidence-cutoffs-region} at the beginning of the alpha wave and in the periods prior to lockdown measures.
 
 %Estimates from the mechanistic model are more precise, reflecting the addition of the SEIR structure for the underlying transmission dynamics (\textit{Materials and Methods: Mechanistic model}).
 
@@ -425,11 +427,10 @@ When our estimates were inaccurate at a 1-week lag, they were often inaccurate i
 Another possible improvement is to address that inaccurate estimates corresponded most often to periods with substantial behavioural changes (\eg following the announcement of a national lockdown).
 These changes may be better modelled by replacing the Gaussian random walk with a distribution with fatter tails (\eg t-distribution).
 To implement these changes, a more efficient inference algorithm is likely required, but implementing this would allow more information to be extracted from CIS-like studies.
-If this potential can be realised, CIS-like studies will be more timely and more robust than current methodologies.
-{\color{red} - we need to add something to do with the cost (briefly mentioned in line 421 above, are these the barriers referring to in the introduction?) and the need/opportunity to design these surveys optimally to provide comparable information at lower costs..? 
-
-Finally: do we want to mention any of the limitations of this work?
-Even more finally: do we want to add somewhere that these incidence reconstruction are consistent with results using different data..eg the react data and cite the relevant paper? }
+If this potential can be realised, CIS-based studies will be more timely and more robust than current methodologies.
+%{\color{red} - we need to add something to do with the cost (briefly mentioned in line 421 above, are these the barriers referring to in the introduction?) and the need/opportunity to design these surveys optimally to provide comparable information at lower costs..? 
+%Finally: do we want to mention any of the limitations of this work?
+%Even more finally: do we want to add somewhere that these incidence reconstruction are consistent with results using different data..eg the react data and cite the relevant paper? }
 
 \matmethods{
 
@@ -743,12 +744,10 @@ The use of the EC distribution add the following equations to the system of ODEs
     \frac{d\vec{p}_3(t)}{dt} &= \chi \omega_{2} \vec{p}_2(t) - \omega_{3} \vec{p}_3(t)
 \end{align}
 %%where $l=3$ and $\omega_0$, $\omega_1$, $\omega_2$, and $\chi$ are 
-where $\omega_0$ is the inverse of the expected time from infection to the infection becoming detectable, and $l = 3$, $\omega_1$, $\omega_2$, $\omega_3$, and $\chi$ are
-parameters of the EC distribution (\cref{SEIR:table:ec-params}).
+where $\omega_0$ is the inverse of the expected time from infection to the infection becoming detectable, and $l = 3$, $\omega_1$, $\omega_2$, $\omega_3$, and $\chi$ are parameters of the EC distribution (\cref{SEIR:table:ec-params}).
 \begin{table}
     \centering
     \begin{tabular}{c c c c c c}
-%%        $l$ & $\omega_0$ & $\omega_{2}$ & $\omega_{3}$ & $\chi$ \\
         $l$ & $\omega_0$ & $\omega_{1}$ &$\omega_{2}$ & $\omega_{3}$ & $\chi$ \\
         3 & 0.3333 & 0.0820 & 0.126 & 0.0223 & 0.00973  \\
     \end{tabular}
