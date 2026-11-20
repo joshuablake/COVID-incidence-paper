@@ -466,6 +466,7 @@ The full algorithm for this procedure is given in the SI.
 \subsubsection*{Regression model}
 We modify a previously-used regression model~\citep{pouwelsMRPvaccination} for the same dataset to be suitable for estimating incidence.
 The model is fitted independently to each region in a Bayesian framework using the Integrated Nested Laplace Approximation (INLA, implemented in R-INLA)~\citep{RINLA,rueINLA} to obtain an approximate posterior distribution.
+% TODO: state R and R-INLA versions used for the regression (it was run inside the ONS SRS; not recorded in any repo).
 Each day, the probability of a positive test for a given age group, ethnicity, and sex combination is modelled using logistic regression with fixed effects for sex and White or non-White ethnicity; random effects for time and more granular ethnicity; and a two-way random effect for age group and time.
 To account for the overdispersion due to the household-based design of the survey and unobserved heterogeneity, we use a beta-binomial likelihood (see the SI for further details).
 
@@ -479,6 +480,7 @@ In the current context, the incidence proportions for stratum $i$ on day $t$, $Z
 \end{equation}
 where $S(t-s+1)$ is the probability of testing PCR-positive on day $t$ given that the individual was infected on day $s$.
 We assume a maximum duration $\dmax$, hence $S(d) = 0$ for $d > \dmax$.
+Deconvolution was implemented in R~4.2.0.
 Further details are provided in the SI.
 
 \subsubsection*{Post-stratification}
@@ -535,6 +537,16 @@ All results are based on four Markov chains each of length \numprint{10000000} i
 The first \numprint{1000000} were discarded as burn-in, with the remaining chains thinned to every \numprint{5000}th iteration.
 This gives \numprint{7200} posterior samples per region.
 This was further thinned to \numprint{1800} samples per region when calculating posterior predictive quantities (incidence and prevalence) due to their computational cost.
+
+\subsection*{Use of artificial intelligence}
+Claude Opus 5.5 (Anthropic) was used to assist with proofreading; all outputs were checked by the authors.
+
+\subsection*{Data, Materials, and Software Availability}
+De-identified CIS data~\citep{CIS} are stored in the Office for National Statistics (ONS) Secure Research Service (SRS) due to regulatory requirements, and are available to accredited researchers for accredited research purposes under part 5, chapter 5 of the Digital Economy Act 2017 (\url{https://www.ons.gov.uk/aboutus/whatwedo/statistics/requestingstatistics/secureresearchservice}).
+Code implementing the mechanistic model~\citep{covid19seirCode} is archived at \url{https://doi.org/10.5281/zenodo.24391979} (development version at \url{https://github.com/joshuablake/covid19-seir}), with the scripts used to fit it to the CIS data~\citep{CISseirCode} archived at \url{https://doi.org/10.5281/zenodo.24392048} (development version at \url{https://github.com/joshuablake/CIS-seir}).
+Code for the deconvolution step of the phenomenological model, together with the posterior predictions of the regression model released from the SRS, is available at \url{https://github.com/joshuablake/CIS-backcalc}.
+% TODO: regression (R-INLA) model code was run inside the SRS; release it or explain availability here.
+Code to reproduce the figures is available at \url{https://github.com/joshuablake/COVID-incidence-paper}.
 }
 
 \showmatmethods{} % Display the Materials and Methods section
