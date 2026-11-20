@@ -781,7 +781,7 @@ Denoting the proportion of stratum $a$ in state $p_k$ as $p_{ka}(\tau)$, then $\
 
 We solve the system of ODEs using Euler's method, discretised at timesteps of $\delta t = 1/2$ days.
 That is, if $\vec{x}_t$ is the system state at time $t$ for $t \in \{ 0, 0.5, 1, \dots \}$ then $x_{t+\frac{1}{2}} = x_t + (d\vec{x}(t)/dt) \delta t$.
-The mean prevalence on day $t$, used for the likelihood (\cref{SEIR:eq:likelihood}), can be calculated as $\bar{p}_{at} = \frac{1}{2} \sum_{k=1}^l ( p_{kat} + p_{ka,t+1/2} )$.
+The mean prevalence on day $t$, used for the likelihood (\cref{SEIR:eq:likelihood}), can be calculated as $\bar{p}_{at} = \frac{1}{2} \sum_{k=1}^l ( p_{ka,t+1/2} + p_{ka,t+1} )$.
 
 As in previous work~\citep{birrellBayesian}, we parameterize $\beta_1$ in terms of the initial growth of the epidemic and a parsimonious parameterization of the initial conditions, using the initial proportion of the population that are infectious and the initial proportion that are susceptible only.
 
