@@ -536,10 +536,10 @@ This gives \numprint{7200} posterior samples per region.
 This was further thinned to \numprint{1800} samples per region when calculating posterior predictive quantities (incidence and prevalence) due to their computational cost.
 
 \subsection*{Use of artificial intelligence}
-Claude Opus 5.5 (Anthropic), used through Claude Code, assisted with proofreading, with drafting the declarations and statements required for submission, and with checking the manuscript against the analysis code. In doing so it identified an error in the code that sets the initial state of the mechanistic model (\textit{SI Appendix}); it implemented the correction, ran the refitted analyses on a high-performance computing cluster under the authors' direction, regenerated the figures, and drafted the corresponding changes to the text. The authors reviewed all code changes, analyses and text, and take full responsibility for them.
+Claude Opus 5.5 (Anthropic), used through Claude Code, assisted with proofreading, with drafting the declarations and statements required for submission, and checking the manuscript against the analysis code. It corrected errors identified in this process under the authors' direction, including changing code and minor changes to the text. The authors reviewed all code changes, analyses and text, and take full responsibility for them.
 
 \subsection*{Data, Materials, and Software Availability}
-De-identified CIS data~\citep{CIS} are stored in the Office for National Statistics (ONS) Secure Research Service (SRS) due to regulatory requirements, and are available to accredited researchers for accredited research purposes under part 5, chapter 5 of the Digital Economy Act 2017 (\url{https://www.ons.gov.uk/aboutus/whatwedo/statistics/requestingstatistics/secureresearchservice}).
+De-identified CIS data~\citep{CIS} are only available through the Office for National Statistics (ONS)'s Secure Research Service (SRS) due to regulatory requirements. Access is available to accredited researchers for accredited research purposes under part 5, chapter 5 of the Digital Economy Act 2017 (\url{https://www.ons.gov.uk/aboutus/whatwedo/statistics/requestingstatistics/secureresearchservice}).
 Code implementing the mechanistic model~\citep{covid19seirCode} is archived at \url{https://doi.org/10.5281/zenodo.24391979} (development version at \url{https://github.com/joshuablake/covid19-seir}), with the scripts used to fit it to the CIS data~\citep{CISseirCode} archived at \url{https://doi.org/10.5281/zenodo.24392048} (development version at \url{https://github.com/joshuablake/CIS-seir}).
 Code for the deconvolution step of the phenomenological model, together with the posterior predictions of the regression model released from the SRS, is available at \url{https://github.com/joshuablake/CIS-backcalc}.
 Code to reproduce the figures is available at \url{https://github.com/joshuablake/COVID-incidence-paper}.
@@ -704,7 +704,7 @@ $N_a$ and $N_{a'}$ are constant because the change in the total population is ne
 
 We base the contact rates, $\kappa_{aa'}(t)$, from several data sources, using pre-existing methodology~\citep{vanleeuwenAugmenting,birrellRealtime}.
 In brief, we start with pre-pandemic baseline estimates of $\kappa_{aa'}$ from the POLYMOD study~\citep{mossongSocial}, and time use from the UKTUS (UK Time Use Survey)~\citep{UKTUS} then modify them each week based on changes in where people spend their time, as measured by Google mobility data~\citep{googleCOVID19} and school attendance data~(unpublished).
-The same England-level contact matrices are used for every region; regional differences in transmission are captured by the region-specific $\beta(t)$, initial conditions, and immunity priors.
+The same England-level contact matrices are used for every region; regional differences in transmission are captured by the parameters, including region-specific prior immunity priors.
 $\kappa_{aa'}(t)$ is assumed to be piecewise constant, changing only at the start of each Monday.
 
 The probability of transmission, $q_{aa'}(t)$, needs further decomposition to be identifiable~\citep{andersonInfectious}.
