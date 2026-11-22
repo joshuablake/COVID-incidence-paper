@@ -256,8 +256,8 @@ Unlike the phenomenological approach, model parameters now have a direct physica
 
 The phenomenological model produces estimates of positivity  incidence, whereas the mechanistic model can produce estimates of both infection incidence (entries into state $p_0$, individuals newly infected) and positivity incidence (entries into state $p_1$). %% Both models produce estimates of SARS-CoV-2 incidence proportion, the proportion of the population that becomes RT-PCR positive on a given day (\cref{fig:incidence-Eng}).
 \cref{fig:incidence-Eng} presents estimates of positivity incidence from both models. The
-results show a slow rise and plateau from Sep 2020 to early Nov 2020 with a peak incidence proportion of 0.081\% (0.073--0.091\%) using the phenomenological model or 0.072\% (0.067--0.076\%) using the mechanistic model.
-Incidence then decreases during Nov 2020,  before increasing quickly with positivity incidence peaking on 24 (21--28) Dec 2020 at 0.16\% (0.14--0.19\%) using the phenomenological model or on 21 (21--21) Dec 2020, the first weekday of the school Christmas holidays in England, at 0.15\% (0.14--0.16\%) using the mechanistic model.
+results show a slow rise and plateau from Sep 2020 to early Nov 2020 with a peak incidence proportion of 0.081\% (0.073--0.091\%) using the phenomenological model or 0.072\% (0.068--0.076\%) using the mechanistic model.
+Incidence then decreases during Nov 2020,  before increasing quickly with positivity incidence peaking on 24 (21--28) Dec 2020 at 0.16\% (0.14--0.19\%) using the phenomenological model or on 21 (21--21) Dec 2020, the first weekday of the school Christmas holidays in England, at 0.14\% (0.14--0.15\%) using the mechanistic model.
 Estimates of incidence at the peak are higher than they appear in \cref{fig:incidence-Eng}, which shows the median posterior estimate per day, rather than the median posterior estimate of the peak which is higher when the peak timing is uncertain (\cref{fig:spaghetti}).
 %because that figure shows the median posterior estimate per day, as opposed to the median posterior estimate of the peak, which will be higher when the peak is uncertain (\cref{fig:spaghetti}); 
 This phenomenon and the communication challenges it poses have been previously described in more detail elsewhere~\citep{mccabeCommunicating}.
@@ -313,7 +313,7 @@ The timings of peaks coincide across age groups, and the highest peak is in the 
 There is some divergence in the estimated trends in positivity incidence proportions for the under 26 age groups,  %%, in differing directions for different time points.
 the likely driver for which is data on contact rates, used only in the mechanistic model.
 Contact rates decrease significantly for 12--16 year-olds during the school half-term break at the end of October, as they have many contacts at school~\cite{vanleeuwenAugmenting}.
-The decrease in contact rates flows through into the positivity incidence estimates from the mechanistic model, with a drop to 0.076\% (0.070--0.081\%) from 0.18\% (0.16--0.19\%) between 18 Oct and 1 Nov 2020.
+The decrease in contact rates flows through into the positivity incidence estimates from the mechanistic model, with a drop to 0.076\% (0.071--0.080\%) from 0.18\% (0.16--0.19\%) between 18 Oct and 1 Nov 2020.
 On the other hand, the phenomenological model estimates positivity incidence to be flat in these age groups over this period.
 However, the estimated cumulative incidence over this period is almost identical between the models, at 1.6\% (1.5--1.8\%) for the phenomenological model and 1.6\% (1.5--1.7\%) for the mechanistic model.
 
@@ -323,7 +323,7 @@ An advantage of the CIS data is that it samples all ages from two years old (inc
 The mechanistic model can exploit these data to estimate how individual susceptibility differs by age.
 Here, individual susceptibility is defined as the probability of a susceptible individual becoming infected upon contact with an infectious individual,  including both biological factors (\eg differences in immune response) and behavioural factors (\eg mask-wearing).
 We estimate this parameter independently for each region, showing that children aged 11 or younger are consistently less susceptible than the rest of the population across all regions (\cref{fig:children}).
-Our estimates for the susceptibility of children aged 0--11 relative to adults range from 0.69 (0.60--0.81) in South West England to 0.90 (0.83--0.96) in South East England.
+Our estimates for the susceptibility of children aged 0--11 relative to adults range from 0.70 (0.60--0.80) in South West England to 0.89 (0.83--0.96) in London.
 \begin{figure}%[tbhp]
 \centering
 \includegraphics{figures/children}
@@ -353,7 +353,7 @@ Up to now we have considered retrospective estimation of incidence, using the co
 
 This is a challenging task as prevalence data are a lagged indicator of infection incidence, informative of infections that occurred some time in the past. As a result, nowcasting will become increasingly uncertain the longer the lag between infection and first testing positive. \cref{fig:incidence-cutoffs} shows the nowcasting of infection incidence as data accumulate over time from the transmission model and compares resulting estimates against the gold-standard retrospectively estimated infection incidence using the complete data. 
 
-For the first three nowcasts at the beginning of the study period, the model's assumption of early exponential growth dominates any signal from the limited data and the nowcast poorly matches the retrospective estimates.
+For the nowcast dated 2020-10-11, and to a lesser extent 2020-09-27, the model's assumption of early exponential growth dominates any signal from the limited data and the nowcast poorly matches the retrospective estimates.
 
 Beyond this initial period the nowcasts are, at the very least, qualitatively accurate, reproducing the retrospectively-estimated trends. Credible intervals for the nowcast and retrospective estimates overlap at a lag of two weeks in all examples with overlaps at shorter lags for the nowcasts dated 2020-11-08, 2020-12-06, 2020-12-20 and 2021-01-17, with the latter being particularly notable given the imposition of a national lockdown only twelve days earlier.
 
