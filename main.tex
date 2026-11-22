@@ -843,6 +843,7 @@ Equating the expressions in \cref{SEIR:eq:fullODEs} and \cref{SEIR:eq:exponentia
     \vec{p}_2(0) &= \vec{p}_1(0) \frac{\omega_1}{\psi + \omega_{2}} \\
     \vec{p}_3(0) &= \vec{p}_2(0) \frac{\chi \omega_{2}}{\psi + \omega_{3}}.
 \end{align}
+These expressions give a valid (non-negative) initial state only if $\psi > -\omega_3$, the slowest rate in the system, so the prior on $\psi$ is truncated at $-\omega_3$.
 
 Define a parameter $\vec{\pi}$ as the proportion of each stratum without initial immunity, then $\vec{r}(0) = 1 - \vec{\pi}$.
 Finally, to ensure the population proportions sum to one, $\vec{s}(0) = \vec{\pi} - \vec{i}_0 - \vec{e}_1 - \vec{e}_2$.
@@ -881,6 +882,7 @@ All results are based on four Markov chains each of length \numprint{10000000} i
 The first \numprint{1000000} were discarded as burn-in, with the remaining chains thinned to every \numprint{5000}th iteration.
 This gives \numprint{7200} posterior samples per region.
 This was further thinned to \numprint{1800} samples per region when calculating posterior predictive quantities (incidence and prevalence) due to their computational cost.
+Three of the \numprint{396} chains (four chains for each of nine regions and 11 data cut-offs) stopped early because of a numerical failure when generating a proposal; these were rerun with a different random seed.
 
 We implement the inference code in Python~3.8.2~\citep{python} using pandas~2.0.3~\citep{pandas}, numpy~1.24.4~\citep{numpy}, and scipy~1.10.1~\citep{scipy}.
 The strata are larger than those in the phenomenological model, allowing the data to be extracted from the ONS Secure Research Service (SRS).
@@ -912,11 +914,11 @@ The remaining parameters have weakly informative priors.
     Initial proportion without immunity & $\vec\pi$ & See \cref{SEIR:table:immunity-prior} & \\
     Initial proportion infectious & $i^+$ & $\BetaDist(0.5, 1000)$ & Weakly informative \\
     Susceptibility of children & $q_c$ & $\LN(-0.4325, 0.1174)$ & \citep{vinerTransmission}  \\
-    Initial growth rate & $\psi$ & $\N(0.06, 0.04)$ & Weakly informative \\
+    Initial growth rate & $\psi$ & $\N(0.06, 0.04)$, $\psi > -\omega_3$ & Weakly informative \\
     Standard deviation of random walk steps on log scale & $\sigma_\epsilon$ & $\Exponential(10)$ & penalized complexity prior~\citep{simpsonPenalising} \\
-    Overdispersion of observations & $\rho$ & $\Exponential(5 \times 10^4)$ & penalizing deviations from binomial
+    Overdispersion of observations & $\rho$ & $\Exponential(5 \times 10^4)$, $\rho > 10^{-11}$ & penalizing deviations from binomial
 \end{tabular}
-\caption{Priors for mechanistic model's parameters. Normal and log-normal distributions are parameterised by their mean and standard deviation (on the log scale for the log-normal); exponential distributions by their rate.}
+\caption{Priors for mechanistic model's parameters. Normal and log-normal distributions are parameterised by their mean and standard deviation (on the log scale for the log-normal); exponential distributions by their rate. Where a range is given, the prior is truncated to it (for $\psi$ to give a valid initial state, for $\rho$ for numerical stability of the likelihood).}
 \label{table:mech-priors}
 \end{table*}
 \begin{table*}
