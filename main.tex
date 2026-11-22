@@ -543,6 +543,7 @@ Claude Opus 5.5 (Anthropic) was used to assist with proofreading; all outputs we
 
 \subsection*{Data, Materials, and Software Availability}
 De-identified CIS data~\citep{CIS} are stored in the Office for National Statistics (ONS) Secure Research Service (SRS) due to regulatory requirements, and are available to accredited researchers for accredited research purposes under part 5, chapter 5 of the Digital Economy Act 2017 (\url{https://www.ons.gov.uk/aboutus/whatwedo/statistics/requestingstatistics/secureresearchservice}).
+% TODO: the results now come from the refit (covid19-seir and CIS-seir branch omega0-fix on the HPC, not yet pushed). After pushing, make v1.1.0 releases of both repos and replace the v1.0.0 DOIs and bib entries below with the new version DOIs.
 Code implementing the mechanistic model~\citep{covid19seirCode} is archived at \url{https://doi.org/10.5281/zenodo.24391979} (development version at \url{https://github.com/joshuablake/covid19-seir}), with the scripts used to fit it to the CIS data~\citep{CISseirCode} archived at \url{https://doi.org/10.5281/zenodo.24392048} (development version at \url{https://github.com/joshuablake/CIS-seir}).
 Code for the deconvolution step of the phenomenological model, together with the posterior predictions of the regression model released from the SRS, is available at \url{https://github.com/joshuablake/CIS-backcalc}.
 % TODO: regression (R-INLA) model code was run inside the SRS; release it or explain availability here.
