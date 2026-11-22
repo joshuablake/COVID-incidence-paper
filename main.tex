@@ -78,9 +78,9 @@
 \author[c,d]{Koen B. Pouwels}
 \author[d,e,f]{A.\ Sarah Walker}
 \author[a]{Sanmitra Ghosh}
-\author[g]{Edwin van Leeuwen}
-\author[h]{Thomas House}
-\author[i]{Theodore Kypraios}
+\author[{{}}]{Edwin van Leeuwen}
+\author[g]{Thomas House}
+\author[h]{Theodore Kypraios}
 \author[a,b,1]{Daniela De Angelis}
 
 \affil[a]{MRC Biostatistics Unit, University of Cambridge, Cambridge CB2 0SR, United Kingdom}
@@ -89,9 +89,8 @@
 \affil[d]{NIHR Health Protection Research Unit in Healthcare Associated Infections and Antimicrobial Resistance, University of Oxford, Oxford OX3 9DU, United Kingdom}
 \affil[e]{Nuffield Department of Medicine, University of Oxford, Oxford OX3 7BN, United Kingdom}
 \affil[f]{NIHR Oxford Biomedical Research Centre, Oxford University Hospitals NHS Foundation Trust, Oxford OX3 9DU, United Kingdom}
-\affil[g]{Modelling and Economics Unit, UK Health Security Agency, London, United Kingdom} % TODO: confirm with EvL (and add postcode / any LSHTM affiliation)
-\affil[h]{Department of Mathematics, University of Manchester, Manchester M13 9PL, United Kingdom}
-\affil[i]{School of Mathematical Sciences, University of Nottingham, Nottingham NG7 2RD, United Kingdom}
+\affil[g]{Department of Mathematics, University of Manchester, Manchester M13 9PL, United Kingdom}
+\affil[h]{School of Mathematical Sciences, University of Nottingham, Nottingham NG7 2RD, United Kingdom}
 
 % Please give the surname of the lead author for the running footer
 \leadauthor{Blake}
@@ -433,7 +432,6 @@ If this potential can be realised, CIS-based studies will be more timely and mor
 The CIS~\citep{CIS} was set up in April 2020 as a large-scale, longitudinal study.
 Households were originally recruited in England from those who had previously responded to ONS survey(s) and agreed to be approached for future research; it was expanded in September 2020 by inviting a random sample of addresses across the whole UK on an ongoing basis.
 Both recruitment routes derive from random samples of addresses, so the CIS is a probability sample whose target population is individuals aged 2 years and over living in private households.
-% TODO (PNAS survey transparency requirement): report enrolment response rates here, e.g. from the Pouwels et al. Lancet Public Health appendix or the ONS methods page.
 Following enrolment and consent, individuals were visited at home by study workers, employed by IQVIA on behalf of ONS, on a pre-determined schedule.
 At each visit, a questionnaire was completed and a combined throat and nose swab was collected for RT-PCR testing.
 Only the RT-PCR results and participants' age, sex, ethnicity, and region were used in this analysis.
@@ -466,7 +464,6 @@ The full algorithm for this procedure is given in the SI.
 \subsubsection*{Regression model}
 We modify a previously-used regression model~\citep{pouwelsMRPvaccination} for the same dataset to be suitable for estimating incidence.
 The model is fitted independently to each region in a Bayesian framework using the Integrated Nested Laplace Approximation (INLA, implemented in R-INLA)~\citep{RINLA,rueINLA} to obtain an approximate posterior distribution.
-% TODO: state R and R-INLA versions used for the regression (it was run inside the ONS SRS; not recorded in any repo).
 Each day, the probability of a positive test for a given age group, ethnicity, and sex combination is modelled using logistic regression with fixed effects for sex and White or non-White ethnicity; random effects for time and more granular ethnicity; and a two-way random effect for age group and time.
 To account for the overdispersion due to the household-based design of the survey and unobserved heterogeneity, we use a beta-binomial likelihood (see the SI for further details).
 
@@ -539,14 +536,12 @@ This gives \numprint{7200} posterior samples per region.
 This was further thinned to \numprint{1800} samples per region when calculating posterior predictive quantities (incidence and prevalence) due to their computational cost.
 
 \subsection*{Use of artificial intelligence}
-Claude Opus 5.5 (Anthropic) was used to assist with proofreading; all outputs were checked by the authors.
+Claude Opus 5.5 (Anthropic), used through Claude Code, assisted with proofreading, with drafting the declarations and statements required for submission, and with checking the manuscript against the analysis code. In doing so it identified an error in the code that sets the initial state of the mechanistic model (\textit{SI Appendix}); it implemented the correction, ran the refitted analyses on a high-performance computing cluster under the authors' direction, regenerated the figures, and drafted the corresponding changes to the text. The authors reviewed all code changes, analyses and text, and take full responsibility for them.
 
 \subsection*{Data, Materials, and Software Availability}
 De-identified CIS data~\citep{CIS} are stored in the Office for National Statistics (ONS) Secure Research Service (SRS) due to regulatory requirements, and are available to accredited researchers for accredited research purposes under part 5, chapter 5 of the Digital Economy Act 2017 (\url{https://www.ons.gov.uk/aboutus/whatwedo/statistics/requestingstatistics/secureresearchservice}).
-% TODO: the results now come from the refit (covid19-seir and CIS-seir branch omega0-fix on the HPC, not yet pushed). After pushing, make v1.1.0 releases of both repos and replace the v1.0.0 DOIs and bib entries below with the new version DOIs.
 Code implementing the mechanistic model~\citep{covid19seirCode} is archived at \url{https://doi.org/10.5281/zenodo.24391979} (development version at \url{https://github.com/joshuablake/covid19-seir}), with the scripts used to fit it to the CIS data~\citep{CISseirCode} archived at \url{https://doi.org/10.5281/zenodo.24392048} (development version at \url{https://github.com/joshuablake/CIS-seir}).
 Code for the deconvolution step of the phenomenological model, together with the posterior predictions of the regression model released from the SRS, is available at \url{https://github.com/joshuablake/CIS-backcalc}.
-% TODO: regression (R-INLA) model code was run inside the SRS; release it or explain availability here.
 Code to reproduce the figures is available at \url{https://github.com/joshuablake/COVID-incidence-paper}.
 }
 
