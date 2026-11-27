@@ -4,6 +4,7 @@ library(patchwork)
 library(tidybayes)
 library(tidyr)
 source(here::here("figures/utils.R"))
+set.seed(20201221) # fixed seed so the random draws in this figure are reproducible
 
 tbl_phenomenological_England = load_backcalc_regions() |>
     filter(daynr > 1, region == "England")

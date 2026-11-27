@@ -7,6 +7,7 @@ library(stringr)
 library(tidybayes)
 library(tidyr)
 source(here::here("figures/utils.R"))
+set.seed(20201221) # fixed seed so the random draws in this figure are reproducible
 
 # Read posterior predictives
 predictions = load_seir_predictive() |>
